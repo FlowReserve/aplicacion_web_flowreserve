@@ -1,0 +1,9 @@
+.custom-btn{
+    background-color: rgba(162, 30, 214, 0.8);
+    color: white;
+    border: none;
+    transition: all 0.3s ease;
+}
+.custom-btn:hover{
+    background-color: rgba(162, 30, 214, 1);
+}

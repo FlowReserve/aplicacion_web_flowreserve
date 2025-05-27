@@ -6,15 +6,23 @@ import type { Role } from '../types/Role';
 const AuthContext = createContext<AuthState | null>(null);
 
 export const AuthProvider = ({ children }: { children: ReactNode }) => {
-  const [isAuthenticated, setAuth] = useState(false);
-  const [role, setRole] = useState<Role | null>(null);
+  const [isAuthenticated, setAuth] = useState(() => {
+    return !!localStorage.getItem('token');
+  });
+  const [role, setRole] = useState<Role | null>(() => {
+    return localStorage.getItem('role') as Role | null;
+  });
 
-  const login = (userRole: Role) => {
+  const login = (userRole: Role, token: string) => {
+    localStorage.setItem('token', token);
+    localStorage.setItem('role', userRole);
     setAuth(true);
     setRole(userRole);
   };
 
   const logout = () => {
+    localStorage.removeItem('token');
+    localStorage.removeItem('role');
     setAuth(false);
     setRole(null);
   };
@@ -26,4 +34,10 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   );
 };
 
-export const useAuth = () => useContext(AuthContext)!;
+export const useAuth = () => {
+  const context = useContext(AuthContext);
+  if (!context) {
+    throw new Error('useAuth debe usarse dentro de AuthProvider');
+  }
+  return context;
+};

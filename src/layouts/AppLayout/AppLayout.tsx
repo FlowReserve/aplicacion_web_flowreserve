@@ -1,5 +1,6 @@
 import { Outlet } from "react-router-dom";
-
+import FooterWeb from "../../components/global/FooterWeb/FooterWeb";
+import './AppLayout.css';
 const AppLayout = () =>{
     return (
         <div className="app-layout">
@@ -9,9 +10,7 @@ const AppLayout = () =>{
         <main className="app-content">
             <Outlet />
         </main>
-        <footer className="app-footer">
-            <p>&copy; 2023 FlowReserve</p>
-        </footer>
+        <FooterWeb></FooterWeb>
         </div>
     );
 }
