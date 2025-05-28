@@ -1,5 +1,5 @@
-import CustomButton from '../components/global/CustomButton/CustomButton';
-import { useAuth } from '../context/AuthContext';
+import CustomButton from '../../components/CustomButton/CustomButton';
+import { useAuth } from '../../context/AuthContext';
 import { useNavigate } from 'react-router-dom';
 
 function Landing() {

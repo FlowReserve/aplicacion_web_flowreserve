@@ -1,5 +1,5 @@
 import { Outlet } from "react-router-dom";
-import FooterWeb from "../../components/global/FooterWeb/FooterWeb";
+import FooterWeb from "../../components/FooterWeb/FooterWeb";
 import './AppLayout.css';
 const AppLayout = () =>{
     return (
