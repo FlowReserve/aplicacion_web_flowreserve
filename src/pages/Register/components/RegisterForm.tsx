@@ -11,8 +11,8 @@ const RegisterForm = () => {
     nombre: '',
     apellido: '',
     email: '',
-    password: '',
-    confirmPassword: '',
+    contraseña: '',
+    confirmarContraseña : '',
     codigoInvitacion: '',
   });
 
@@ -24,7 +24,7 @@ const RegisterForm = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
-    if (formData.password !== formData.confirmPassword) {
+    if (formData.contraseña !== formData.confirmarContraseña) {
       alert('Las contraseñas no coinciden');
       return;
     }
@@ -42,15 +42,16 @@ const RegisterForm = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form className='register-form' onSubmit={handleSubmit}>
       <input type='text' name='nombre' placeholder='Nombre' onChange={handleChange} value={formData.nombre} />
       <input type='text' name='apellido' placeholder='Apellido' onChange={handleChange} value={formData.apellido} />
       <input type='email' name='email' placeholder='Email' onChange={handleChange} value={formData.email} />
-      <input type='password' name='password' placeholder='Contraseña' onChange={handleChange} value={formData.password} />
-      <input type='password' name='confirmPassword' placeholder='Confirmar Contraseña' onChange={handleChange} value={formData.confirmPassword} />
+      <input type='password' name='contraseña' placeholder='Contraseña' onChange={handleChange} value={formData.contraseña} />
+      <input type='password' name='confirmarContraseña' placeholder='Confirmar Contraseña' onChange={handleChange} value={formData.confirmarContraseña} />
       <input type='text' name='codigoInvitacion' placeholder='INV-000-000' onChange={handleChange} value={formData.codigoInvitacion} />
 
-      <button type='submit' disabled={loading}>Crear cuenta</button>
+      <div><input type='checkbox' name="privacity-terms"/> <label >He leido y acepto los terminos y condiciones política de privacidad y protección de datos </label></div>
+      <button className='btn-register-form' type='submit' disabled={loading}>Crear cuenta</button>
 
       {error && <p className='error-message'>{error}</p>}
     </form>

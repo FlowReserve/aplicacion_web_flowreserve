@@ -4,7 +4,7 @@ import type { UserLoginProps } from '../interfaces/UserLoginProps';
 import type { UserRegisterProps } from '../interfaces/UserRegisterProps';
 
 const API = axios.create({
-  baseURL: import.meta.env.FLOWRESEVE_API_REST_URL,
+  baseURL: import.meta.env.VITE_FLOWRESEVE_API_REST_URL,
   withCredentials: true, // ← Para que las cookies se envíen
 });
 
@@ -15,5 +15,5 @@ export const loginRequest = (credentials : UserLoginProps) => {
 
 // Realiza la petición al enpoint indicado para crear un usuario
 export const registerRequest = (newUser : UserRegisterProps) => {
-    return API.post('auth/register', newUser);
+    return API.post('/medicos/register', newUser);
 }

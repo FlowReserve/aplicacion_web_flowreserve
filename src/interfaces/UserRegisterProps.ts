@@ -1,7 +1,7 @@
 export interface UserRegisterProps {
     nombre : string,
+    contraseña: string,
     apellido: string,
     email: string,
-    password: string,
     codigoInvitacion: string
 }
