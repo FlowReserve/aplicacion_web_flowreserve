@@ -1,4 +1,5 @@
-.custom-btn{
+.custom-link{
+    display: inline-block;
     background-color: var(--color-primary);
     color: white;
     border: 2px solid var(--color-primary);
@@ -6,13 +7,14 @@
     padding: 0.5rem;
     border-radius: 5px;
     cursor: pointer;
+    text-align: center;
 }
-.custom-btn:hover{
+.custom-link:hover{
     background-color: var(--color-secondary);
     border: 2px solid rgb(3, 3, 3);
 }
 
-.custom-btn:disabled{
+.custom-link:disabled{
     background-color: var(--color-accent);
     color: gray;
     cursor: auto;

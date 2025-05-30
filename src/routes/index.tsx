@@ -6,25 +6,27 @@ import AdminPage from '../pages/AdminPage';
 import Landing from '../pages/Landing/Landing';
 import Unauthorized from '../pages/Unauthorized';
 import Register from '../pages/Register/Register';
+import IndexLayout from '../layouts/IndexLayout/IndexLayout';
 
 const router = createBrowserRouter([
-  { path: '/', element: <Landing /> },
-  {path: '/unauthorized', element: <Unauthorized/>},
+  {
+    path: '/',
+    element: <IndexLayout />,
+    children: [
+      { index: true, element: <Landing /> },
+      { path: 'register', element: <Register /> },
+      { path: 'unauthorized', element: <Unauthorized /> },
+    ],
+  },
   {
     path: '/',
     element: <AppLayout />,
     children: [
-            {
-        path: 'register',
-        element: (    
-            <Register/>
-        ),
-      },
       {
         path: 'home',
         element: (
           <ProtectedRoute>
-            <Home/>
+            <Home />
           </ProtectedRoute>
         ),
       },
