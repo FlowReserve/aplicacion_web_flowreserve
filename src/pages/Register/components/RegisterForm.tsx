@@ -1,18 +1,20 @@
 import { useState } from 'react';
 import { useRegister } from '../../../hooks/useRegister';
 import './RegisterForm.css'
+import CustomButton from '../../../components/CustomButton/CustomButton';
 
 const RegisterForm = () => {
 
-  const { registerUser, loading, error } = useRegister();
+  const { registerUser, loading } = useRegister();
 
-  
+  const [message, setMessage] = useState<{ type: 'success' | 'warning' | 'error'; text: string } | null>(null);
+
   const [formData, setFormData] = useState({
     nombre: '',
     apellido: '',
     email: '',
     contraseña: '',
-    confirmarContraseña : '',
+    confirmarContraseña: '',
     codigoInvitacion: '',
   });
 
@@ -23,37 +25,48 @@ const RegisterForm = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-
     if (formData.contraseña !== formData.confirmarContraseña) {
-      alert('Las contraseñas no coinciden');
+      setMessage({ type: 'warning', text: 'Error, las contraseñas no coinciden' })
       return;
     }
 
     try {
       const user = { ...formData };
       delete (user as any).confirmPassword;
-
-      const result = await registerUser(user);
-      console.log('Registro exitoso:', result);
+      await registerUser(user);
+      setMessage({ type: 'success', text: 'Registro completado con éxito' })
       // Aquí puedes redirigir, mostrar mensaje, etc
     } catch (err) {
-      console.error('Error al registrar:', err);
+      setMessage({ type: 'error', text: 'Error al registrar usuario' })
     }
   };
 
   return (
     <form className='register-form' onSubmit={handleSubmit}>
-      <input type='text' name='nombre' placeholder='Nombre' onChange={handleChange} value={formData.nombre} />
-      <input type='text' name='apellido' placeholder='Apellido' onChange={handleChange} value={formData.apellido} />
-      <input type='email' name='email' placeholder='Email' onChange={handleChange} value={formData.email} />
-      <input type='password' name='contraseña' placeholder='Contraseña' onChange={handleChange} value={formData.contraseña} />
-      <input type='password' name='confirmarContraseña' placeholder='Confirmar Contraseña' onChange={handleChange} value={formData.confirmarContraseña} />
-      <input type='text' name='codigoInvitacion' placeholder='INV-000-000' onChange={handleChange} value={formData.codigoInvitacion} />
+      <input className='register-form-input' type='text' name='nombre' required placeholder='Nombre' onChange={handleChange} value={formData.nombre} />
+      <input className='register-form-input' type='text' name='apellido' required placeholder='Apellido' onChange={handleChange} value={formData.apellido} />
+      <input className='register-form-input' type='email' name='email' required placeholder='Email' onChange={handleChange} value={formData.email} />
+      <input className='register-form-input' type='password' name='contraseña' required placeholder='Contraseña' onChange={handleChange} value={formData.contraseña} />
+      <input className='register-form-input' type='password' name='confirmarContraseña' required placeholder='Confirmar Contraseña' onChange={handleChange} value={formData.confirmarContraseña} />
+      <div>
+        <label htmlFor="codigoInvitacion">Código invitación</label>
+        <input className='register-form-input' type='text' name='codigoInvitacion' required placeholder='INV-000-000' onChange={handleChange} value={formData.codigoInvitacion} />
+      </div>
 
-      <div><input type='checkbox' name="privacity-terms"/> <label >He leido y acepto los terminos y condiciones política de privacidad y protección de datos </label></div>
-      <button className='btn-register-form' type='submit' disabled={loading}>Crear cuenta</button>
+      <div className='privacity-terms-section'>
+        <input type='checkbox' name="privacity-terms" required />
+        <label className='privacity-text'>He leído y acepto los términos y condiciones, política de privacidad y protección de datos</label>
+      </div>
 
-      {error && <p className='error-message'>{error}</p>}
+      <div className="message-wrapper">
+        {message && (
+          <p className={`message-output-form ${message.type}`}>
+            {message.text}
+          </p>
+        )}
+      </div>
+
+      <CustomButton className='create-account-btn' type='submit' disabled={loading} title='Crear cuenta en FlowReserve'>Crear cuenta</CustomButton>
     </form>
   );
 };

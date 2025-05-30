@@ -3,7 +3,7 @@ import type { FC, MouseEventHandler, ReactNode } from 'react';
 import './CustomButton.css'
 
 interface CustomButtonProps {
-    onClick: MouseEventHandler<HTMLButtonElement>;
+    onClick?: MouseEventHandler<HTMLButtonElement>;
     children: ReactNode;
     title?: string;
     type?: 'button' | 'submit' | 'reset';

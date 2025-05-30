@@ -2,13 +2,58 @@
     display: flex;
     flex-direction: column;
     gap: 0.75rem;
-    padding: 2rem;
+    padding: 2rem 1rem;
     border: 1px solid black;
     border-radius: 0.5rem;
     box-shadow: 1px 1px 5px rgb(97, 97, 97);
     max-width: 400px;
 }
 
-.btn-register-form{
-    margin-top: 2rem;
+.register-form-input{
+    font-size: 1rem;
+    padding: .1rem;
+}
+
+.privacity-terms-section{
+    display: flex;
+    gap: 0.5rem;
+}
+
+.privacity-text{
+    font-size: 0.8rem;
+}
+
+.message-wrapper {
+  height: 2.5rem; /* ajusta según necesidad */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.message-output-form{
+    margin: 0px auto;
+    width: 100%;
+    text-align: center;
+    padding: .5rem;
+    font-weight: 600;
+    border-radius: 5px;
+}
+
+.error{
+    background-color: rgb(255, 180, 180);
+    color: red;
+}
+
+.sucess{
+    background-color: rgb(220, 255, 180);
+    color: green;
+}
+
+.warning{
+    background-color: rgb(255, 248, 180);
+    color: black;
+}
+
+.create-account-btn{
+    margin-top: 1rem;
 }

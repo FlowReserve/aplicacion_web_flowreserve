@@ -1,9 +1,16 @@
 .custom-btn{
     background-color: rgba(162, 30, 214, 0.8);
     color: white;
-    border: none;
+    border: 2px solid rgba(162, 30, 214, 1);
     transition: all 0.3s ease;
 }
 .custom-btn:hover{
     background-color: rgba(162, 30, 214, 1);
+    border: 2px solid rgb(3, 3, 3);
+}
+
+.custom-btn:disabled{
+    background-color: rgba(210, 96, 255, 0.8);
+    color: gray;
+    cursor: auto;
 }
