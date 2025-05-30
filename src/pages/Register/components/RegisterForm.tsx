@@ -42,20 +42,21 @@ const RegisterForm = () => {
   };
 
   return (
-    <form className='register-form' onSubmit={handleSubmit}>
+    <form className='flex flex-col rounded gap-2 p-4 max-w-[400px] border border-black shadow-2xl' onSubmit={handleSubmit}>
       <input className='register-form-input' type='text' name='nombre' required placeholder='Nombre' onChange={handleChange} value={formData.nombre} />
       <input className='register-form-input' type='text' name='apellido' required placeholder='Apellido' onChange={handleChange} value={formData.apellido} />
       <input className='register-form-input' type='email' name='email' required placeholder='Email' onChange={handleChange} value={formData.email} />
       <input className='register-form-input' type='password' name='contraseña' required placeholder='Contraseña' onChange={handleChange} value={formData.contraseña} />
       <input className='register-form-input' type='password' name='confirmarContraseña' required placeholder='Confirmar Contraseña' onChange={handleChange} value={formData.confirmarContraseña} />
-      <div>
+      
+      <div className='flex gap-2 flex-grow'>
         <label htmlFor="codigoInvitacion">Código invitación</label>
         <input className='register-form-input' type='text' name='codigoInvitacion' required placeholder='INV-000-000' onChange={handleChange} value={formData.codigoInvitacion} />
       </div>
 
-      <div className='privacity-terms-section'>
+      <div className='flex gap-2'>
         <input type='checkbox' name="privacity-terms" required />
-        <label className='privacity-text'>He leído y acepto los términos y condiciones, política de privacidad y protección de datos</label>
+        <label className='text-sm'>He leído y acepto los términos y condiciones, política de privacidad y protección de datos</label>
       </div>
 
       <div className="message-wrapper">
@@ -66,7 +67,7 @@ const RegisterForm = () => {
         )}
       </div>
 
-      <CustomButton className='create-account-btn' type='submit' disabled={loading} title='Crear cuenta en FlowReserve'>Crear cuenta</CustomButton>
+      <CustomButton className='mt-4' type='submit' disabled={loading} title='Crear cuenta en FlowReserve'>Crear cuenta</CustomButton>
     </form>
   );
 };
