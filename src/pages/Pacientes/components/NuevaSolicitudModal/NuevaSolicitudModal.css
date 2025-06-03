@@ -1,0 +1,22 @@
+.input {
+  width: 100%;
+  padding: 0.5rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.modal {
+  background: white;
+  padding: 2rem;
+  max-width: 600px;
+  margin: auto;
+  border-radius: 8px;
+  position: relative;
+  top: 20%;
+}
+
+.modal-overlay {
+  background: rgba(0, 0, 0, 0.5);
+  position: fixed;
+  inset: 0;
+}

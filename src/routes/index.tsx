@@ -1,5 +1,5 @@
 import { createBrowserRouter } from 'react-router-dom';
-import Home from '../pages/Home';
+import Home from '../pages/Home/Home';
 import ProtectedRoute from './ProtectedRoute';
 import AppLayout from '../layouts/AppLayout/AppLayout';
 import AdminPage from '../pages/AdminPage';
@@ -7,6 +7,7 @@ import Landing from '../pages/Landing/Landing';
 import Unauthorized from '../pages/Unauthorized';
 import Register from '../pages/Register/Register';
 import IndexLayout from '../layouts/IndexLayout/IndexLayout';
+import Pacientes from '../pages/Pacientes/Pacientes';
 
 const router = createBrowserRouter([
   {
@@ -24,10 +25,14 @@ const router = createBrowserRouter([
     children: [
       {
         path: 'home',
-        element: (
-          <ProtectedRoute>
+        element: (    
             <Home />
-          </ProtectedRoute>
+        ),
+      },
+            {
+        path: 'pacientes',
+        element: (    
+            <Pacientes />
         ),
       },
       {

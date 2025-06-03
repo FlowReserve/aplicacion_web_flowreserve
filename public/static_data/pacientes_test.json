@@ -1,0 +1,152 @@
+[
+  {
+    "nombrePaciente": "Ana",
+    "apellidoPaciente": "González",
+    "codigoNHC": "NHC0001",
+    "medicoID": "MED001"
+  },
+  {
+    "nombrePaciente": "Luis",
+    "apellidoPaciente": "Ramírez",
+    "codigoNHC": "NHC0002",
+    "medicoID": "MED002"
+  },
+  {
+    "nombrePaciente": "Carlos",
+    "apellidoPaciente": "Fernández",
+    "codigoNHC": "NHC0003",
+    "medicoID": "MED001"
+  },
+  {
+    "nombrePaciente": "María",
+    "apellidoPaciente": "López",
+    "codigoNHC": "NHC0004",
+    "medicoID": "MED003"
+  },
+  {
+    "nombrePaciente": "Sofía",
+    "apellidoPaciente": "Pérez",
+    "codigoNHC": "NHC0005",
+    "medicoID": "MED002"
+  },
+  {
+    "nombrePaciente": "Javier",
+    "apellidoPaciente": "Sánchez",
+    "codigoNHC": "NHC0006",
+    "medicoID": "MED001"
+  },
+  {
+    "nombrePaciente": "Lucía",
+    "apellidoPaciente": "Martínez",
+    "codigoNHC": "NHC0007",
+    "medicoID": "MED003"
+  },
+  {
+    "nombrePaciente": "Pedro",
+    "apellidoPaciente": "García",
+    "codigoNHC": "NHC0008",
+    "medicoID": "MED002"
+  },
+  {
+    "nombrePaciente": "Laura",
+    "apellidoPaciente": "Ruiz",
+    "codigoNHC": "NHC0009",
+    "medicoID": "MED003"
+  },
+  {
+    "nombrePaciente": "Hugo",
+    "apellidoPaciente": "Torres",
+    "codigoNHC": "NHC0010",
+    "medicoID": "MED001"
+  },
+  {
+    "nombrePaciente": "Clara",
+    "apellidoPaciente": "Flores",
+    "codigoNHC": "NHC0011",
+    "medicoID": "MED002"
+  },
+  {
+    "nombrePaciente": "Diego",
+    "apellidoPaciente": "Morales",
+    "codigoNHC": "NHC0012",
+    "medicoID": "MED003"
+  },
+  {
+    "nombrePaciente": "Elena",
+    "apellidoPaciente": "Castro",
+    "codigoNHC": "NHC0013",
+    "medicoID": "MED001"
+  },
+  {
+    "nombrePaciente": "Manuel",
+    "apellidoPaciente": "Delgado",
+    "codigoNHC": "NHC0014",
+    "medicoID": "MED003"
+  },
+  {
+    "nombrePaciente": "Isabel",
+    "apellidoPaciente": "Vargas",
+    "codigoNHC": "NHC0015",
+    "medicoID": "MED002"
+  },
+  {
+    "nombrePaciente": "Daniel",
+    "apellidoPaciente": "Molina",
+    "codigoNHC": "NHC0016",
+    "medicoID": "MED001"
+  },
+  {
+    "nombrePaciente": "Sara",
+    "apellidoPaciente": "Ortega",
+    "codigoNHC": "NHC0017",
+    "medicoID": "MED002"
+  },
+  {
+    "nombrePaciente": "Miguel",
+    "apellidoPaciente": "Romero",
+    "codigoNHC": "NHC0018",
+    "medicoID": "MED003"
+  },
+  {
+    "nombrePaciente": "Paula",
+    "apellidoPaciente": "Navarro",
+    "codigoNHC": "NHC0019",
+    "medicoID": "MED001"
+  },
+  {
+    "nombrePaciente": "Antonio",
+    "apellidoPaciente": "Reyes",
+    "codigoNHC": "NHC0020",
+    "medicoID": "MED002"
+  },
+  {
+    "nombrePaciente": "Natalia",
+    "apellidoPaciente": "Herrera",
+    "codigoNHC": "NHC0021",
+    "medicoID": "MED003"
+  },
+  {
+    "nombrePaciente": "Gabriel",
+    "apellidoPaciente": "Silva",
+    "codigoNHC": "NHC0022",
+    "medicoID": "MED001"
+  },
+  {
+    "nombrePaciente": "Adriana",
+    "apellidoPaciente": "Campos",
+    "codigoNHC": "NHC0023",
+    "medicoID": "MED002"
+  },
+  {
+    "nombrePaciente": "Raúl",
+    "apellidoPaciente": "Peña",
+    "codigoNHC": "NHC0024",
+    "medicoID": "MED003"
+  },
+  {
+    "nombrePaciente": "Victoria",
+    "apellidoPaciente": "Ramos",
+    "codigoNHC": "NHC0025",
+    "medicoID": "MED001"
+  }
+]
