@@ -10,10 +10,10 @@ const API = axios.create({
 
 //Realiza la petición al endpoint indicado para iniciar sesión.
 export const loginRequest = (credentials : UserLoginProps) => {
-  return API.post('/auth/login', credentials);
+  return API.post('/auth/log-in', credentials);
 };
 
 // Realiza la petición al enpoint indicado para crear un usuario
 export const registerRequest = (newUser : UserRegisterProps) => {
-    return API.post('/medicos/register', newUser);
+    return API.post('api/v1/medicos', newUser);
 }

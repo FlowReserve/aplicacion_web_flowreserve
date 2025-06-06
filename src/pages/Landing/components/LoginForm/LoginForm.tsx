@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import CustomButton from '../../../../components/CustomButton/CustomButton';
 import { Link } from 'react-router-dom';
+import { login } from '../../../../services/authService';
 
 const LoginForm = () => {
     const [formData, setFormData] = useState({
@@ -22,20 +23,30 @@ const LoginForm = () => {
         setMessage(null);
 
         try {
-            // Simulación de autenticación
+            // Validación básica
             if (!formData.email || !formData.contraseña) {
                 throw new Error('Todos los campos son obligatorios');
             }
 
-            // Lógica de autenticación (reemplazar con tu hook o servicio real)
-            console.log('Autenticando...', formData);
-            // Simular éxito
-            setTimeout(() => {
-                setMessage({ text: 'Inicio de sesión exitoso', type: 'success' });
-                setLoading(false);
-            }, 1000);
+            // Llamada real al servicio login
+            const response = await login({
+                username: formData.email,
+                password: formData.contraseña, // o password, si es el nombre del backend
+            });
+            console.log("respuesta del login: ", response)
+
+            // Puedes guardar el token si viene en la respuesta, por ejemplo:
+            // localStorage.setItem('token', response.token);
+
+            setMessage({ text: 'Inicio de sesión exitoso', type: 'success' });
+
+            // Redirigir si es necesario:
+            // navigate('/home');
+
         } catch (err: any) {
-            setMessage({ text: err.message || 'Error al iniciar sesión', type: 'error' });
+            const errorMessage = err?.response?.data?.message || err.message || 'Error al iniciar sesión';
+            setMessage({ text: errorMessage, type: 'error' });
+        } finally {
             setLoading(false);
         }
     };

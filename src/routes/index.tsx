@@ -5,7 +5,6 @@ import AppLayout from '../layouts/AppLayout/AppLayout';
 import AdminPage from '../pages/AdminPage';
 import Landing from '../pages/Landing/Landing';
 import Unauthorized from '../pages/Unauthorized';
-import Register from '../pages/Register/Register';
 import IndexLayout from '../layouts/IndexLayout/IndexLayout';
 import Pacientes from '../pages/Pacientes/Pacientes';
 
@@ -15,7 +14,6 @@ const router = createBrowserRouter([
     element: <IndexLayout />,
     children: [
       { index: true, element: <Landing /> },
-      { path: 'register', element: <Register /> },
       { path: 'unauthorized', element: <Unauthorized /> },
     ],
   },
