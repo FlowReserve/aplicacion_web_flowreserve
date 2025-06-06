@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { usePacientes } from '../../../../hooks/usePacientes';
 import CustomButton from '../../../../components/CustomButton/CustomButton';
 import NuevaSolicitudModal from '../NuevaSolicitudModal/NuevaSolicitudModal';
@@ -7,13 +7,18 @@ interface PacientesListProps {
     medicoID: string;
 }
 
-const PacientesList: React.FC<PacientesListProps> = ({ medicoID }) => {
+const PacientesList: React.FC<PacientesListProps> = () => {
 
-    const { pacientes, loading, error } = usePacientes(medicoID);
+    const { pacientes, loading, error, loadPacientes } = usePacientes();
 
     // Estado para la modal
     const [modalOpen, setModalOpen] = useState(false);
     const [pacienteSeleccionadoID, setPacienteSeleccionadoID] = useState<string | null>(null);
+
+
+    useEffect(() => {
+        loadPacientes(); 
+    }, []);
 
     const handleNuevaSolicitud = (idPaciente: string) => {
         console.log('Crear nueva solicitud para:', idPaciente);
@@ -54,19 +59,19 @@ const PacientesList: React.FC<PacientesListProps> = ({ medicoID }) => {
                     <tbody>
                         {pacientes.map((p, index) => (
                             <tr key={index} className="hover:bg-gray-200">
-                                <td className="p-2 border-b w-[120px]">{p.codigoNHC}</td>
-                                <td className="p-2 border-b w-[150px]">{p.nombrePaciente}</td>
-                                <td className="p-2 border-b">{p.apellidoPaciente}</td>
+                                <td className="p-2 border-b w-[120px]">{p.nhc}</td>
+                                <td className="p-2 border-b w-[150px]">{p.nombre}</td>
+                                <td className="p-2 border-b">{p.apellido}</td>
                                 <td className="p-2 border-b space-x-2 text-right">
                                     <CustomButton
-                                        onClick={() => handleVerSolicitudes(p.codigoNHC)}
+                                        onClick={() => handleVerSolicitudes(p.nhc)}
                                         className="bg-green-500 text-white px-2 py-1 rounded hover:bg-green-600 w-[150px]"
                                     >
                                         Ver solicitudes
                                     </CustomButton>
 
                                     <CustomButton
-                                        onClick={() => handleNuevaSolicitud(p.codigoNHC)}
+                                        onClick={() => handleNuevaSolicitud(p.nhc)}
                                         className="bg-blue-500 text-white px-3 py-1 rounded w-[150px]"
                                     >
                                         Nueva solicitud

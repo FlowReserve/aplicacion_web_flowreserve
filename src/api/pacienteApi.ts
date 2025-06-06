@@ -1,6 +1,5 @@
-import axios from 'axios';
-import type { PacienteProps } from '../interfaces/Paciente/PacienteProps';
 import type { NuevoPacienteProps } from '../interfaces/Paciente/NuevoPacienteProps';
+import type { QueryParams } from '../interfaces/QueryParams';
 import authenticatedApiClient from './authenticatedApiClient';
 
 
@@ -15,9 +14,7 @@ export const crearNuevoPaciente = (paciente: NuevoPacienteProps, token: string) 
  * Obtiene el listado de pacientes asociados con un médico.
  * @returns 
  */
-export const getPacientes = async (token: string): Promise<PacienteProps[]> => {
+export const getPacientes = async (token: string, params?: QueryParams) => {
   const api = authenticatedApiClient(token);
-  const response = await api.get('api/v1/pacientes/mis-pacientes');
-  console.log(response)
-  return response.data;
+  return api.get('api/v1/pacientes/mis-pacientes', {params});
 };

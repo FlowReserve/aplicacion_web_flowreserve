@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { crearSolicitud } from '../services/solicitudService';
-import type { SolicitudPacienteProps } from '../interfaces/SolicitudPacienteProps'; 
+import type { SolicitudPacienteProps } from '../interfaces/Solicitud/SolicitudPacienteProps'; 
 
 export const useCrearSolicitud = () => {
   const [loading, setLoading] = useState(false);

@@ -1,26 +1,30 @@
-import { useEffect, useState } from 'react';
-import { fetchPacientesByMedico } from '../services/pacientesService';
+import { useState } from 'react';
+import { fetchPacientesList } from '../services/pacientesService';
 import type { PacienteProps } from '../interfaces/Paciente/PacienteProps';
+import { useAuth } from '../context/AuthContext';
+import type { PaginatedResponse } from '../interfaces/PaginatedResponse';
 
-export const usePacientes = (medicoID: string) => {
+export const usePacientes = () => {
   const [pacientes, setPacientes] = useState<PacienteProps[]>([]);
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const result = await fetchPacientesByMedico(medicoID);
-        setPacientes(result);
-      } catch (err: any) {
-        setError(err.message || 'Error al cargar pacientes');
-      } finally {
-        setLoading(false);
-      }
-    };
+  const { authData } = useAuth();
 
-    fetchData();
-  }, [medicoID]);
+  const loadPacientes = async () => {
+    setLoading(true);
+    setError(null);
 
-  return { pacientes, loading, error };
+    try {
+      const token = authData?.token || "";
+      const result: PaginatedResponse<PacienteProps> = await fetchPacientesList(token, {size: 20});
+      setPacientes(result.content);
+    } catch (err: any) {
+      setError(err.message || 'Error al cargar pacientes');
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  return { pacientes, loading, error, loadPacientes };
 };

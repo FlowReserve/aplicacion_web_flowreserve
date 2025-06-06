@@ -1,5 +1,5 @@
 import { crearSolicitudRequest } from '../api/solicitudApi';
-import type { SolicitudPacienteProps } from '../interfaces/SolicitudPacienteProps';
+import type { SolicitudPacienteProps } from '../interfaces/Solicitud/SolicitudPacienteProps';
 
 export const crearSolicitud = async (solicitud: SolicitudPacienteProps) => {
   const formData = new FormData();

@@ -2,7 +2,7 @@ import React, { useState, useRef, useCallback } from 'react';
 import Modal from 'react-modal';
 import CustomButton from '../../../../components/CustomButton/CustomButton';
 import { useCrearSolicitud } from '../../../../hooks/useCrearSolicitud';
-import type { SolicitudPacienteProps } from '../../../../interfaces/SolicitudPacienteProps';
+import type { SolicitudPacienteProps } from '../../../../interfaces/Solicitud/SolicitudPacienteProps';
 import './NuevaSolicitudModal.css'
 
 interface NuevaSolicitudModalProps {
