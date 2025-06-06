@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { fetchPacientesByMedico } from '../services/pacientesService';
-import type { PacienteProps } from '../interfaces/PacienteProps';
+import type { PacienteProps } from '../interfaces/Paciente/PacienteProps';
 
 export const usePacientes = (medicoID: string) => {
   const [pacientes, setPacientes] = useState<PacienteProps[]>([]);

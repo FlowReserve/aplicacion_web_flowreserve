@@ -58,13 +58,13 @@ const PacientesList: React.FC<PacientesListProps> = ({ medicoID }) => {
                                 <td className="p-2 border-b w-[150px]">{p.nombrePaciente}</td>
                                 <td className="p-2 border-b">{p.apellidoPaciente}</td>
                                 <td className="p-2 border-b space-x-2 text-right">
-                                                                        <CustomButton
+                                    <CustomButton
                                         onClick={() => handleVerSolicitudes(p.codigoNHC)}
                                         className="bg-green-500 text-white px-2 py-1 rounded hover:bg-green-600 w-[150px]"
                                     >
                                         Ver solicitudes
                                     </CustomButton>
-                                    
+
                                     <CustomButton
                                         onClick={() => handleNuevaSolicitud(p.codigoNHC)}
                                         className="bg-blue-500 text-white px-3 py-1 rounded w-[150px]"
