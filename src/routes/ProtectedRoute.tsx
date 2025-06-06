@@ -1,18 +1,27 @@
+// src/routes/ProtectedRoute.tsx
 import { Navigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import type { ProtectedRouteProps } from '../interfaces/ProtectedRouteProps';
 
-// Componente que protege rutas según autenticación y roles
 const ProtectedRoute = ({ allowedRoles, children }: ProtectedRouteProps) => {
-  const { isAuthenticated, role } = useAuth(); // Obtiene el estado actual de autenticación y el rol del usuario
+  const { isAuthenticated, authData } = useAuth();
 
-  // Si el usuario no está autenticado, lo redirige al login
-  if (!isAuthenticated) return <Navigate to="/" />;
+  console.log("Is authenticated:", isAuthenticated);
+console.log("User roles:", authData?.roles);
+console.log("Allowed roles:", allowedRoles);
 
-  // Si hay una restricción de roles y el rol del usuario no está permitido, redirige a /unauthorized
-  if (allowedRoles && !allowedRoles.includes(role!)) return <Navigate to="/unauthorized" />;
+  // Si no está autenticado, redirige al login
+  if (!isAuthenticated) return <Navigate to="/" replace />;
 
-  // Si pasa los filtros, renderiza el contenido protegido
+  // Si hay restricción de roles, y ninguno de los roles del usuario coincide, redirige a /unauthorized
+  if (
+    allowedRoles &&
+    (!authData?.roles || !authData.roles.some(role => allowedRoles.includes(role)))
+  ) {
+    return <Navigate to="/unauthorized" replace />;
+  }
+
+  // Si todo está correcto, renderiza el contenido
   return children;
 };
 

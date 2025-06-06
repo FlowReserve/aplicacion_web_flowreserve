@@ -8,6 +8,7 @@ const NavBarWeb = () => {
                 <ul className="flex gap-5">
                     <li><Link to="/home">Inicio</Link></li>
                     <li><Link to="/pacientes">Mis pacientes</Link></li>
+                    <li><Link to="/admin">Admin</Link></li>
                     <li><Link to="/cuenta">Mi cuenta</Link></li>
                     <li><Link to="/">Cerrar sesión</Link></li>
                 </ul>

@@ -1,7 +1,7 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 import CustomButton from '../../../../components/CustomButton/CustomButton';
 import { Link } from 'react-router-dom';
-import { login } from '../../../../services/authService';
+import { useLogin } from '../../../../hooks/useLogin';
 
 const LoginForm = () => {
     const [formData, setFormData] = useState({
@@ -9,8 +9,7 @@ const LoginForm = () => {
         contraseña: '',
     });
 
-    const [message, setMessage] = useState<{ text: string; type: string } | null>(null);
-    const [loading, setLoading] = useState(false);
+    const {loginUser, loading, message} = useLogin()
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const { name, value } = e.target;
@@ -18,38 +17,12 @@ const LoginForm = () => {
     };
 
     const handleSubmit = async (e: React.FormEvent) => {
-        e.preventDefault();
-        setLoading(true);
-        setMessage(null);
-
-        try {
-            // Validación básica
-            if (!formData.email || !formData.contraseña) {
-                throw new Error('Todos los campos son obligatorios');
-            }
-
-            // Llamada real al servicio login
-            const response = await login({
-                username: formData.email,
-                password: formData.contraseña, // o password, si es el nombre del backend
-            });
-            console.log("respuesta del login: ", response)
-
-            // Puedes guardar el token si viene en la respuesta, por ejemplo:
-            // localStorage.setItem('token', response.token);
-
-            setMessage({ text: 'Inicio de sesión exitoso', type: 'success' });
-
-            // Redirigir si es necesario:
-            // navigate('/home');
-
-        } catch (err: any) {
-            const errorMessage = err?.response?.data?.message || err.message || 'Error al iniciar sesión';
-            setMessage({ text: errorMessage, type: 'error' });
-        } finally {
-            setLoading(false);
-        }
-    };
+        e.preventDefault()
+        await loginUser({
+            username: formData.email,
+            password: formData.contraseña
+        });
+    }
 
     return (
         <form
