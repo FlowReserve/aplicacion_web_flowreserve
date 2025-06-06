@@ -1,7 +1,6 @@
 export interface SolicitudPacienteProps {
-  idPaciente: string;
+  idPaciente: number;
   pressureA: string;
   pressureB: string;
   comentarios: string;
-  archivoZIP: File;
 }

@@ -1,14 +1,7 @@
 import { crearSolicitudRequest } from '../api/solicitudApi';
-import type { SolicitudPacienteProps } from '../interfaces/Solicitud/SolicitudPacienteProps';
+import type { ResponseNuevaSolicitudPacienteProps } from '../interfaces/Solicitud/ResponseNuevaSolicitudPacienteProps';
 
-export const crearSolicitud = async (solicitud: SolicitudPacienteProps) => {
-  const formData = new FormData();
-  formData.append('idPaciente', solicitud.idPaciente);
-  formData.append('pressureA', solicitud.pressureA);
-  formData.append('pressureB', solicitud.pressureB);
-  formData.append('comentarios', solicitud.comentarios);
-  formData.append('archivoZIP', solicitud.archivoZIP);
-
-  const response = await crearSolicitudRequest(formData);
+export const crearSolicitud = async (token: string, formData: FormData): Promise<ResponseNuevaSolicitudPacienteProps> => {
+  const response = await crearSolicitudRequest(token, formData);
   return response.data;
 };

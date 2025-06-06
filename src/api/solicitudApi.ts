@@ -1,14 +1,7 @@
-import axios from 'axios';
+import authenticatedApiClient from './authenticatedApiClient';
 
-const API = axios.create({
-  baseURL: import.meta.env.VITE_FLOWRESEVE_API_REST_URL,
-  withCredentials: true, // Para enviar cookies (auth)
-});
 
-export const crearSolicitudRequest = (data: FormData) => {
-  return API.post('/solicitudes', data, {
-    headers: {
-      'Content-Type': 'multipart/form-data',
-    },
-  });
+export const crearSolicitudRequest = (token:string,  data: FormData) => {
+  const api = authenticatedApiClient(token);
+  return api.post('/api/v1/solicitudes/new', data);
 };

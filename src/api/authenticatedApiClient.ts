@@ -5,9 +5,6 @@ const authenticatedApiClient = (token: string | null) => {
   const instance = axios.create({
     baseURL: import.meta.env.VITE_FLOWRESEVE_API_REST_URL,
     withCredentials: true,
-    headers: {
-      'Content-Type': 'application/json',
-    },
   });
 
   // Interceptor para añadir el token

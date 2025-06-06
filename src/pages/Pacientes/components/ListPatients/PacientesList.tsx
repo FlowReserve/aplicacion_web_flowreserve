@@ -13,14 +13,14 @@ const PacientesList: React.FC<PacientesListProps> = () => {
 
     // Estado para la modal
     const [modalOpen, setModalOpen] = useState(false);
-    const [pacienteSeleccionadoID, setPacienteSeleccionadoID] = useState<string | null>(null);
+    const [pacienteSeleccionadoID, setPacienteSeleccionadoID] = useState<number | null>(null);
 
 
     useEffect(() => {
         loadPacientes(); 
     }, []);
 
-    const handleNuevaSolicitud = (idPaciente: string) => {
+    const handleNuevaSolicitud = (idPaciente: number) => {
         console.log('Crear nueva solicitud para:', idPaciente);
         setPacienteSeleccionadoID(idPaciente);
         setModalOpen(true);
@@ -32,7 +32,7 @@ const PacientesList: React.FC<PacientesListProps> = () => {
         setPacienteSeleccionadoID(null);
     };
 
-    const handleVerSolicitudes = (pacienteId: string) => {
+    const handleVerSolicitudes = (pacienteId: number) => {
         console.log('Ver solicitudes para:', pacienteId);
         // Aquí podrías redirigir a una vista de historial
     };
@@ -64,14 +64,14 @@ const PacientesList: React.FC<PacientesListProps> = () => {
                                 <td className="p-2 border-b">{p.apellido}</td>
                                 <td className="p-2 border-b space-x-2 text-right">
                                     <CustomButton
-                                        onClick={() => handleVerSolicitudes(p.nhc)}
+                                        onClick={() => handleVerSolicitudes(p.id)}
                                         className="bg-green-500 text-white px-2 py-1 rounded hover:bg-green-600 w-[150px]"
                                     >
                                         Ver solicitudes
                                     </CustomButton>
 
                                     <CustomButton
-                                        onClick={() => handleNuevaSolicitud(p.nhc)}
+                                        onClick={() => handleNuevaSolicitud(p.id)}
                                         className="bg-blue-500 text-white px-3 py-1 rounded w-[150px]"
                                     >
                                         Nueva solicitud
@@ -87,7 +87,7 @@ const PacientesList: React.FC<PacientesListProps> = () => {
             <NuevaSolicitudModal
                 isOpen={modalOpen && pacienteSeleccionadoID !== null}
                 onClose={closeModal}
-                idPaciente={pacienteSeleccionadoID || ''}
+                idPaciente={pacienteSeleccionadoID || 0}
             />
 
         </div>

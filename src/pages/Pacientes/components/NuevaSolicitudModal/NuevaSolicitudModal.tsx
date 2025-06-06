@@ -8,7 +8,7 @@ import './NuevaSolicitudModal.css'
 interface NuevaSolicitudModalProps {
     isOpen: boolean;
     onClose: () => void;
-    idPaciente: string;
+    idPaciente: number;
 }
 
 const NuevaSolicitudModal: React.FC<NuevaSolicitudModalProps> = ({
@@ -81,11 +81,10 @@ const NuevaSolicitudModal: React.FC<NuevaSolicitudModalProps> = ({
             pressureA,
             pressureB,
             comentarios,
-            archivoZIP: archivoSeleccionado, // Mantenemos el nombre pero puede ser ZIP o carpeta
         };
 
         try {
-            await submitSolicitud(payload);
+            await submitSolicitud(payload, archivoSeleccionado);
             alert('Solicitud creada correctamente');
             onClose();
         } catch {
