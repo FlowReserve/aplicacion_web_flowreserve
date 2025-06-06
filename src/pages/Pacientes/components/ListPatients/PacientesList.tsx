@@ -2,6 +2,9 @@ import React, { useState, useEffect } from 'react';
 import { usePacientes } from '../../../../hooks/usePacientes';
 import CustomButton from '../../../../components/CustomButton/CustomButton';
 import NuevaSolicitudModal from '../NuevaSolicitudModal/NuevaSolicitudModal';
+import { listarSolicitudesAsociadasPaciente } from '../../../../services/solicitudService';
+import { useAuth } from '../../../../context/AuthContext';
+import { useNavigate } from 'react-router-dom';
 
 interface PacientesListProps {
     medicoID: string;
@@ -10,18 +13,20 @@ interface PacientesListProps {
 const PacientesList: React.FC<PacientesListProps> = () => {
 
     const { pacientes, loading, error, loadPacientes } = usePacientes();
-
+    const { authData } = useAuth();
+    const navigate = useNavigate();
     // Estado para la modal
     const [modalOpen, setModalOpen] = useState(false);
     const [pacienteSeleccionadoID, setPacienteSeleccionadoID] = useState<number | null>(null);
+    const [pacienteSeleccionadoNHC, setPacienteSeleccionadoNHC] = useState<string | null>();
 
 
     useEffect(() => {
-        loadPacientes(); 
+        loadPacientes();
     }, []);
 
-    const handleNuevaSolicitud = (idPaciente: number) => {
-        console.log('Crear nueva solicitud para:', idPaciente);
+    const handleNuevaSolicitud = (idPaciente: number, pacienteNHC: string) => {
+        setPacienteSeleccionadoNHC(pacienteNHC);
         setPacienteSeleccionadoID(idPaciente);
         setModalOpen(true);
         // Aquí podrías redirigir a un formulario o abrir un modal
@@ -32,9 +37,19 @@ const PacientesList: React.FC<PacientesListProps> = () => {
         setPacienteSeleccionadoID(null);
     };
 
-    const handleVerSolicitudes = (pacienteId: number) => {
-        console.log('Ver solicitudes para:', pacienteId);
-        // Aquí podrías redirigir a una vista de historial
+    const handleVerSolicitudes = async (pacienteId: number) => {
+        navigate(`/pacientes/${pacienteId}`);
+        // if (!authData?.token) {
+        //     console.error("No hay token de autenticación");
+        //     return;
+        // }
+
+        // try {
+        //     const solicitudes = await listarSolicitudesAsociadasPaciente(authData.token, pacienteId.toString());
+        //     console.log(`Solicitudes del paciente ${pacienteId}:`, solicitudes.content);
+        // } catch (error) {
+        //     console.error("Error al cargar solicitudes:", error);
+        // }
     };
 
     if (loading) return <p>Cargando pacientes...</p>;
@@ -71,7 +86,7 @@ const PacientesList: React.FC<PacientesListProps> = () => {
                                     </CustomButton>
 
                                     <CustomButton
-                                        onClick={() => handleNuevaSolicitud(p.id)}
+                                        onClick={() => handleNuevaSolicitud(p.id, p.nhc)}
                                         className="bg-blue-500 text-white px-3 py-1 rounded w-[150px]"
                                     >
                                         Nueva solicitud
@@ -88,6 +103,7 @@ const PacientesList: React.FC<PacientesListProps> = () => {
                 isOpen={modalOpen && pacienteSeleccionadoID !== null}
                 onClose={closeModal}
                 idPaciente={pacienteSeleccionadoID || 0}
+                NHCPaciente={pacienteSeleccionadoNHC || 'null'}
             />
 
         </div>

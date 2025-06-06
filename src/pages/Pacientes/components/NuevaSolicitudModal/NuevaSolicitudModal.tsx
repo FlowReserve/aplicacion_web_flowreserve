@@ -1,4 +1,4 @@
-import React, { useState, useRef, useCallback } from 'react';
+import React, { useState, useRef, useCallback, useEffect } from 'react';
 import Modal from 'react-modal';
 import CustomButton from '../../../../components/CustomButton/CustomButton';
 import { useCrearSolicitud } from '../../../../hooks/useCrearSolicitud';
@@ -9,12 +9,14 @@ interface NuevaSolicitudModalProps {
     isOpen: boolean;
     onClose: () => void;
     idPaciente: number;
+    NHCPaciente: string,
 }
 
 const NuevaSolicitudModal: React.FC<NuevaSolicitudModalProps> = ({
     isOpen,
     onClose,
     idPaciente,
+    NHCPaciente
 }) => {
     const { submitSolicitud, loading, error } = useCrearSolicitud();
     const fileInputRef = useRef<HTMLInputElement>(null);
@@ -24,6 +26,22 @@ const NuevaSolicitudModal: React.FC<NuevaSolicitudModalProps> = ({
     const [comentarios, setComentarios] = useState('');
     const [archivoSeleccionado, setArchivoSeleccionado] = useState<File | null>(null);
     const [isDragOver, setIsDragOver] = useState(false);
+
+
+    // Limpia formulario cuando se cierra el modal
+    useEffect(() => {
+        if (!isOpen) {
+            setPressureA('');
+            setPressureB('');
+            setComentarios('');
+            setArchivoSeleccionado(null);
+            setIsDragOver(false);
+            if (fileInputRef.current) {
+                fileInputRef.current.value = '';
+            }
+        }
+    }, [isOpen]);
+
 
     const handleFileSelect = useCallback((files: FileList | null) => {
         if (!files || files.length === 0) return;
@@ -102,7 +120,7 @@ const NuevaSolicitudModal: React.FC<NuevaSolicitudModalProps> = ({
 
     return (
         <Modal isOpen={isOpen} onRequestClose={onClose} contentLabel="Nueva Solicitud" className="modal" overlayClassName="modal-overlay">
-            <h2 className="text-xl font-semibold mb-4 text-center">Nueva Solicitud para paciente  <span className='font-bold'>{idPaciente}</span></h2>
+            <h2 className="text-xl font-semibold mb-4 text-center">Nueva Solicitud para paciente  <span className='font-bold'>{NHCPaciente}</span></h2>
 
             <form onSubmit={handleSubmit} className="space-y-4">
                 <div>
@@ -126,8 +144,8 @@ const NuevaSolicitudModal: React.FC<NuevaSolicitudModalProps> = ({
                     {!archivoSeleccionado ? (
                         <div
                             className={`border-2 border-dashed rounded-lg p-6 min-h-[156px] text-center cursor-pointer transition-colors ${isDragOver
-                                    ? 'border-blue-500 bg-blue-50'
-                                    : 'border-gray-300 hover:border-gray-400'
+                                ? 'border-blue-500 bg-blue-50'
+                                : 'border-gray-300 hover:border-gray-400'
                                 }`}
                             onDragOver={handleDragOver}
                             onDragLeave={handleDragLeave}

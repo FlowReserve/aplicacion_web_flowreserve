@@ -7,6 +7,7 @@ import Landing from '../pages/Landing/Landing';
 import Unauthorized from '../pages/Unauthorized';
 import IndexLayout from '../layouts/IndexLayout/IndexLayout';
 import Pacientes from '../pages/Pacientes/Pacientes';
+import PacienteSolicitudesList from '../pages/PacienteSolicitudesList/PacienteSolicitudesList';
 
 const router = createBrowserRouter([
   {
@@ -27,11 +28,15 @@ const router = createBrowserRouter([
             <Home />
         ),
       },
-            {
+      {
         path: 'pacientes',
-        element: (    
-            <Pacientes />
-        ),
+        element: <Pacientes />,
+        children: [
+          {
+            path: ':id',
+            element: <PacienteSolicitudesList />, // ruta dinámica /pacientes/:id
+          },
+        ],
       },
       {
         path: 'admin',
