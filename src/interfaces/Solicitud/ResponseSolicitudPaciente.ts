@@ -1,7 +1,9 @@
+import type { PacienteProps } from "../Paciente/PacienteProps";
+
 export interface ResponseSolicitudPaciente{
     id: string,
-    paciente: {},
-    date: number,
+    paciente: PacienteProps,
+    date: string,
     state: string,
     pressureA: string,
     pressureB: string,

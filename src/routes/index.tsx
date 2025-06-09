@@ -28,16 +28,11 @@ const router = createBrowserRouter([
             <Home />
         ),
       },
-      {
-        path: 'pacientes',
-        element: <Pacientes />,
-        children: [
-          {
-            path: ':id',
-            element: <PacienteSolicitudesList />, // ruta dinámica /pacientes/:id
-          },
-        ],
-      },
+      // Ruta para listado de pacientes
+      { path: 'pacientes', element: <Pacientes /> },
+
+      // Ruta para detalle paciente (hermana a la anterior)
+      { path: 'pacientes/:id', element: <PacienteSolicitudesList /> },
       {
         path: 'admin',
         element: (

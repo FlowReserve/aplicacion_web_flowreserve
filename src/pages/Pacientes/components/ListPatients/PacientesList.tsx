@@ -1,24 +1,20 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { usePacientes } from '../../../../hooks/usePacientes';
 import CustomButton from '../../../../components/CustomButton/CustomButton';
 import NuevaSolicitudModal from '../NuevaSolicitudModal/NuevaSolicitudModal';
-import { listarSolicitudesAsociadasPaciente } from '../../../../services/solicitudService';
 import { useAuth } from '../../../../context/AuthContext';
 import { useNavigate } from 'react-router-dom';
 
-interface PacientesListProps {
-    medicoID: string;
-}
 
-const PacientesList: React.FC<PacientesListProps> = () => {
+const PacientesList = () => {
 
     const { pacientes, loading, error, loadPacientes } = usePacientes();
     const { authData } = useAuth();
     const navigate = useNavigate();
     // Estado para la modal
     const [modalOpen, setModalOpen] = useState(false);
-    const [pacienteSeleccionadoID, setPacienteSeleccionadoID] = useState<number | null>(null);
-    const [pacienteSeleccionadoNHC, setPacienteSeleccionadoNHC] = useState<string | null>();
+    const [pacienteSeleccionadoID, setPacienteSeleccionadoID] = useState<number | null>(null); //Id del paciente seleccionado para pasar como props (Form añadir solicitud)
+    const [pacienteSeleccionadoNHC, setPacienteSeleccionadoNHC] = useState<string | null>(); //NHC del paciente seleccionado para pasar como props (Form  añadir solicitud)
 
 
     useEffect(() => {
@@ -56,7 +52,7 @@ const PacientesList: React.FC<PacientesListProps> = () => {
     if (error) return <p>Error: {error}</p>;
 
     return (
-        <div className="p-4 overflow-x-auto">
+        <div className="p-4 overflow-x-auto max-w-[1200px] m-auto">
             <h2 className="text-xl font-semibold mb-4">Listado de pacientes</h2>
 
             {pacientes.length === 0 ? (

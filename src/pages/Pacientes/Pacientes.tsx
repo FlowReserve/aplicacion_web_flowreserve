@@ -3,7 +3,6 @@ import { useState } from 'react';
 import PacientesList from './components/ListPatients/PacientesList';
 import NuevoPacienteModal from './components/NuevoPacienteModal/NuevoPacienteModal';
 import CustomButton from '../../components/CustomButton/CustomButton';
-import { Outlet } from 'react-router-dom';
 
 const Pacientes = () => {
   const [modalOpen, setModalOpen] = useState(false);
@@ -23,7 +22,7 @@ const Pacientes = () => {
         </CustomButton>
       </div>
 
-      <PacientesList medicoID="MED002" />
+      <PacientesList  />
 
       <NuevoPacienteModal
         isOpen={modalOpen}
@@ -33,7 +32,6 @@ const Pacientes = () => {
           console.log("Paciente creado correctamente.");
         }}
       />
-      <Outlet></Outlet>
     </div>
   );
 };
