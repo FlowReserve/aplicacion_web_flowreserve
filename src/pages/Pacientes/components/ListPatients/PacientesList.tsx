@@ -2,14 +2,12 @@ import { useState, useEffect } from 'react';
 import { usePacientes } from '../../../../hooks/usePacientes';
 import CustomButton from '../../../../components/CustomButton/CustomButton';
 import NuevaSolicitudModal from '../NuevaSolicitudModal/NuevaSolicitudModal';
-import { useAuth } from '../../../../context/AuthContext';
 import { useNavigate } from 'react-router-dom';
 
 
 const PacientesList = () => {
 
     const { pacientes, loading, error, loadPacientes } = usePacientes();
-    const { authData } = useAuth();
     const navigate = useNavigate();
     // Estado para la modal
     const [modalOpen, setModalOpen] = useState(false);
@@ -35,17 +33,6 @@ const PacientesList = () => {
 
     const handleVerSolicitudes = async (pacienteId: number) => {
         navigate(`/pacientes/${pacienteId}`);
-        // if (!authData?.token) {
-        //     console.error("No hay token de autenticación");
-        //     return;
-        // }
-
-        // try {
-        //     const solicitudes = await listarSolicitudesAsociadasPaciente(authData.token, pacienteId.toString());
-        //     console.log(`Solicitudes del paciente ${pacienteId}:`, solicitudes.content);
-        // } catch (error) {
-        //     console.error("Error al cargar solicitudes:", error);
-        // }
     };
 
     if (loading) return <p>Cargando pacientes...</p>;

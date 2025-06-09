@@ -41,7 +41,7 @@ const ItemPacienteSolicitud: React.FC<Props> = ({ solicitud }) => {
                 <div className="flex flex-col gap-2 items-center w-[200px]">
                     <p className="text-sm text-gray-600">Última actualización: {formatDate(solicitud.date)}</p>
                     <p
-                        className={`text-white text-sm font-bold px-3 py-1 rounded-full w-full text-center ${statusColors[solicitud.state] || 'bg-gray-300'}`}
+                        className={`text-white text-sm font-bold px-3 py-1 rounded w-full text-center ${statusColors[solicitud.state] || 'bg-gray-300'}`}
                     >
                         {solicitud.state}
                     </p>
@@ -56,13 +56,15 @@ const ItemPacienteSolicitud: React.FC<Props> = ({ solicitud }) => {
                     <h3 className="font-semibold">Detalles de la consulta</h3>
                     <p className="mt-2">{solicitud.campoComentarios}</p>
 
-                    <div className="flex gap-4 mt-4">
-                        <p className="p-1 border rounded border-blue-300 bg-blue-50 w-[75px] text-center text-blue-800">
-                            PAS: <span className="font-medium">{solicitud.pressureA}</span>
-                        </p>
-                        <p className="p-1 border rounded border-purple-300 bg-purple-50 w-[75px] text-center text-purple-800">
-                            PAD: <span className="font-medium">{solicitud.pressureB}</span>
-                        </p>
+                    <div className="flex flex-col md:flex-row gap-4 mt-4">
+                        <div className='flex gap-1'>
+                            <p className="p-1 border rounded border-blue-300 bg-blue-50 w-[75px] text-center text-blue-800">
+                                PAS: <span className="font-medium">{solicitud.pressureA}</span>
+                            </p>
+                            <p className="p-1 border rounded border-purple-300 bg-purple-50 w-[75px] text-center text-purple-800">
+                                PAD: <span className="font-medium">{solicitud.pressureB}</span>
+                            </p>
+                        </div>
                         <p className="text-gray-700 text-xs leading-none flex flex-col">
                             <span>PAS: Presión aortica sistólica.</span>
                             <span>PAD: Presión aortica viceversa.</span>

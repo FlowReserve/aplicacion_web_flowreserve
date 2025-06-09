@@ -6,7 +6,9 @@ import { listarSolicitudesAsociadasPaciente } from '../../services/solicitudServ
 import { useAuth } from '../../context/AuthContext';
 import type { ResponseSolicitudPaciente } from '../../interfaces/Solicitud/ResponseSolicitudPaciente';
 import type { PaginatedResponse } from '../../interfaces/PaginatedResponse';
+import type { PacienteProps } from '../../interfaces/Paciente/PacienteProps';
 import ItemPacienteSolicitud from './components/ItemPacienteSolicitud/ItemPacienteSolicitud';
+import TitlePacienteSolicitud from './components/TitlePacienteSolicitud/TitlePacienteSolicitud';
 
 const PacienteSolicitudesList: React.FC = () => {
     const { id } = useParams<{ id: string }>();
@@ -16,6 +18,14 @@ const PacienteSolicitudesList: React.FC = () => {
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState<string | null>(null);
 
+
+    const pacienteMock: PacienteProps = {
+        id: 1,
+        nombre: 'Ana',
+        apellido: 'García',
+        nhc: 'NHC12345',
+    };
+
     useEffect(() => {
         const loadSolicitudes = async () => {
             if (!authData?.token || !id) return;
@@ -23,6 +33,7 @@ const PacienteSolicitudesList: React.FC = () => {
             setLoading(true);
             setError(null);
             try {
+
                 const response: PaginatedResponse<ResponseSolicitudPaciente> =
                     await listarSolicitudesAsociadasPaciente(authData.token, id);
                 setSolicitudes(response.content);
@@ -38,8 +49,8 @@ const PacienteSolicitudesList: React.FC = () => {
 
     return (
         <div className="p-6 max-w-[1200px] m-auto">
-            <h1 className="text-2xl font-semibold mb-4">Solicitudes del paciente #{id}</h1>
-
+            <TitlePacienteSolicitud paciente={ pacienteMock} className='py-6'></TitlePacienteSolicitud>
+            <hr className='w-full pb-6'/>
             {loading && <p>Cargando solicitudes...</p>}
             {error && <p className="text-red-500">{error}</p>}
 
