@@ -40,7 +40,7 @@ const NuevoPacienteModal: React.FC<PacienteModalProps> = ({ isOpen, onClose, onP
   }, [isOpen]);
 
   return (
-    <Modal isOpen={isOpen} onRequestClose={onClose} ariaHideApp={false} className="modal" overlayClassName="modal-overlay">
+    <Modal isOpen={isOpen} onRequestClose={onClose} ariaHideApp={false} className="modal bg-white w-full max-w-[600px] rounded p-4 focus:outline-none" overlayClassName="modal-overlay flex justify-center items-center">
       <h2 className="text-2xl font-semibold mb-6 text-center">Crear nuevo paciente</h2>
       <form onSubmit={handleSubmit} className="space-y-3">
         <div>

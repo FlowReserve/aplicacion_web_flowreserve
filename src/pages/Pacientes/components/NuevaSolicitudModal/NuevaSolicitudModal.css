@@ -9,4 +9,6 @@
   background: rgba(0, 0, 0, 0.5);
   position: fixed;
   inset: 0;
+  backdrop-filter: blur(3px);
+  outline: none;
 }
