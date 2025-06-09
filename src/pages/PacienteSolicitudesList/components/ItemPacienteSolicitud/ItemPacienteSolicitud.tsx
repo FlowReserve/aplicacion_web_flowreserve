@@ -24,7 +24,7 @@ const formatDate = (isoDate: string) => {
 const ItemPacienteSolicitud: React.FC<Props> = ({ solicitud }) => {
     return (
         <article className="grid p-4 border rounded-lg shadow-sm hover:shadow-md">
-            {/* Header */}
+            
             <header className="grid grid-cols-[1fr_auto] gap-4 items-start">
                 <div>
                     <p className="text-sm text-gray-600">Fecha solicitud: {formatDate(solicitud.date)}</p>
@@ -50,7 +50,6 @@ const ItemPacienteSolicitud: React.FC<Props> = ({ solicitud }) => {
 
             <hr className="my-2" />
 
-            {/* Body */}
             <section className="grid grid-cols-[1fr_auto] gap-4 items-start">
                 <div>
                     <h3 className="font-semibold">Detalles de la consulta</h3>
@@ -67,7 +66,7 @@ const ItemPacienteSolicitud: React.FC<Props> = ({ solicitud }) => {
                         </div>
                         <p className="text-gray-700 text-xs leading-none flex flex-col">
                             <span>PAS: Presión aortica sistólica.</span>
-                            <span>PAD: Presión aortica viceversa.</span>
+                            <span>PAD: Presión aortica diastólica.</span>
                             <span>Unidades medidas en mmHG.</span>
                         </p>
                     </div>

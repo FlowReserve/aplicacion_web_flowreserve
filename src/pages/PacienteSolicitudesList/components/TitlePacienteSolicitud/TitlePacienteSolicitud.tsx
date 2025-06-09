@@ -47,8 +47,7 @@ const TitlePacienteSolicitud: React.FC<Props> = ({ paciente, className }) => {
             <NuevaSolicitudModal
                 isOpen={isModalOpen}
                 onClose={handleCloseModal}
-                idPaciente={paciente.id}
-                NHCPaciente={paciente.nhc}
+                paciente={paciente}
             />
         </>
     );

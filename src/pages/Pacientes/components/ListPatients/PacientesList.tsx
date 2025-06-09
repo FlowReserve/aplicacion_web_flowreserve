@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { usePacientes } from '../../../../hooks/usePacientes';
 import CustomButton from '../../../../components/CustomButton/CustomButton';
 import NuevaSolicitudModal from '../NuevaSolicitudModal/NuevaSolicitudModal';
+import type { PacienteProps } from '../../../../interfaces/Paciente/PacienteProps';
 import { useNavigate } from 'react-router-dom';
 
 
@@ -11,24 +12,20 @@ const PacientesList = () => {
     const navigate = useNavigate();
     // Estado para la modal
     const [modalOpen, setModalOpen] = useState(false);
-    const [pacienteSeleccionadoID, setPacienteSeleccionadoID] = useState<number | null>(null); //Id del paciente seleccionado para pasar como props (Form añadir solicitud)
-    const [pacienteSeleccionadoNHC, setPacienteSeleccionadoNHC] = useState<string | null>(); //NHC del paciente seleccionado para pasar como props (Form  añadir solicitud)
-
+    const [pacienteSeleccionado, setPacienteSeleccionado] = useState<PacienteProps | null>(null);
 
     useEffect(() => {
         loadPacientes();
     }, []);
 
-    const handleNuevaSolicitud = (idPaciente: number, pacienteNHC: string) => {
-        setPacienteSeleccionadoNHC(pacienteNHC);
-        setPacienteSeleccionadoID(idPaciente);
+    const handleNuevaSolicitud = (paciente: PacienteProps) => {
+        setPacienteSeleccionado(paciente);
         setModalOpen(true);
-        // Aquí podrías redirigir a un formulario o abrir un modal
     };
 
     const closeModal = () => {
         setModalOpen(false);
-        setPacienteSeleccionadoID(null);
+        setPacienteSeleccionado(null);
     };
 
     const handleVerSolicitudes = async (pacienteId: number) => {
@@ -69,7 +66,7 @@ const PacientesList = () => {
                                     </CustomButton>
 
                                     <CustomButton
-                                        onClick={() => handleNuevaSolicitud(p.id, p.nhc)}
+                                        onClick={() => handleNuevaSolicitud(p)}
                                         className="bg-blue-500 text-white px-3 py-1 rounded w-[150px]"
                                     >
                                         Nueva solicitud
@@ -83,10 +80,9 @@ const PacientesList = () => {
             )}
 
             <NuevaSolicitudModal
-                isOpen={modalOpen && pacienteSeleccionadoID !== null}
+                isOpen={modalOpen && pacienteSeleccionado?.id !== null}
                 onClose={closeModal}
-                idPaciente={pacienteSeleccionadoID || 0}
-                NHCPaciente={pacienteSeleccionadoNHC || 'null'}
+                paciente={pacienteSeleccionado}
             />
 
         </div>
