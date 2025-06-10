@@ -54,7 +54,7 @@ const PacientesList = () => {
                     <tbody>
                         {pacientes.map((p, index) => (
                             <tr key={index} className="hover:bg-gray-200">
-                                <td className="p-2 border-b w-[120px]">{p.nhc}</td>
+                                <td className="p-2 border-b w-[120px]">{p.codigoNHC}</td>
                                 <td className="p-2 border-b w-[150px]">{p.nombre}</td>
                                 <td className="p-2 border-b">{p.apellido}</td>
                                 <td className="p-2 border-b space-x-2 text-right">

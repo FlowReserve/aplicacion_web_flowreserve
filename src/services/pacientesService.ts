@@ -1,5 +1,6 @@
 // src/services/pacienteService.ts
-import { getPacientes, crearNuevoPaciente } from '../api/pacienteApi'; 
+import { getPacientes, crearNuevoPaciente, obtenerInformacionPacienteByIdAPI } from '../api/pacienteApi'; 
+import type { APIResponseProps } from '../interfaces/global/APIResponseProps';
 import type { NuevoPacienteProps } from '../interfaces/Paciente/NuevoPacienteProps';
 import type { PacienteProps } from '../interfaces/Paciente/PacienteProps';
 import type { ResponseNuevoPacienteProps } from '../interfaces/Paciente/ResponseNuevoPacienteProps';
@@ -20,4 +21,18 @@ export const crearPaciente = async (paciente: NuevoPacienteProps, token: string)
 export const fetchPacientesList = async (token: string, params?: QueryParams): Promise<PaginatedResponse<PacienteProps>> => {
   const allPacientes = await getPacientes(token, params);
   return allPacientes.data;
+};
+
+/**
+ * Obtiene la información de un paciente
+ * @param id identificador del paciente sobre el que se quiere obtener la información
+ * @param token token del usuario autenticado
+ * @returns 
+ */
+export const obtenerInformacionPacienteByIDService = async (
+  id: string,
+  token: string
+): Promise<APIResponseProps<PacienteProps>> => {
+  const response = await obtenerInformacionPacienteByIdAPI(id, token);
+  return response; 
 };

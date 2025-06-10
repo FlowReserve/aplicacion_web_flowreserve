@@ -1,5 +1,5 @@
 export interface NuevoPacienteProps {
-    nombrePaciente: string,
-    apellidoPaciente: string,
-    codigoCNHC: string
+    nombre: string,
+    apellido: string,
+    codigoNHC: string
 }

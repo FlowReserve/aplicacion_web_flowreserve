@@ -61,7 +61,7 @@ const NuevaSolicitudModal: React.FC<NuevaSolicitudModalProps> = ({
 
     return (
         <Modal isOpen={isOpen} onRequestClose={onClose} contentLabel="Nueva Solicitud" className="modal mx-3 my-8 md:mx-auto md:my-auto rounded bg-white p-6 max-w-[600px]" overlayClassName="modal-overlay flex justify-center items-center">
-            <h2 className="text-xl font-semibold mb-4 text-center">Nueva Solicitud para paciente  <span className='font-bold'>{paciente?.nhc}</span>
+            <h2 className="text-xl font-semibold mb-4 text-center">Nueva Solicitud para paciente  <span className='font-bold'>{paciente?.codigoNHC}</span>
                 <br />
                 <span>{paciente?.nombre} {paciente?.apellido}</span>
             </h2>

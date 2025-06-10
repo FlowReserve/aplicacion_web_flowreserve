@@ -12,9 +12,9 @@ interface PacienteModalProps {
 
 const NuevoPacienteModal: React.FC<PacienteModalProps> = ({ isOpen, onClose, onPacienteCreado }) => {
   const [formData, setFormData] = useState<NuevoPacienteProps>({
-    nombrePaciente: '',
-    apellidoPaciente: '',
-    codigoCNHC: ''
+    nombre: '',
+    apellido: '',
+    codigoNHC: ''
   });
 
   const { handleCrearPaciente, loading, error, successMessage } = useCrearPaciente();
@@ -35,7 +35,7 @@ const NuevoPacienteModal: React.FC<PacienteModalProps> = ({ isOpen, onClose, onP
   useEffect(() => {
     // Limpia formulario al cerrar
     if (!isOpen) {
-      setFormData({ nombrePaciente: '', apellidoPaciente: '', codigoCNHC: '' });
+      setFormData({ nombre: '', apellido: '', codigoNHC: '' });
     }
   }, [isOpen]);
 
@@ -48,9 +48,9 @@ const NuevoPacienteModal: React.FC<PacienteModalProps> = ({ isOpen, onClose, onP
             <input
                 id='nombrePaciente'
               type="text"
-              name="nombrePaciente"
+              name="nombre"
               placeholder="Nombre"
-              value={formData.nombrePaciente}
+              value={formData.nombre}
               onChange={handleChange}
               required
               className="w-full border p-2 rounded"
@@ -61,9 +61,9 @@ const NuevoPacienteModal: React.FC<PacienteModalProps> = ({ isOpen, onClose, onP
             <input
                 id='apellidoPaciente'
               type="text"
-              name="apellidoPaciente"
+              name="apellido"
               placeholder="Apellidos"
-              value={formData.apellidoPaciente}
+              value={formData.apellido}
               onChange={handleChange}
               required
               className="w-full border p-2 rounded"
@@ -75,9 +75,9 @@ const NuevoPacienteModal: React.FC<PacienteModalProps> = ({ isOpen, onClose, onP
             <input
             id='codigoNHC'
               type="text"
-              name="codigoCNHC"
+              name="codigoNHC"
               placeholder="EJ: 00000000X"
-              value={formData.codigoCNHC}
+              value={formData.codigoNHC}
               onChange={handleChange}
               required
               className="w-full border p-2 rounded"
