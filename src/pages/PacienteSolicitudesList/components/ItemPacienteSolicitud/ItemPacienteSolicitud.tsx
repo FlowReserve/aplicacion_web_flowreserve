@@ -29,7 +29,7 @@ const ItemPacienteSolicitud: React.FC<Props> = ({ solicitud }) => {
                 <div>
                     <p className="text-sm text-gray-600">Fecha solicitud: {formatDate(solicitud.date)}</p>
                     <h2 className="text-lg">
-                        Consulta <span className="font-medium">{solicitud.codigo}</span>
+                        Solicitud <span className="font-medium">{solicitud.codigo}</span>
                     </h2>
                     <h3>
                         Paciente{' '}
@@ -67,7 +67,7 @@ const ItemPacienteSolicitud: React.FC<Props> = ({ solicitud }) => {
                         <p className="text-gray-700 text-xs leading-none flex flex-col">
                             <span>PAS: Presión aortica sistólica.</span>
                             <span>PAD: Presión aortica diastólica.</span>
-                            <span>Unidades medidas en mmHG.</span>
+                            <span>Unidades medidas en mmHg.</span>
                         </p>
                     </div>
                 </div>

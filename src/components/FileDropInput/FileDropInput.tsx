@@ -149,8 +149,8 @@ const FileDropInput: React.FC<FileDropInputProps> = ({
                     pendingOperations++;
                     entry.file((file: File) => {
                         // Crear un nuevo archivo extendido con la ruta relativa
-                        const relativePath = path + file.name;
-                        const extendedFile = new ExtendedFile([file], file.name, { type: file.type }, relativePath);
+                        const relativePath = path ? path + file.name : file.name;
+                        const extendedFile = new ExtendedFile([file], file.name, { type: file.type }, dirEntry.name + '/' + relativePath);
                         files.push(extendedFile);
                         pendingOperations--;
                         finishIfDone();
@@ -168,7 +168,7 @@ const FileDropInput: React.FC<FileDropInputProps> = ({
                 }
             };
 
-            readDirectory(dirEntry, dirEntry.name + '/');
+            readDirectory(dirEntry, '');
             
             // Si no hay operaciones pendientes al inicio, resolver inmediatamente
             if (pendingOperations === 0) {

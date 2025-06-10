@@ -76,7 +76,7 @@ const NuevaSolicitudModal: React.FC<NuevaSolicitudModalProps> = ({
                         <label className="block mb-1" htmlFor='valuePAD'>Presión aortica diástolica (PAD)</label>
                         <input id="valuePAD" type="number" value={pressureB} onChange={e => setPressureB(e.target.value)} className="input" required />
                     </div>
-                    <p className='md:col-span-2 text-xs text-gray-600'><strong>NOTA:</strong> Las unidades de la Presión Aortica Sistólica y Diástolica (<strong>PAS y PAD</strong>) se miden en <strong>mmHG</strong></p>
+                    <p className='md:col-span-2 text-xs text-gray-600'><strong>NOTA:</strong> Las unidades de la Presión Aortica Sistólica y Diástolica (<strong>PAS y PAD</strong>) se miden en <strong>mmHg</strong></p>
                 </div>
 
                 <div>
