@@ -1,6 +1,7 @@
 import React from 'react';
 import type { ResponseSolicitudPaciente } from '../../../../interfaces/Solicitud/ResponseSolicitudPaciente';
 import CustomButton from '../../../../components/CustomButton/CustomButton';
+import { useDescargarPDFSolicitud } from '../../../../hooks/useDescargarPDFSolicitud';
 
 interface Props {
     solicitud: ResponseSolicitudPaciente;
@@ -22,6 +23,8 @@ const formatDate = (isoDate: string) => {
 };
 
 const ItemPacienteSolicitud: React.FC<Props> = ({ solicitud }) => {
+
+    const { descargarPDF } = useDescargarPDFSolicitud();
     return (
         <article className="grid p-4 border rounded-lg shadow-sm hover:shadow-md">
             
@@ -74,7 +77,7 @@ const ItemPacienteSolicitud: React.FC<Props> = ({ solicitud }) => {
 
                 <div className="flex flex-col items-center gap-2 w-[200px]">
                     <h3 className="font-semibold">Acciones</h3>
-                    <CustomButton className='flex'>
+                    <CustomButton onClick={() => descargarPDF(solicitud.id)} className='flex'>
                         <img src="/web/icons/file-arrow-down-solid.svg" alt="icono descarga documento PDF" className='w-4 inline-block mr-2' />
                         Descargar PDF
                     </CustomButton>
