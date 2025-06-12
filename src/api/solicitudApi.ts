@@ -1,5 +1,5 @@
 import type { APIResponseProps } from '../interfaces/global/APIResponseProps';
-import type { PaginatedResponse } from '../interfaces/PaginatedResponse';
+import type { PaginatedResponse } from '../interfaces/global/PaginatedResponse';
 import type { ResponseSolicitudPaciente } from '../interfaces/Solicitud/ResponseSolicitudPaciente';
 import authenticatedApiClient from './authenticatedApiClient';
 

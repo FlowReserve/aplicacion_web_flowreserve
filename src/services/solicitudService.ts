@@ -1,5 +1,5 @@
 import { crearSolicitudRequest, verListadoTotalConsultasAdminApi, verSolicitudesPaciente } from '../api/solicitudApi';
-import type { PaginatedResponse } from '../interfaces/PaginatedResponse';
+import type { PaginatedResponse } from '../interfaces/global/PaginatedResponse';
 import type { ResponseNuevaSolicitudPacienteProps } from '../interfaces/Solicitud/ResponseNuevaSolicitudPacienteProps';
 import type { ResponseSolicitudPaciente } from '../interfaces/Solicitud/ResponseSolicitudPaciente';
 import type { APIResponseProps } from '../interfaces/global/APIResponseProps';

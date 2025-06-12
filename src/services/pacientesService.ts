@@ -4,8 +4,8 @@ import type { APIResponseProps } from '../interfaces/global/APIResponseProps';
 import type { NuevoPacienteProps } from '../interfaces/Paciente/NuevoPacienteProps';
 import type { PacienteProps } from '../interfaces/Paciente/PacienteProps';
 import type { ResponseNuevoPacienteProps } from '../interfaces/Paciente/ResponseNuevoPacienteProps';
-import type { PaginatedResponse } from '../interfaces/PaginatedResponse';
-import type { QueryParams } from '../interfaces/QueryParams';
+import type { PaginatedResponse } from '../interfaces/global/PaginatedResponse';
+import type { QueryParams } from '../interfaces/global/QueryParams';
 
 
 export const crearPaciente = async (paciente: NuevoPacienteProps, token: string): Promise<ResponseNuevoPacienteProps> => {

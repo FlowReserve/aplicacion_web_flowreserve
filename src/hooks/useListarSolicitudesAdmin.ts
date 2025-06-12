@@ -2,7 +2,7 @@
 import { useEffect, useState, useCallback } from 'react';
 import { listarConsultasPacientesAdminService } from '../services/solicitudService';
 import type { ResponseSolicitudPaciente } from '../interfaces/Solicitud/ResponseSolicitudPaciente';
-import type { PaginatedResponse } from '../interfaces/PaginatedResponse';
+import type { PaginatedResponse } from '../interfaces/global/PaginatedResponse';
 
 interface UseSolicitudesAdminResult {
   solicitudes: PaginatedResponse<ResponseSolicitudPaciente> | null;

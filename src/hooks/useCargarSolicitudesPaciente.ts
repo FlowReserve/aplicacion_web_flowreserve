@@ -2,7 +2,7 @@ import { useState, useCallback } from 'react';
 import { listarSolicitudesAsociadasPaciente } from '../services/solicitudService';
 import type { ResponseSolicitudPaciente } from '../interfaces/Solicitud/ResponseSolicitudPaciente';
 import { useAuth } from '../context/AuthContext';
-import type { PaginatedResponse } from '../interfaces/PaginatedResponse';
+import type { PaginatedResponse } from '../interfaces/global/PaginatedResponse';
 
 export const useSolicitudesPaciente = (idPaciente: string | null) => {
   const [solicitudes, setSolicitudes] = useState<ResponseSolicitudPaciente[]>([]);

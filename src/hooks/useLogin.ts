@@ -2,7 +2,7 @@
 import { useState } from 'react';
 import { login as loginService } from '../services/authService';
 import { useNavigate } from 'react-router-dom';
-import type { UserLoginProps } from '../interfaces/UserLoginProps';
+import type { UserLoginProps } from '../interfaces/Medico/UserLoginProps';
 import { useAuth } from '../context/AuthContext';
 
 

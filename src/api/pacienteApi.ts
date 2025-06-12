@@ -1,9 +1,9 @@
 import type { NuevoPacienteProps } from '../interfaces/Paciente/NuevoPacienteProps';
-import type { QueryParams } from '../interfaces/QueryParams';
+import type { QueryParams } from '../interfaces/global/QueryParams';
 import type { APIResponseProps } from '../interfaces/global/APIResponseProps';
 import type { PacienteProps } from '../interfaces/Paciente/PacienteProps';
 import authenticatedApiClient from './authenticatedApiClient';
-import type { PaginatedResponse } from '../interfaces/PaginatedResponse';
+import type { PaginatedResponse } from '../interfaces/global/PaginatedResponse';
 
 //Realiza la petición al endpoint indicado para añadir un nuevo paciente asociado al médico que está logueado.
 export const crearNuevoPaciente = (paciente: NuevoPacienteProps, token: string) => {

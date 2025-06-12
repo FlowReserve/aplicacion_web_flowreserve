@@ -5,7 +5,7 @@ import { useParams } from 'react-router-dom';
 import { listarSolicitudesAsociadasPaciente } from '../../services/solicitudService';
 import { useAuth } from '../../context/AuthContext';
 import type { ResponseSolicitudPaciente } from '../../interfaces/Solicitud/ResponseSolicitudPaciente';
-import type { PaginatedResponse } from '../../interfaces/PaginatedResponse';
+import type { PaginatedResponse } from '../../interfaces/global/PaginatedResponse';
 import type { PacienteProps } from '../../interfaces/Paciente/PacienteProps';
 import ItemPacienteSolicitud from './components/ItemPacienteSolicitud/ItemPacienteSolicitud';
 import TitlePacienteSolicitud from './components/TitlePacienteSolicitud/TitlePacienteSolicitud';

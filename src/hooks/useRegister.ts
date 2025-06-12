@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { register } from "../services/authService";
-import type { UserRegisterProps } from "../interfaces/UserRegisterProps";
+import type { UserRegisterProps } from "../interfaces/Medico/UserRegisterProps";
 
 export const useRegister = () => {
   const [loading, setLoading] = useState(false);

@@ -1,6 +1,6 @@
 import { loginRequest, registerRequest } from "../api/authApi";
-import type { UserLoginProps } from "../interfaces/UserLoginProps";
-import type { UserRegisterProps } from "../interfaces/UserRegisterProps";
+import type { UserLoginProps } from "../interfaces/Medico/UserLoginProps";
+import type { UserRegisterProps } from "../interfaces/Medico/UserRegisterProps";
 
 
 // Servicio asíncrono encargado de manjear el login del usuario en la aplicación

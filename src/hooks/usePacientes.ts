@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { fetchPacientesList } from '../services/pacientesService';
 import type { PacienteProps } from '../interfaces/Paciente/PacienteProps';
 import { useAuth } from '../context/AuthContext';
-import type { PaginatedResponse } from '../interfaces/PaginatedResponse';
+import type { PaginatedResponse } from '../interfaces/global/PaginatedResponse';
 
 export const usePacientes = () => {
   const [pacientes, setPacientes] = useState<PaginatedResponse<PacienteProps>>();
