@@ -1,4 +1,4 @@
-import { obtenerMedicoProfile } from "../../api/Medico/medicoApi";
+import { obtenerMedicoProfileAPI } from "../../api/Medico/medicoApi";
 import type { APIResponseProps } from "../../interfaces/global/APIResponseProps";
 import type { MedicoProfileResponseProps } from "../../interfaces/Medico/MedicoProfileResponseProps";
 
@@ -8,8 +8,10 @@ import type { MedicoProfileResponseProps } from "../../interfaces/Medico/MedicoP
  * @param token token de authenticacion del usuario logueado
  * @returns apiResponseProps que contiene la información del médico.
  */
-export const obtenerPerfilMedico = async (id: string, token: string): Promise<APIResponseProps<MedicoProfileResponseProps>> => {
-    const paciente = await obtenerMedicoProfile(id, token);
-    return paciente.data;
+export const obtenerPerfilMedicoService = async (
+    token: string
+): Promise<APIResponseProps<MedicoProfileResponseProps>> => {
+    const paciente = await obtenerMedicoProfileAPI(token);
+    return paciente;
 
 }

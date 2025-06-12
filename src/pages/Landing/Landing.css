@@ -1,0 +1,21 @@
+@keyframes heart-beat {
+  0%, 100% {
+    transform: scale(1);
+  }
+  14% {
+    transform: scale(1.05);
+  }
+  28% {
+    transform: scale(1);
+  }
+  42% {
+    transform: scale(1.1);
+  }
+  70% {
+    transform: scale(1);
+  }
+}
+
+.heart-beat {
+  animation: heart-beat 2.5s ease-in-out infinite;
+}

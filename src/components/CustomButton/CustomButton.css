@@ -9,7 +9,7 @@
 }
 .custom-btn:hover{
     background-color: var(--color-secondary);
-    border: 2px solid rgb(3, 3, 3);
+    border: 2px solid var(--color-secondary);
 }
 
 .custom-btn:disabled{

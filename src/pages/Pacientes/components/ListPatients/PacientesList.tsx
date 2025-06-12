@@ -36,10 +36,8 @@ const PacientesList = () => {
     if (error) return <p>Error: {error}</p>;
 
     return (
-        <div className="p-4 overflow-x-auto max-w-[1200px] m-auto">
-            <h2 className="text-xl font-semibold mb-4">Listado de pacientes</h2>
-
-            {pacientes.length === 0 ? (
+        <div className="overflow-x-auto max-w-[1200px] m-auto">
+            {pacientes?.size === 0 ? (
                 <p>No hay pacientes asignados a este médico.</p>
             ) : (
                 <table className="min-w-full border border-gray-300 text-left">
@@ -52,7 +50,7 @@ const PacientesList = () => {
                         </tr>
                     </thead>
                     <tbody>
-                        {pacientes.map((p, index) => (
+                        {pacientes?.content.map((p, index) => (
                             <tr key={index} className="hover:bg-gray-200">
                                 <td className="p-2 border-b w-[120px]">{p.codigoNHC}</td>
                                 <td className="p-2 border-b w-[150px]">{p.nombre}</td>
@@ -60,14 +58,14 @@ const PacientesList = () => {
                                 <td className="p-2 border-b space-x-2 text-right">
                                     <CustomButton
                                         onClick={() => handleVerSolicitudes(p.id)}
-                                        className="bg-green-500 text-white px-2 py-1 rounded hover:bg-green-600 w-[150px]"
+                                        className="text-white px-2 py-1 rounded w-[150px]"
                                     >
                                         Ver solicitudes
                                     </CustomButton>
 
                                     <CustomButton
                                         onClick={() => handleNuevaSolicitud(p)}
-                                        className="bg-blue-500 text-white px-3 py-1 rounded w-[150px]"
+                                        className="bg-transparent hover:bg-secondary hover:text-white text-primary px-3 py-1 rounded w-[150px]"
                                     >
                                         Nueva solicitud
                                     </CustomButton>

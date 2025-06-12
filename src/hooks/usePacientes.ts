@@ -5,7 +5,7 @@ import { useAuth } from '../context/AuthContext';
 import type { PaginatedResponse } from '../interfaces/PaginatedResponse';
 
 export const usePacientes = () => {
-  const [pacientes, setPacientes] = useState<PacienteProps[]>([]);
+  const [pacientes, setPacientes] = useState<PaginatedResponse<PacienteProps>>();
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
@@ -17,8 +17,8 @@ export const usePacientes = () => {
 
     try {
       const token = authData?.token || "";
-      const result: PaginatedResponse<PacienteProps> = await fetchPacientesList(token, {size: 20});
-      setPacientes(result.content);
+      const result = await fetchPacientesList(token, {size: 20});
+      setPacientes(result.responseObject);
     } catch (err: any) {
       setError(err.message || 'Error al cargar pacientes');
     } finally {

@@ -42,6 +42,7 @@ const PacienteSolicitudesList: React.FC = () => {
                 const response: PaginatedResponse<ResponseSolicitudPaciente> =
                     await listarSolicitudesAsociadasPaciente(authData.token, id);
                 setSolicitudes(response.content);
+                console.log(response)
             } catch (err: any) {
                 setError(err.message || 'Error al cargar los datos');
                 console.error('Error:', err);
