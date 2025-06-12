@@ -1,7 +1,8 @@
-import { crearSolicitudRequest, verSolicitudesPaciente } from '../api/solicitudApi';
+import { crearSolicitudRequest, verListadoTotalConsultasAdminApi, verSolicitudesPaciente } from '../api/solicitudApi';
 import type { PaginatedResponse } from '../interfaces/PaginatedResponse';
 import type { ResponseNuevaSolicitudPacienteProps } from '../interfaces/Solicitud/ResponseNuevaSolicitudPacienteProps';
 import type { ResponseSolicitudPaciente } from '../interfaces/Solicitud/ResponseSolicitudPaciente';
+import type { APIResponseProps } from '../interfaces/global/APIResponseProps';
 
 /**
  * Crea una solicitud para un paciente. Devuelve una promesa con los datos de la nueva solicitud creada.
@@ -23,4 +24,9 @@ export const crearSolicitud = async (token: string, formData: FormData): Promise
 export const listarSolicitudesAsociadasPaciente = async (token: string, idPaciente: string): Promise<PaginatedResponse<ResponseSolicitudPaciente>> => {
   const response = await verSolicitudesPaciente(token, idPaciente);
   return response.data;
+}
+
+export const listarConsultasPacientesAdminService = async (token: string): Promise<APIResponseProps<PaginatedResponse<ResponseSolicitudPaciente>>> => {
+  const response = await verListadoTotalConsultasAdminApi(token);
+  return response;
 }
