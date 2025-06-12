@@ -77,7 +77,7 @@ const ItemPacienteSolicitud: React.FC<Props> = ({ solicitud }) => {
 
                 <div className="flex flex-col items-center gap-2 w-[200px]">
                     <h3 className="font-semibold">Acciones</h3>
-                    <CustomButton onClick={() => descargarPDF(solicitud.id)} className='flex'>
+                    <CustomButton onClick={() => descargarPDF(solicitud.id)} disabled={solicitud.state !== 'COMPLETADA'} className='flex'>
                         <img src="/web/icons/file-arrow-down-solid.svg" alt="icono descarga documento PDF" className='w-4 inline-block mr-2' />
                         Descargar PDF
                     </CustomButton>

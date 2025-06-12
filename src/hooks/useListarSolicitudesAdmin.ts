@@ -28,7 +28,6 @@ export const useListarSolicitudesAdmin = (
       console.log("response en el useListar: ", response)
       if (response.status && response.responseObject) {
         setSolicitudes(response.responseObject);
-        console.log("solicitudes: ", solicitudes);
       } else {
         throw new Error(response.message || 'Error al obtener solicitudes');
       }
