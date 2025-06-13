@@ -3,6 +3,6 @@ export interface APIResponseProps<T>{
     status: boolean;
     message: string;
     serverCode: number;
-    responseObject?: T;
+    responseObject?: T | null;
     timeStamp: string;
 }
