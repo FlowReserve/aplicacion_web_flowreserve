@@ -4,6 +4,7 @@ import React, { useRef, useState, useCallback } from 'react';
 interface FileDropPDFProps {
   archivoSeleccionado: File | null;
   setArchivoSeleccionado: (file: File | null) => void;
+  disabled: boolean;
 }
 
 const FileDropPDF: React.FC<FileDropPDFProps> = ({
