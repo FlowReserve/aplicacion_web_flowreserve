@@ -5,6 +5,7 @@ import { useSubirDocumento } from '../../../../hooks/useSubirDocumentoSolicitud'
 import type { ResponseSolicitudPaciente } from '../../../../interfaces/Solicitud/ResponseSolicitudPaciente';
 import { EstadoMap } from '../../../../types/estadoColores';
 import type { EstadoType } from '../../../../types/estadoColores';
+import CustomButton from '../../../../components/CustomButton/CustomButton';
 
 
 interface SubirPDFModalProps {
@@ -133,7 +134,7 @@ const SubirRespuestaConsultaModal: React.FC<SubirPDFModalProps> = ({
                     <h2 className="text-xl font-semibold mb-2 text-center">
                         PDF para la solicitud <strong>{solicitud?.codigo}</strong>
                     </h2>
-                    
+
                     <p className="flex items-center justify-between my-4 text-gray-600">
                         <span>Estado actual:</span>
                         <strong className={`p-2 rounded ${estadoInfo.className}`}>
@@ -178,16 +179,14 @@ const SubirRespuestaConsultaModal: React.FC<SubirPDFModalProps> = ({
                             >
                                 {isLoading ? 'Procesando...' : 'Cancelar'}
                             </button>
-                            <button
+                            <CustomButton
                                 type='submit'
                                 disabled={!canSubmit}
-                                className={`px-4 py-2 text-white rounded w-[140px] transition-colors ${canSubmit
-                                    ? 'bg-blue-600 hover:bg-blue-700'
-                                    : 'bg-gray-400 cursor-not-allowed'
-                                    }`}
+                                className='w-[140px]'
+                                title={canSubmit ? 'Cargar PDF' : 'No puedes cargar PDF'}
                             >
                                 {isLoading ? 'Enviando...' : 'Enviar'}
-                            </button>
+                            </CustomButton>
                         </div>
                     </form>
                 </div>

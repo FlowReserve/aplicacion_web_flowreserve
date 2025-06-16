@@ -21,16 +21,16 @@ const NuevaSolicitudModal: React.FC<NuevaSolicitudModalProps> = ({
     const { submitSolicitud, loading, error } = useCrearSolicitud();
     const fileInputRef = useRef<HTMLInputElement>(null);
 
-    const [pressureA, setPressureA] = useState('');
-    const [pressureB, setPressureB] = useState('');
+    const [presionSistolica, setPresionSistolica] = useState<string>('');
+    const [presionDiastolica, setPresionDiastolica] = useState<string>('');
     const [comentarios, setComentarios] = useState('');
     const [archivoSeleccionado, setArchivoSeleccionado] = useState<File | null>(null);
-   
+
     // Limpia formulario cuando se cierra el modal
     useEffect(() => {
         if (!isOpen) {
-            setPressureA('');
-            setPressureB('');
+            setPresionSistolica('');
+            setPresionDiastolica('');
             setComentarios('');
             setArchivoSeleccionado(null);
             if (fileInputRef.current) {
@@ -45,8 +45,8 @@ const NuevaSolicitudModal: React.FC<NuevaSolicitudModalProps> = ({
 
         const payload: SolicitudPacienteProps = {
             idPaciente: paciente?.id ?? 0,
-            pressureA,
-            pressureB,
+            presionSistolica: Number(presionSistolica),
+            presionDiastolica: Number(presionDiastolica),
             comentarios,
         };
 
@@ -70,11 +70,23 @@ const NuevaSolicitudModal: React.FC<NuevaSolicitudModalProps> = ({
                 <div className='grid grid-cols-1 md:grid-cols-2 gap-2'>
                     <div>
                         <label className="block mb-1" htmlFor='valuePAS'>Presión aortica sistólica (PAS)</label>
-                        <input id='valuePAS' type="number" value={pressureA} onChange={e => setPressureA(e.target.value)} className="input" required />
+                        <input
+                            id="valuePAS"
+                            type="number"
+                            value={presionSistolica}
+                            onChange={(e) => setPresionSistolica(e.target.value)}
+                            className="input"
+                            required
+                        />
                     </div>
                     <div>
                         <label className="block mb-1" htmlFor='valuePAD'>Presión aortica diástolica (PAD)</label>
-                        <input id="valuePAD" type="number" value={pressureB} onChange={e => setPressureB(e.target.value)} className="input" required />
+                        <input id="valuePAD" 
+                        type="number" 
+                        value={presionDiastolica} 
+                        onChange={e => setPresionDiastolica(e.target.value)} 
+                        className="input" 
+                        required />
                     </div>
                     <p className='md:col-span-2 text-xs text-gray-600'><strong>NOTA:</strong> Las unidades de la Presión Aortica Sistólica y Diástolica (<strong>PAS y PAD</strong>) se miden en <strong>mmHg</strong></p>
                 </div>

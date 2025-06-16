@@ -5,9 +5,9 @@ export interface ResponseSolicitudPaciente{
     paciente: PacienteProps,
     date: string,
     state: string,
-    pressureA: string,
-    pressureB: string,
+    presionSistolica: number,
+    presionDiastolica: number,
     nombreArchivoZip: string,
-    campoComentarios: string,
+    comentarios: string,
     codigo: string
 }

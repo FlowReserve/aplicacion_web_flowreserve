@@ -1,6 +1,6 @@
 export interface SolicitudPacienteProps {
   idPaciente: number;
-  pressureA: string;
-  pressureB: string;
+  presionSistolica: number;
+  presionDiastolica: number;
   comentarios: string;
 }
