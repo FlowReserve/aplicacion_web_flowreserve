@@ -1,10 +1,11 @@
 // src/context/AuthContext.tsx
 import React, { createContext, useContext, useState } from 'react';
+import type { Role } from '../types/Role';
 
 interface AuthData {
   username: string;
   token: string;
-  roles: string[];
+  roles: Role[];
 }
 
 interface AuthContextType {

@@ -8,6 +8,7 @@ import Unauthorized from '../pages/Unauthorized';
 import IndexLayout from '../layouts/IndexLayout/IndexLayout';
 import Pacientes from '../pages/Pacientes/Pacientes';
 import PacienteSolicitudesList from '../pages/PacienteSolicitudesList/PacienteSolicitudesList';
+import { ROLES } from '../types/Role';
 
 const router = createBrowserRouter([
   {
@@ -24,19 +25,32 @@ const router = createBrowserRouter([
     children: [
       {
         path: 'home',
-        element: (    
+        element: (
+          <ProtectedRoute allowedRoles={[ROLES.ADMIN, ROLES.DOCTOR]}>
             <Home />
+          </ProtectedRoute>
         ),
       },
       // Ruta para listado de pacientes
-      { path: 'pacientes', element: <Pacientes /> },
+      {
+        path: 'pacientes', element: (
+          <ProtectedRoute allowedRoles={[ROLES.DOCTOR]}>
+            <Pacientes />
+          </ProtectedRoute>
+        )
+      },
 
       // Ruta para detalle paciente (hermana a la anterior)
-      { path: 'pacientes/:id', element: <PacienteSolicitudesList /> },
+      {
+        path: 'pacientes/:id', element: (
+          <ProtectedRoute allowedRoles={[ROLES.DOCTOR]}>
+            <PacienteSolicitudesList />
+          </ProtectedRoute>)
+      },
       {
         path: 'admin',
         element: (
-          <ProtectedRoute allowedRoles={['ROLE_ADMIN']}>
+          <ProtectedRoute allowedRoles={[ROLES.ADMIN]}>
             <AdminPage />
           </ProtectedRoute>
         ),

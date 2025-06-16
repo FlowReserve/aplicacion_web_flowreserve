@@ -14,14 +14,11 @@ console.log("Allowed roles:", allowedRoles);
   if (!isAuthenticated) return <Navigate to="/" replace />;
 
   // Si hay restricción de roles, y ninguno de los roles del usuario coincide, redirige a /unauthorized
-  if (
-    allowedRoles &&
-    (!authData?.roles || !authData.roles.some(role => allowedRoles.includes(role)))
-  ) {
-    return <Navigate to="/unauthorized" replace />;
-  }
+  const userRoles = authData?.roles ?? [];
+  const hasAccess = userRoles.some(role => allowedRoles.includes(role));
+  
+  if (!hasAccess) return <Navigate to="/unauthorized" replace />;
 
-  // Si todo está correcto, renderiza el contenido
   return children;
 };
 

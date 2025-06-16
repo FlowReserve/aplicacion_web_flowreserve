@@ -1,2 +1,7 @@
-// Define los roles posibles del sistema
-export type Role = 'admin' | 'editor' | 'viewer';
+// src/constants/roles.ts
+export const ROLES = {
+  ADMIN: 'ADMIN',
+  DOCTOR: 'DOCTOR',
+} as const;
+
+export type Role = keyof typeof ROLES; 
