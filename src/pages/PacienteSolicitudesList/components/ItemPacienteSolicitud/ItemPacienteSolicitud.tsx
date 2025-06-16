@@ -19,6 +19,9 @@ const formatDate = (isoDate: string) => {
         year: 'numeric',
         month: 'short',
         day: 'numeric',
+        hour: 'numeric',
+        minute: 'numeric',
+        second: 'numeric'
     });
 };
 

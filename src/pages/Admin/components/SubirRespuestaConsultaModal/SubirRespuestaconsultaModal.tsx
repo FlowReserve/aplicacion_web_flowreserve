@@ -59,21 +59,6 @@ const SubirRespuestaConsultaModal: React.FC<SubirPDFModalProps> = ({
         onClose();
     };
 
-    // Manejar el escape key
-    const handleKeyDown = (e: KeyboardEvent) => {
-        if (e.key === 'Escape' && (isSubmitting || loading)) {
-            e.preventDefault();
-            e.stopPropagation();
-        }
-    };
-
-    useEffect(() => {
-        if (isOpen) {
-            document.addEventListener('keydown', handleKeyDown);
-            return () => document.removeEventListener('keydown', handleKeyDown);
-        }
-    }, [isOpen, isSubmitting, loading]);
-
     const handleEnviar = async () => {
         // Validaciones de seguridad
         if (!archivoPDF) {

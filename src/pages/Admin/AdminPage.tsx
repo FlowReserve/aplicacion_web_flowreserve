@@ -2,9 +2,7 @@ import TodasConsultasList from "./components/TodasConsultasList/TodasConsultasLi
 
 function AdminPage() {
   return (
-    <div>
-      <h1>Admin Page</h1>
-      <p>This is the admin page where you can manage the application.</p>
+    <div className="max-w-[1200px] m-auto">
       <TodasConsultasList></TodasConsultasList>
     </div>
   );

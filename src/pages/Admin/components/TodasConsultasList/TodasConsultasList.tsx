@@ -32,7 +32,7 @@ const TodasConsultasList: React.FC = () => {
   };
 
   if (loading) return (
-    <div className="p-6 max-w-[1200px] m-auto">
+    <div className="m-auto">
       <div className="flex items-center justify-center">
         <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600 mr-3"></div>
         <p>Cargando información de las solicitudes...</p>
@@ -41,7 +41,7 @@ const TodasConsultasList: React.FC = () => {
   );
 
   if (error) return (
-    <div className="p-6 max-w-[1200px] m-auto">
+    <div className="m-auto">
       <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded">
         <p className="font-semibold">Error al cargar las solicitudes</p>
         <p className="text-sm">{error}</p>
@@ -50,7 +50,7 @@ const TodasConsultasList: React.FC = () => {
   );
 
   if (!solicitudes || solicitudes.content.length === 0) return (
-    <div className="p-6 max-w-[1200px] m-auto">
+    <div className="m-auto">
       <div className="bg-yellow-100 border border-yellow-400 text-yellow-700 px-4 py-3 rounded">
         <p>No hay solicitudes registradas.</p>
       </div>
@@ -58,8 +58,8 @@ const TodasConsultasList: React.FC = () => {
   );
 
   return (
-    <div className="p-6 max-w-[1200px] m-auto">
-      <h2 className="text-xl font-semibold mb-4">Todas las Consultas</h2>
+    <div className="m-auto">
+      <h2 className="text-xl font-semibold my-4">Todas las Consultas</h2>
 
       <div className="overflow-x-auto">
         <table className="min-w-full bg-white border border-gray-200 rounded shadow-sm">
