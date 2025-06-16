@@ -27,7 +27,7 @@ export const useLogin = (): UseLoginReturn => {
       console.log('Login exitoso:', response);
 
       // Guardar en el contexto, no en localStorage
-      login({ username: response.username, token: response.jwt, roles: ["ROLE_ADMIN"] });
+      login({ username: response.user.nombre, token: response.jwt, roles: response.user.roles });
 
       setMessage({ text: 'Inicio de sesión exitoso', type: 'success' });
       navigate('/home');

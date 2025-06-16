@@ -19,7 +19,7 @@ const LoginForm = () => {
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault()
         await loginUser({
-            username: formData.email,
+            email: formData.email,
             password: formData.contraseña
         });
     }

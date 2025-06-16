@@ -1,4 +1,4 @@
 export interface UserLoginProps {
-    username: string,
+    email: string,
     password: string;
 }

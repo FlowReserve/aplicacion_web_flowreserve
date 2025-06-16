@@ -4,7 +4,7 @@ import React, { createContext, useContext, useState } from 'react';
 interface AuthData {
   username: string;
   token: string;
-  roles: [string];
+  roles: string[];
 }
 
 interface AuthContextType {
