@@ -6,7 +6,7 @@ import type { APIResponseProps } from "../../interfaces/global/APIResponseProps"
  * Lógica intermedia para subir documento a una solicitud.
  */
 export const subirDocumentoService = async (
-  requestId: string,
+  requestId: number,
   archivo: File,
   token: string
 ): Promise<APIResponseProps<null>> => {

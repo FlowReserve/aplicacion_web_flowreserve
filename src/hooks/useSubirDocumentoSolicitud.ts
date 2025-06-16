@@ -8,7 +8,7 @@ export const useSubirDocumento = () => {
     const [error, setError] = useState<string | null>(null);
     const { authData } = useAuth(); // Asumimos que tienes algo así
 
-    const subirDocumento = async (requestId: string, archivo: File) => {
+    const subirDocumento = async (requestId: number, archivo: File) => {
         setLoading(true);
         setError(null);
         try {

@@ -1,7 +1,7 @@
 import type { PacienteProps } from "../Paciente/PacienteProps";
 
 export interface ResponseSolicitudPaciente{
-    id: string,
+    id: number,
     paciente: PacienteProps,
     date: string,
     state: string,

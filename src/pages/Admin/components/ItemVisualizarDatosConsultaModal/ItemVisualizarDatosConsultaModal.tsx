@@ -10,6 +10,7 @@ interface Props {
   onClose: () => void;
   solicitud: ResponseSolicitudPaciente;
   authToken: string;
+  onEstadoActualizado: (id: number, nuevoEstado: EstadoType) => void; // ✅ NUEVO
 }
 
 const ItemVisualizarDatosConsultaModal: React.FC<Props> = ({
@@ -17,6 +18,7 @@ const ItemVisualizarDatosConsultaModal: React.FC<Props> = ({
   onClose,
   solicitud,
   authToken,
+  onEstadoActualizado, // ✅ NUEVO
 }) => {
   const [estadoActual, setEstadoActual] = useState<EstadoType>(solicitud.state as EstadoType);
 
@@ -54,13 +56,13 @@ const ItemVisualizarDatosConsultaModal: React.FC<Props> = ({
             <span className="text-sm">{new Date(solicitud.date).toLocaleString()}</span>
           </p>
 
-          {/* Formulario para actualizar estado */}
           <ActualizarEstadoConsultaForm
             idConsulta={solicitud.id.toString()}
             token={authToken}
             estadoActual={estadoActual}
             onSuccess={(nuevoEstado: EstadoType) => {
               setEstadoActual(nuevoEstado);
+              onEstadoActualizado(solicitud.id, nuevoEstado); // ✅ NUEVO
               console.log('Estado actualizado correctamente: ', nuevoEstado);
             }}
           />

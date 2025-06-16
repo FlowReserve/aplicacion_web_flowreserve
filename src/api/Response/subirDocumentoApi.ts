@@ -9,7 +9,7 @@ import authenticatedApiClient from "../authenticatedApiClient";
  * @returns 
  */
 export const subirDocumentoApi = async (
-    requestId: string,
+    requestId: number,
     archivoRespuesta: File,
     token: string
 ): Promise<APIResponseProps<null>> => {

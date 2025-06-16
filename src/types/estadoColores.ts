@@ -21,6 +21,6 @@ export const EstadoMap: Record<EstadoType, EstadoInfo> = {
   COMPLETADA: {
     text: 'Completada',
     className: 'bg-green-300 text-black',
-  }
+  },
 
 };

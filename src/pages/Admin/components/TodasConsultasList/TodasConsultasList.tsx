@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useAuth } from '../../../../context/AuthContext';
 import { useListarSolicitudesAdmin } from '../../../../hooks/useListarSolicitudesAdmin';
 import SubirRespuestaConsultaModal from '../SubirRespuestaConsultaModal/SubirRespuestaconsultaModal';
@@ -6,14 +6,30 @@ import type { ResponseSolicitudPaciente } from '../../../../interfaces/Solicitud
 import { EstadoMap } from '../../../../types/estadoColores';
 import type { EstadoType } from '../../../../types/estadoColores';
 import ItemVisualizarDatosConsultaModal from '../ItemVisualizarDatosConsultaModal/ItemVisualizarDatosConsultaModal';
+import CustomButton from '../../../../components/CustomButton/CustomButton';
 
 const TodasConsultasList: React.FC = () => {
   const { authData } = useAuth();
   const { solicitudes, loading, error } = useListarSolicitudesAdmin(authData?.token ?? null);
 
+  // Estado local editable
+  const [solicitudesLocal, setSolicitudesLocal] = useState<ResponseSolicitudPaciente[]>([]);
 
+  useEffect(() => {
+    if (solicitudes?.content) {
+      setSolicitudesLocal(solicitudes.content);
+    }
+  }, [solicitudes]);
 
-  //Abre el modal para ver los datos de una consulta y modificar su estado.
+  const actualizarEstadoSolicitud = (id: number, nuevoEstado: EstadoType) => {
+    setSolicitudesLocal(prev =>
+      prev.map(s =>
+        s.id === id ? { ...s, state: nuevoEstado } : s
+      )
+    );
+  };
+
+  // Modal: ver datos consulta
   const [isVerDatosOpen, setVerDatosOpen] = useState(false);
   const [solicitudVerDatos, setSolicitudVerDatos] = useState<ResponseSolicitudPaciente | null>(null);
 
@@ -27,18 +43,15 @@ const TodasConsultasList: React.FC = () => {
     setVerDatosOpen(false);
   };
 
-
-  //Abre el modal para subir un PDF
+  // Modal: subir PDF
   const [isPDFModalOpen, setPDFModalOpen] = useState(false);
   const [solicitudSeleccionada, setSolicitudSeleccionada] = useState<ResponseSolicitudPaciente | null>(null);
 
   const abrirModalPDF = (solicitud: ResponseSolicitudPaciente) => {
-    // Prevenir abrir múltiples modales
     if (isPDFModalOpen) {
       console.warn("Modal ya está abierta");
       return;
     }
-
     setSolicitudSeleccionada(solicitud);
     setPDFModalOpen(true);
   };
@@ -66,7 +79,7 @@ const TodasConsultasList: React.FC = () => {
     </div>
   );
 
-  if (!solicitudes || solicitudes.content.length === 0) return (
+  if (solicitudesLocal.length === 0) return (
     <div className="m-auto">
       <div className="bg-yellow-100 border border-yellow-400 text-yellow-700 px-4 py-3 rounded">
         <p>No hay solicitudes registradas.</p>
@@ -90,7 +103,7 @@ const TodasConsultasList: React.FC = () => {
             </tr>
           </thead>
           <tbody>
-            {solicitudes.content.map((solicitud) => (
+            {solicitudesLocal.map((solicitud) => (
               <tr key={solicitud.id} className="text-sm hover:bg-gray-50">
                 <td className="px-4 py-2 border-b">{solicitud.id}</td>
                 <td className="px-4 py-2 border-b">{solicitud.codigo}</td>
@@ -102,30 +115,27 @@ const TodasConsultasList: React.FC = () => {
                     const estado = solicitud.state as EstadoType;
                     const estadoInfo = EstadoMap[estado] ?? { text: estado, className: 'bg-gray-100 text-gray-800' };
                     return (
-                      <span className={`flex justify-center px-2 py-1 rounded  font-medium w-[120px] ${estadoInfo.className}`}>
+                      <span className={`flex justify-center px-2 py-1 rounded font-medium w-[120px] ${estadoInfo.className}`}>
                         {estadoInfo.text}
                       </span>
                     );
                   })()}
                 </td>
                 <td className="px-4 py-2 border-b text-center space-x-2">
-                  <button
-                    className="bg-blue-500 text-white px-3 py-1 rounded hover:bg-blue-600 transition-colors"
+                  <CustomButton
+                    className="px-3 py-1 w-[120px] "
                     onClick={() => abrirModalVerDatos(solicitud)}
                   >
                     Ver datos
-                  </button>
-                  <button
-                    className={`px-3 py-1 rounded transition-colors ${isPDFModalOpen
-                      ? 'bg-gray-400 text-gray-600 cursor-not-allowed'
-                      : 'bg-green-500 text-white hover:bg-green-600'
-                      }`}
+                  </CustomButton>
+                  <CustomButton
+                    className="bg-transparent  px-3 py-1 rounded text-primary hover:text-white w-[120px]"
                     onClick={() => abrirModalPDF(solicitud)}
-                    disabled={isPDFModalOpen}
+                    disabled={isPDFModalOpen || solicitud.state === 'CANCELADA' || solicitud.state  === 'COMPLETADA'}
                     title={isPDFModalOpen ? "Modal ya está abierta" : "Subir PDF de respuesta"}
                   >
                     Subir PDF
-                  </button>
+                  </CustomButton>
                 </td>
               </tr>
             ))}
@@ -133,17 +143,18 @@ const TodasConsultasList: React.FC = () => {
         </table>
       </div>
 
-      {/* Modal para visualizar los datos de una consulta */}
+      {/* Modal: ver datos consulta */}
       {solicitudVerDatos && (
         <ItemVisualizarDatosConsultaModal
           isOpen={isVerDatosOpen}
           onClose={cerrarModalVerDatos}
           solicitud={solicitudVerDatos}
-          authToken= {authData?.token || ''}
+          authToken={authData?.token || ''}
+          onEstadoActualizado={actualizarEstadoSolicitud} // ✅ PASAMOS CALLBACK
         />
       )}
 
-      {/* Modal de subir PDF */}
+      {/* Modal: subir PDF */}
       {solicitudSeleccionada && (
         <SubirRespuestaConsultaModal
           isOpen={isPDFModalOpen}
