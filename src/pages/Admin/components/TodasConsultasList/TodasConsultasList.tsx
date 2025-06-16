@@ -5,15 +5,32 @@ import SubirRespuestaConsultaModal from '../SubirRespuestaConsultaModal/SubirRes
 import type { ResponseSolicitudPaciente } from '../../../../interfaces/Solicitud/ResponseSolicitudPaciente';
 import { EstadoMap } from '../../../../types/estadoColores';
 import type { EstadoType } from '../../../../types/estadoColores';
+import ItemVisualizarDatosConsultaModal from '../ItemVisualizarDatosConsultaModal/ItemVisualizarDatosConsultaModal';
 
 const TodasConsultasList: React.FC = () => {
   const { authData } = useAuth();
   const { solicitudes, loading, error } = useListarSolicitudesAdmin(authData?.token ?? null);
 
+
+
+  //Abre el modal para ver los datos de una consulta y modificar su estado.
+  const [isVerDatosOpen, setVerDatosOpen] = useState(false);
+  const [solicitudVerDatos, setSolicitudVerDatos] = useState<ResponseSolicitudPaciente | null>(null);
+
+  const abrirModalVerDatos = (solicitud: ResponseSolicitudPaciente) => {
+    setSolicitudVerDatos(solicitud);
+    setVerDatosOpen(true);
+  };
+
+  const cerrarModalVerDatos = () => {
+    setSolicitudVerDatos(null);
+    setVerDatosOpen(false);
+  };
+
+
+  //Abre el modal para subir un PDF
   const [isPDFModalOpen, setPDFModalOpen] = useState(false);
   const [solicitudSeleccionada, setSolicitudSeleccionada] = useState<ResponseSolicitudPaciente | null>(null);
-
-
 
   const abrirModalPDF = (solicitud: ResponseSolicitudPaciente) => {
     // Prevenir abrir múltiples modales
@@ -92,13 +109,16 @@ const TodasConsultasList: React.FC = () => {
                   })()}
                 </td>
                 <td className="px-4 py-2 border-b text-center space-x-2">
-                  <button className="bg-blue-500 text-white px-3 py-1 rounded hover:bg-blue-600 transition-colors">
+                  <button
+                    className="bg-blue-500 text-white px-3 py-1 rounded hover:bg-blue-600 transition-colors"
+                    onClick={() => abrirModalVerDatos(solicitud)}
+                  >
                     Ver datos
                   </button>
                   <button
                     className={`px-3 py-1 rounded transition-colors ${isPDFModalOpen
-                        ? 'bg-gray-400 text-gray-600 cursor-not-allowed'
-                        : 'bg-green-500 text-white hover:bg-green-600'
+                      ? 'bg-gray-400 text-gray-600 cursor-not-allowed'
+                      : 'bg-green-500 text-white hover:bg-green-600'
                       }`}
                     onClick={() => abrirModalPDF(solicitud)}
                     disabled={isPDFModalOpen}
@@ -112,6 +132,15 @@ const TodasConsultasList: React.FC = () => {
           </tbody>
         </table>
       </div>
+
+      {/* Modal para visualizar los datos de una consulta */}
+      {solicitudVerDatos && (
+        <ItemVisualizarDatosConsultaModal
+          isOpen={isVerDatosOpen}
+          onClose={cerrarModalVerDatos}
+          solicitud={solicitudVerDatos}
+        />
+      )}
 
       {/* Modal de subir PDF */}
       {solicitudSeleccionada && (

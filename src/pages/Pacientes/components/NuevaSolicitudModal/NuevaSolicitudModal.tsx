@@ -109,7 +109,7 @@ const NuevaSolicitudModal: React.FC<NuevaSolicitudModalProps> = ({
                     <label htmlFor='checkbox-confirm-data' className='text-sm font-semibold'>Confirmo que la información que voy a enviar es correcta y me hago responsable de cualquier error con el envío de la información sobre el paciente</label>
                 </div>
                 <div className="mt-5 flex justify-between gap-2">
-                    <CustomButton onClick={onClose} className="bg-transparent text-primary px-3 py-1 w-[180px]">
+                    <CustomButton onClick={onClose} className="bg-transparent text-primary hover:text-white px-3 py-1 w-[180px]">
                         Cancelar y cerrar
                     </CustomButton>
                     <CustomButton type="submit" className=" px-3 py-1 w-[180px]" disabled={loading}>
