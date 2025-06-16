@@ -10,6 +10,10 @@ export const EstadoMap: Record<EstadoType, EstadoInfo> = {
     text: 'Pendiente',
     className: 'bg-gray-300 text-black',
   },
+    CANCELADA: {
+    text: 'Cancelada',
+    className: 'bg-red-300 text-black',
+  },
   EN_PROCESO: {
     text: 'En proceso',
     className: 'bg-yellow-300 text-black',
@@ -17,9 +21,6 @@ export const EstadoMap: Record<EstadoType, EstadoInfo> = {
   COMPLETADA: {
     text: 'Completada',
     className: 'bg-green-300 text-black',
-  },
-  CANCELADA: {
-    text: 'Cancelada',
-    className: 'bg-red-300 text-black',
-  },
+  }
+
 };

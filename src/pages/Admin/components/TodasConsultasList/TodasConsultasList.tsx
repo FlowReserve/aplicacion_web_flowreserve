@@ -139,6 +139,7 @@ const TodasConsultasList: React.FC = () => {
           isOpen={isVerDatosOpen}
           onClose={cerrarModalVerDatos}
           solicitud={solicitudVerDatos}
+          authToken= {authData?.token || ''}
         />
       )}
 
