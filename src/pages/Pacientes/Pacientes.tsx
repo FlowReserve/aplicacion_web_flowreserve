@@ -1,5 +1,5 @@
 // src/pages/Pacientes/Pacientes.tsx
-import PacientesList from './components/ListPatients/PacientesList';
+import PacientesList from './components/PacientesList/PacientesList';
 import TitlePacientesList from './components/TitlePacientesList/TitlePacientesList';
 
 const Pacientes = () => {
@@ -7,7 +7,7 @@ const Pacientes = () => {
     <div className="max-w-[1200px] mt-6 m-auto">
 
       <TitlePacientesList className='py-6'/>
-      <PacientesList  />
+      <PacientesList  params={{ size: 25, sortDir: 'desc'}}/>
     </div>
   );
 };

@@ -1,5 +1,5 @@
 // src/services/pacienteService.ts
-import { getPacientesAPI, crearNuevoPaciente, obtenerInformacionPacienteByIdAPI } from '../api/Paciente/pacienteApi';
+import { obtenerListadoPacientesAPI, crearNuevoPaciente, obtenerInformacionPacienteByIdAPI } from '../api/Paciente/pacienteApi';
 import type { NuevoPacienteProps } from '../interfaces/Paciente/NuevoPacienteProps';
 import type { PacienteProps } from '../interfaces/Paciente/PacienteProps';
 import type { ResponseNuevoPacienteProps } from '../interfaces/Paciente/ResponseNuevoPacienteProps';
@@ -17,11 +17,11 @@ export const crearPaciente = async (paciente: NuevoPacienteProps, token: string)
  * @param token 
  * @returns 
  */
-export const fetchPacientesListService = async (
+export const obtenerListadoPacientesService = async (
   token: string,
   params?: QueryParams
 ): Promise<PaginatedResponse<PacienteProps>> => {
-  const response = await getPacientesAPI(token, params);
+  const response = await obtenerListadoPacientesAPI(token, params);
 
   if (!response.status || !response.responseObject) {
     throw new Error(response.message || 'Error al obtener los datos paginados de un paciente');

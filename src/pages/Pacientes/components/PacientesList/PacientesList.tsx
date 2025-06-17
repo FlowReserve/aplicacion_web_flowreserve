@@ -1,22 +1,26 @@
 import { useState, useEffect } from 'react';
-import { usePacientes } from '../../../../hooks/usePacientes';
+import { useListadoPacientes } from '../../../../hooks/paciente/useListadoPacientes';
 import CustomButton from '../../../../components/CustomButton/CustomButton';
 import NuevaSolicitudModal from '../NuevaSolicitudModal/NuevaSolicitudModal';
 import type { PacienteProps } from '../../../../interfaces/Paciente/PacienteProps';
 import { useNavigate } from 'react-router-dom';
+import type { QueryParams } from '../../../../interfaces/global/QueryParams';
 
+interface PacientesListProps {
+  params?: QueryParams; // <-- parámetros opcionales
+}
 
-const PacientesList = () => {
+const PacientesList = ({params}: PacientesListProps) => {
 
-    const { pacientes, loading, error, loadPacientes } = usePacientes();
+    const { pacientes, loading, error, loadPacientes } = useListadoPacientes();
     const navigate = useNavigate();
     // Estado para la modal
     const [modalOpen, setModalOpen] = useState(false);
     const [pacienteSeleccionado, setPacienteSeleccionado] = useState<PacienteProps | null>(null);
 
     useEffect(() => {
-        loadPacientes();
-    }, []);
+        loadPacientes(params);
+    }, [params]);
 
     const handleNuevaSolicitud = (paciente: PacienteProps) => {
         setPacienteSeleccionado(paciente);
@@ -36,7 +40,7 @@ const PacientesList = () => {
     if (error) return <p>Error: {error}</p>;
 
     return (
-        <div className="overflow-x-auto max-w-[1200px] m-auto">
+        <div className="overflow-x-auto w-full max-w-[1200px] m-auto">
             {pacientes?.size === 0 ? (
                 <p>No hay pacientes asignados a este médico.</p>
             ) : (

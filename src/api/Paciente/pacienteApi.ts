@@ -16,7 +16,7 @@ export const crearNuevoPaciente = (paciente: NuevoPacienteProps, token: string) 
  * Obtiene el listado de pacientes asociados con un médico.
  * @returns 
  */
-export const getPacientesAPI = async (
+export const obtenerListadoPacientesAPI = async (
   token: string,
   params?: QueryParams
 ): Promise<APIResponseProps<PaginatedResponse<PacienteProps>>> => {
