@@ -1,5 +1,5 @@
 // src/services/pacienteService.ts
-import { getPacientesAPI, crearNuevoPaciente, obtenerInformacionPacienteByIdAPI } from '../api/pacienteApi';
+import { getPacientesAPI, crearNuevoPaciente, obtenerInformacionPacienteByIdAPI } from '../api/Paciente/pacienteApi';
 import type { NuevoPacienteProps } from '../interfaces/Paciente/NuevoPacienteProps';
 import type { PacienteProps } from '../interfaces/Paciente/PacienteProps';
 import type { ResponseNuevoPacienteProps } from '../interfaces/Paciente/ResponseNuevoPacienteProps';

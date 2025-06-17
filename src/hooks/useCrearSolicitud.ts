@@ -1,6 +1,6 @@
 // src/hooks/useCrearSolicitud.ts
 import { useState } from 'react';
-import { crearSolicitud } from '../services/solicitudService';
+import { crearSolicitud } from '../services/solicitudes/solicitudService';
 import type { SolicitudPacienteProps } from '../interfaces/Solicitud/SolicitudPacienteProps';
 import { useAuth } from '../context/AuthContext';
 

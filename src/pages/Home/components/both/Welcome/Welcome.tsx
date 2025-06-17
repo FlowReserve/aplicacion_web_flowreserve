@@ -35,7 +35,7 @@ const Welcome = () => {
     }
 
     return (
-        <section className="flex justify-between">
+        <section className="flex justify-between items-center min-h-[250px] max-h-[400px]">
             <h1 className="text-6xl">Bienvenido, <br /> <strong>Dr. {perfil?.nombre}!</strong></h1>
             <ul className="flex gap-2">
                 <li>

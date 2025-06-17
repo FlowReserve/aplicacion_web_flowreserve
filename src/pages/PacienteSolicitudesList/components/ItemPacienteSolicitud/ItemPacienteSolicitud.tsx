@@ -8,13 +8,6 @@ interface Props {
     solicitud: ResponseSolicitudPaciente;
 }
 
-const statusColors: Record<string, string> = {
-    PENDIENTE: 'bg-gray-400',
-    'EN PROCESO': 'bg-yellow-400',
-    COMPLETADA: 'bg-green-500',
-    CANCELADA: 'bg-red-500',
-};
-
 const formatDate = (isoDate: string) => {
     return new Date(isoDate).toLocaleDateString('es-ES', {
         year: 'numeric',

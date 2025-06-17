@@ -1,6 +1,6 @@
 // src/hooks/useListarSolicitudesAdmin.ts
 import { useEffect, useState, useCallback } from 'react';
-import { listarConsultasPacientesAdminService } from '../services/solicitudService';
+import { listarConsultasPacientesAdminService } from '../services/solicitudes/solicitudService';
 import type { ResponseSolicitudPaciente } from '../interfaces/Solicitud/ResponseSolicitudPaciente';
 import type { PaginatedResponse } from '../interfaces/global/PaginatedResponse';
 

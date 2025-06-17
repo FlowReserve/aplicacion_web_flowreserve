@@ -1,8 +1,9 @@
-import { crearSolicitudRequest, verListadoTotalConsultasAdminApi, verSolicitudesPacienteByIdAPI } from '../api/solicitudApi';
-import type { PaginatedResponse } from '../interfaces/global/PaginatedResponse';
-import type { ResponseNuevaSolicitudPacienteProps } from '../interfaces/Solicitud/ResponseNuevaSolicitudPacienteProps';
-import type { ResponseSolicitudPaciente } from '../interfaces/Solicitud/ResponseSolicitudPaciente';
-import type { APIResponseProps } from '../interfaces/global/APIResponseProps';
+import { crearSolicitudRequest, verListadoTotalConsultasAdminApi, verSolicitudesPacienteAPI, verSolicitudesPacienteByIdAPI } from '../../api/solicitudes/solicitudApi';
+import type { PaginatedResponse } from '../../interfaces/global/PaginatedResponse';
+import type { ResponseNuevaSolicitudPacienteProps } from '../../interfaces/Solicitud/ResponseNuevaSolicitudPacienteProps';
+import type { ResponseSolicitudPaciente } from '../../interfaces/Solicitud/ResponseSolicitudPaciente';
+import type { APIResponseProps } from '../../interfaces/global/APIResponseProps';
+import type { QueryParams } from '../../interfaces/global/QueryParams';
 
 /**
  * Crea una solicitud para un paciente. Devuelve una promesa con los datos de la nueva solicitud creada.
@@ -15,13 +16,26 @@ export const crearSolicitud = async (token: string, formData: FormData): Promise
   return response.data;
 };
 
+
+export const listarSolicitudesPaciente = async (
+  token: string,
+  params: QueryParams): Promise<PaginatedResponse<ResponseSolicitudPaciente>> => {
+
+  const response = await verSolicitudesPacienteAPI(token, params);
+  if (!response.status || !response.responseObject) {
+    throw new Error(response.message || 'Error al obtener los datos paginados de un paciente');
+  }
+  
+  return response.responseObject;
+}
+
 /**
  * Lista las solicitudes que tiene un paciente. La función devuelve una promesa con un objeto de paginación de Solicitudes paciente.
  * @param idPaciente identificador del paciente sobre el que se quieren ver las solicitudes 
  * @param token JWT del usuario authenticado que se empleará para validar la sesión y obtener los pacientes asociados a ese usuario
  * @returns PaginatedResponse<ResponseSolicitudPaciente> Objeto de paginación de solicitudes realizadas a un paciente.
  */
-export const listarSolicitudesAsociadasPacienteByIDService = async (
+export const listarSolicitudesPacienteByIDService = async (
   idPaciente: number,
   token: string):
   Promise<PaginatedResponse<ResponseSolicitudPaciente>> => {
