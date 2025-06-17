@@ -2,6 +2,7 @@ import React from 'react';
 import type { ResponseSolicitudPaciente } from '../../../../interfaces/Solicitud/ResponseSolicitudPaciente';
 import CustomButton from '../../../../components/CustomButton/CustomButton';
 import { useDescargarPDFSolicitud } from '../../../../hooks/useDescargarPDFSolicitud';
+import { EstadoMap, type EstadoType } from '../../../../types/estadoColores';
 
 interface Props {
     solicitud: ResponseSolicitudPaciente;
@@ -30,7 +31,7 @@ const ItemPacienteSolicitud: React.FC<Props> = ({ solicitud }) => {
     const { descargarPDF } = useDescargarPDFSolicitud();
     return (
         <article className="grid p-4 border rounded-lg shadow-sm hover:shadow-md">
-            
+
             <header className="grid grid-cols-[1fr_auto] gap-4 items-start">
                 <div>
                     <p className="text-sm text-gray-600">Fecha solicitud: {formatDate(solicitud.date)}</p>
@@ -46,11 +47,18 @@ const ItemPacienteSolicitud: React.FC<Props> = ({ solicitud }) => {
                 </div>
                 <div className="flex flex-col gap-2 items-center w-[200px]">
                     <p className="text-sm text-gray-600">Última actualización: {formatDate(solicitud.date)}</p>
-                    <p
-                        className={`text-white text-sm font-bold px-3 py-1 rounded w-full text-center ${statusColors[solicitud.state] || 'bg-gray-300'}`}
-                    >
-                        {solicitud.state}
-                    </p>
+                    {(() => {
+                        const estado = solicitud.state as EstadoType;
+                        const estadoInfo = EstadoMap[estado] ?? {
+                            text: estado,
+                            className: 'bg-gray-100 text-gray-800',
+                        };
+                        return (
+                            <span className={`flex justify-center px-3 py-1 rounded font-medium w-full text-sm text-center ${estadoInfo.className}`}>
+                                {estadoInfo.text}
+                            </span>
+                        );
+                    })()}
                 </div>
             </header>
 

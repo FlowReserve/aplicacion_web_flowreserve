@@ -10,7 +10,7 @@ export const useDescargarPDFSolicitud = () => {
     const { authData } = useAuth();
 
     const descargarPDF = useCallback(
-        async (requestId: string) => {
+        async (requestId: number) => {
             if (!authData?.token) {
                 throw new Error('No hay token disponible. El usuario no está autenticado.');
             }

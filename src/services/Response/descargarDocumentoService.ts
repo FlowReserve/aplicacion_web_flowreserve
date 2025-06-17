@@ -7,7 +7,7 @@ import { descargarPDFSolicitudApi } from "../../api/Response/descargarDocumentoA
  * @param token Token del usuario autenticado
  */
 export const descargarPDFSolicitudService = async (
-  requestId: string,
+  requestId: number,
   token: string
 ): Promise<void> => {
   const blob = await descargarPDFSolicitudApi(requestId, token);

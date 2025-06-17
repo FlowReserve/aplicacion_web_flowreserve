@@ -150,7 +150,7 @@ const TodasConsultasList: React.FC = () => {
           onClose={cerrarModalVerDatos}
           solicitud={solicitudVerDatos}
           authToken={authData?.token || ''}
-          onEstadoActualizado={actualizarEstadoSolicitud} // ✅ PASAMOS CALLBACK
+          onEstadoActualizado={actualizarEstadoSolicitud} 
         />
       )}
 

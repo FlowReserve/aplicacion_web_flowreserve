@@ -12,15 +12,15 @@ export const EstadoMap: Record<EstadoType, EstadoInfo> = {
   },
     CANCELADA: {
     text: 'Cancelada',
-    className: 'bg-red-300 text-black',
+    className: 'bg-red-400 text-black',
   },
   EN_PROCESO: {
     text: 'En proceso',
-    className: 'bg-yellow-300 text-black',
+    className: 'bg-yellow-400 text-black',
   },
   COMPLETADA: {
     text: 'Completada',
-    className: 'bg-green-300 text-black',
+    className: 'bg-green-400 text-black',
   },
 
 };

@@ -8,7 +8,7 @@ import authenticatedApiClient from '../authenticatedApiClient';
  * @returns Blob de tipo application/pdf
  */
 export const descargarPDFSolicitudApi = async (
-  requestId: string,
+  requestId: number,
   token: string
 ): Promise<Blob> => {
   const api = authenticatedApiClient(token);
