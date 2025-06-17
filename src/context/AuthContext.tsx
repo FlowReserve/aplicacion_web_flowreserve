@@ -3,6 +3,7 @@ import React, { createContext, useContext, useState } from 'react';
 import type { Role } from '../types/Role';
 
 interface AuthData {
+  id: number;
   username: string;
   token: string;
   roles: Role[];

@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { fetchPacientesList } from '../services/pacientesService';
+import { fetchPacientesListService } from '../services/pacientesService';
 import type { PacienteProps } from '../interfaces/Paciente/PacienteProps';
 import { useAuth } from '../context/AuthContext';
 import type { PaginatedResponse } from '../interfaces/global/PaginatedResponse';
@@ -17,8 +17,8 @@ export const usePacientes = () => {
 
     try {
       const token = authData?.token || "";
-      const result = await fetchPacientesList(token, {size: 20});
-      setPacientes(result.responseObject);
+      const result = await fetchPacientesListService(token, {size: 25,page: 0});
+      setPacientes(result);
     } catch (err: any) {
       setError(err.message || 'Error al cargar pacientes');
     } finally {

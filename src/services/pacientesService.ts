@@ -1,6 +1,5 @@
 // src/services/pacienteService.ts
 import { getPacientesAPI, crearNuevoPaciente, obtenerInformacionPacienteByIdAPI } from '../api/pacienteApi';
-import type { APIResponseProps } from '../interfaces/global/APIResponseProps';
 import type { NuevoPacienteProps } from '../interfaces/Paciente/NuevoPacienteProps';
 import type { PacienteProps } from '../interfaces/Paciente/PacienteProps';
 import type { ResponseNuevoPacienteProps } from '../interfaces/Paciente/ResponseNuevoPacienteProps';
@@ -18,12 +17,16 @@ export const crearPaciente = async (paciente: NuevoPacienteProps, token: string)
  * @param token 
  * @returns 
  */
-export const fetchPacientesList = async (
+export const fetchPacientesListService = async (
   token: string,
   params?: QueryParams
-): Promise<APIResponseProps<PaginatedResponse<PacienteProps>>> => {
-  const allPacientes = await getPacientesAPI(token, params);
-  return allPacientes;
+): Promise<PaginatedResponse<PacienteProps>> => {
+  const response = await getPacientesAPI(token, params);
+
+  if (!response.status || !response.responseObject) {
+    throw new Error(response.message || 'Error al obtener los datos paginados de un paciente');
+  }
+  return response.responseObject;
 };
 
 /**
@@ -33,9 +36,14 @@ export const fetchPacientesList = async (
  * @returns 
  */
 export const obtenerInformacionPacienteByIDService = async (
-  id: string,
+  id: number,
   token: string
-): Promise<APIResponseProps<PacienteProps>> => {
+): Promise<PacienteProps> => {
   const response = await obtenerInformacionPacienteByIdAPI(id, token);
-  return response;
+
+    if (!response.status || !response.responseObject) {
+    throw new Error(response.message || 'Error al obtener los datos paginados de un paciente');
+  }
+
+  return response.responseObject;
 };

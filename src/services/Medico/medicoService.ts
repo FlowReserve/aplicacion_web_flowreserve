@@ -1,5 +1,4 @@
 import { obtenerMedicoProfileAPI } from "../../api/Medico/medicoApi";
-import type { APIResponseProps } from "../../interfaces/global/APIResponseProps";
 import type { MedicoProfileResponseProps } from "../../interfaces/Medico/MedicoProfileResponseProps";
 
 /**
@@ -10,8 +9,12 @@ import type { MedicoProfileResponseProps } from "../../interfaces/Medico/MedicoP
  */
 export const obtenerPerfilMedicoService = async (
     token: string
-): Promise<APIResponseProps<MedicoProfileResponseProps>> => {
-    const paciente = await obtenerMedicoProfileAPI(token);
-    return paciente;
+): Promise<MedicoProfileResponseProps> => {
+    const response = await obtenerMedicoProfileAPI(token);
+
+    if (!response.status || !response.responseObject) {
+        throw new Error(response.message || 'Error al actualizar el estado de la consulta');
+    }
+    return response.responseObject;
 
 }

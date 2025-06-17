@@ -3,8 +3,8 @@ import { useState } from 'react';
 import { login as loginService } from '../services/authService';
 import { useNavigate } from 'react-router-dom';
 import type { UserLoginProps } from '../interfaces/Medico/UserLoginProps';
+import type { Role } from '../types/Role';
 import { useAuth } from '../context/AuthContext';
-
 
 interface UseLoginReturn {
   loginUser: (data: UserLoginProps) => Promise<void>;
@@ -27,7 +27,11 @@ export const useLogin = (): UseLoginReturn => {
       console.log('Login exitoso:', response);
 
       // Guardar en el contexto, no en localStorage
-      login({ username: response.user.nombre, token: response.jwt, roles: response.user.roles });
+      login({ id: response.user.id, 
+        username: response.user.nombre, 
+        token: response.jwt, 
+        roles: response.user.roles as Role[] 
+      });
 
       setMessage({ text: 'Inicio de sesión exitoso', type: 'success' });
       navigate('/home');

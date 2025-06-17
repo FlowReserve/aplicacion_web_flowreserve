@@ -31,7 +31,7 @@ export const getPacientesAPI = async (
  * @param token token del usuario authenticado
  * @returns ApiResponseProps<PacienteProps>
  */
-export const obtenerInformacionPacienteByIdAPI = async (id: string, token: string): Promise<APIResponseProps<PacienteProps>> => {
+export const obtenerInformacionPacienteByIdAPI = async (id: number, token: string): Promise<APIResponseProps<PacienteProps>> => {
   const api = authenticatedApiClient(token);
   const response = await api.get(`api/v1/pacientes/${id}`);
   return response.data;
