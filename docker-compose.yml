@@ -1,0 +1,11 @@
+version: '3.8'
+
+services:
+  flowreserve-frontend:
+    build: .
+    container_name: flowreserve-application
+    ports:
+      - "5173:5173"
+    environment:
+      - VITE_FLOWRESEVE_API_REST_URL=http://host.docker.internal:8080
+    restart: unless-stopped
