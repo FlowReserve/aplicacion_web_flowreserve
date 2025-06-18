@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useRegister } from '../../../../hooks/useRegister';
 import './RegisterForm.css'
-import CustomButton from '../../../../components/CustomButton/CustomButton';
+import CustomButton from '../../../../components/interactive/CustomButton/CustomButton';
 
 const RegisterForm = () => {
 

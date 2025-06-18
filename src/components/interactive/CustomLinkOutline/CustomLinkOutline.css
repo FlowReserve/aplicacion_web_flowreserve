@@ -1,0 +1,16 @@
+.custom-link-outline{
+    display: inline-block;
+    background-color: transparent;
+    color: var(--color-primary);
+    border: 2px solid var(--color-primary);
+    transition: all 0.3s ease;
+    padding: 0.5rem;
+    border-radius: 5px;
+    cursor: pointer;
+    text-align: center;
+}
+.custom-link-outline:hover{
+    background-color: var(--color-accent);
+    border: 2px solid var(--color-accent);
+    color: white;
+}

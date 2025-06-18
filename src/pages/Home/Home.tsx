@@ -6,13 +6,14 @@ import DashBoardCallToAction from "./components/user/DashBoardCallToAction/DashB
 
 function Home() {
 
-    const {authData} = useAuth();
+    const { authData } = useAuth();
     const isMedico = authData?.roles?.includes("DOCTOR");
 
-    return (<div className="flex flex-col gap-2 max-w-[1200px] m-auto mt-10">
-        { isMedico && <Welcome></Welcome>}
+    return (<div className="flex flex-col gap-10 max-w-[1200px] m-auto mt-10">
+
+        {isMedico && <Welcome></Welcome>}
         {isMedico && <UltimosPacientesList></UltimosPacientesList>}
-        <DashBoardCallToAction></DashBoardCallToAction>
+        {isMedico && <DashBoardCallToAction></DashBoardCallToAction>}
     </div>)
 }
 

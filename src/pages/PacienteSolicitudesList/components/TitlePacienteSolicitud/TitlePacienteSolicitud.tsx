@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import type { PacienteProps } from '../../../../interfaces/Paciente/PacienteProps';
-import CustomButton from '../../../../components/CustomButton/CustomButton';
+import CustomButton from '../../../../components/interactive/CustomButton/CustomButton';
 import NuevaSolicitudModal from '../../../Pacientes/components/NuevaSolicitudModal/NuevaSolicitudModal';
 import ItemStats from '../../../../components/ItemStats/ItemStats';
 

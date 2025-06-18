@@ -39,13 +39,22 @@ const Welcome = () => {
             <h1 className="text-6xl">Bienvenido, <br /> <strong>Dr. {perfil?.nombre}!</strong></h1>
             <ul className="flex gap-2">
                 <li>
-                    <ItemStats className="w-[180px]" linkPath={{ path: '/pacientes', value: 'Ver consultas' }} number={estadisticas?.total || 0}>Consultas totales</ItemStats>
+                    <ItemStats className="w-[180px]" 
+                    linkPath={{ path: '/pacientes', value: 'Ver consultas' }} 
+                    titleLink="Ver todas las consultas"
+                    number={estadisticas?.total || 0}>Consultas totales</ItemStats>
                 </li>
                 <li>
-                    <ItemStats className="w-[180px]" linkPath={{ path: '/pacientes', value: 'Ver consultas' }} number={estadisticas?.finalizadas || 0}>Consultas completadas</ItemStats>
+                    <ItemStats className="w-[180px]" 
+                    linkPath={{ path: '/pacientes', value: 'Ver consultas' }} 
+                    titleLink="Ver consultas completadas"
+                    number={estadisticas?.finalizadas || 0}>Consultas completadas</ItemStats>
                 </li>
                 <li>
-                    <ItemStats className="w-[180px]" linkPath={{ path: '/pacientes', value: 'Ver pacientes' }} number={estadisticas?.totalPacientes || 0}> Pacientes únicos</ItemStats>
+                    <ItemStats className="w-[180px]" 
+                    linkPath={{ path: '/pacientes', value: 'Ver pacientes' }}
+                    titleLink="Ver todos los pacientes" 
+                    number={estadisticas?.totalPacientes || 0}> Pacientes únicos</ItemStats>
                 </li>
             </ul>
         </section>

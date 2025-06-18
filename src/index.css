@@ -10,6 +10,7 @@
   --color-primary: #6100D4;
   --color-secondary: rgb(111, 25, 192);
   --color-accent: rgb(110, 48, 139);
+  --color-disabled: #78688a;
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;

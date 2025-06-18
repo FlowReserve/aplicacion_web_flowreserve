@@ -14,7 +14,7 @@ const EstadisticasDashboard = () => {
   if (!data) return null;
 
   return (
-    <div className="w-fit bg-white shadow border p-4 rounded">
+    <div className="w-fit shadow border p-4 rounded">
       <h2 className="text-4xl font-semibold mb-6 text-primary">Resumen de Informes</h2>
       <MedicoEstadisticasChart data={data} />
     </div>

@@ -5,7 +5,7 @@ import { useSubirDocumento } from '../../../../hooks/useSubirDocumentoSolicitud'
 import type { ResponseSolicitudPaciente } from '../../../../interfaces/Solicitud/ResponseSolicitudPaciente';
 import { EstadoMap } from '../../../../types/estadoColores';
 import type { EstadoType } from '../../../../types/estadoColores';
-import CustomButton from '../../../../components/CustomButton/CustomButton';
+import CustomButton from '../../../../components/interactive/CustomButton/CustomButton';
 
 
 interface SubirPDFModalProps {

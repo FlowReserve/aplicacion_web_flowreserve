@@ -1,10 +1,11 @@
 import { useState, useEffect } from 'react';
 import { useListadoPacientes } from '../../../../hooks/paciente/useListadoPacientes';
-import CustomButton from '../../../../components/CustomButton/CustomButton';
+import CustomButton from '../../../../components/interactive/CustomButton/CustomButton';
 import NuevaSolicitudModal from '../NuevaSolicitudModal/NuevaSolicitudModal';
 import type { PacienteProps } from '../../../../interfaces/Paciente/PacienteProps';
 import { useNavigate } from 'react-router-dom';
 import type { QueryParams } from '../../../../interfaces/global/QueryParams';
+import CustomButtonOutline from '../../../../components/interactive/CustomButtonOutline/CustomButtonOutline';
 
 interface PacientesListProps {
   params?: QueryParams; // <-- parámetros opcionales
@@ -67,12 +68,12 @@ const PacientesList = ({params}: PacientesListProps) => {
                                         Ver solicitudes
                                     </CustomButton>
 
-                                    <CustomButton
+                                    <CustomButtonOutline
                                         onClick={() => handleNuevaSolicitud(p)}
                                         className="bg-transparent hover:bg-secondary hover:text-white text-primary px-3 py-1 rounded w-[150px]"
                                     >
                                         Nueva solicitud
-                                    </CustomButton>
+                                    </CustomButtonOutline>
 
                                 </td>
                             </tr>

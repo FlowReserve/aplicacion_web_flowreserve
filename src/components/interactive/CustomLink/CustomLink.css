@@ -10,12 +10,6 @@
     text-align: center;
 }
 .custom-link:hover{
-    background-color: var(--color-secondary);
-    border: 2px solid rgb(3, 3, 3);
-}
-
-.custom-link:disabled{
     background-color: var(--color-accent);
-    color: gray;
-    cursor: auto;
+    border: 2px solid var(--color-accent);
 }

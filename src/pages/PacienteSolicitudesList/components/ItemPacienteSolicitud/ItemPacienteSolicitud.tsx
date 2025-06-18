@@ -1,6 +1,6 @@
 import React from 'react';
 import type { ResponseSolicitudPaciente } from '../../../../interfaces/Solicitud/ResponseSolicitudPaciente';
-import CustomButton from '../../../../components/CustomButton/CustomButton';
+import CustomButton from '../../../../components/interactive/CustomButton/CustomButton';
 import { useDescargarPDFSolicitud } from '../../../../hooks/useDescargarPDFSolicitud';
 import { EstadoMap, type EstadoType } from '../../../../types/estadoColores';
 

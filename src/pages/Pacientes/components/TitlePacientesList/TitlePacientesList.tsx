@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import CustomButton from '../../../../components/CustomButton/CustomButton';
+import CustomButton from '../../../../components/interactive/CustomButton/CustomButton';
 import ItemStats from '../../../../components/ItemStats/ItemStats';
 import NuevoPacienteModal from '../NuevoPacienteModal/NuevoPacienteModal';
 import type { MedicoProfileResponseProps } from '../../../../interfaces/Medico/MedicoProfileResponseProps';

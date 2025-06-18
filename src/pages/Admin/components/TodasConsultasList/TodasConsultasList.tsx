@@ -6,7 +6,8 @@ import type { ResponseSolicitudPaciente } from '../../../../interfaces/Solicitud
 import { EstadoMap } from '../../../../types/estadoColores';
 import type { EstadoType } from '../../../../types/estadoColores';
 import ItemVisualizarDatosConsultaModal from '../ItemVisualizarDatosConsultaModal/ItemVisualizarDatosConsultaModal';
-import CustomButton from '../../../../components/CustomButton/CustomButton';
+import CustomButton from '../../../../components/interactive/CustomButton/CustomButton';
+import CustomButtonOutline from '../../../../components/interactive/CustomButtonOutline/CustomButtonOutline';
 
 const TodasConsultasList: React.FC = () => {
   const { authData } = useAuth();
@@ -128,14 +129,14 @@ const TodasConsultasList: React.FC = () => {
                   >
                     Ver datos
                   </CustomButton>
-                  <CustomButton
-                    className="bg-transparent  px-3 py-1 rounded text-primary hover:text-white w-[120px]"
+                  <CustomButtonOutline
+                    className="w-[120px]"
                     onClick={() => abrirModalPDF(solicitud)}
                     disabled={isPDFModalOpen || solicitud.state === 'CANCELADA' || solicitud.state  === 'COMPLETADA'}
                     title={isPDFModalOpen ? "Modal ya está abierta" : "Subir PDF de respuesta"}
                   >
                     Subir PDF
-                  </CustomButton>
+                  </CustomButtonOutline>
                 </td>
               </tr>
             ))}

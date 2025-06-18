@@ -10,7 +10,7 @@ const UltimosPacientesList = () => {
                 <h2 className='text-5xl py-3 text-primary font-bold'>Tús últimos pacientes</h2>
                 <Link className='rounded px-3 py-2 bg-primary text-white hover:bg-accent transition-colors w-[180px] text-center' to={"/pacientes"}>Ver todas</Link>
             </div>
-            <PacientesList params={{ size: 5, sortDir: 'desc' }}></PacientesList>
+            <PacientesList params={{ size: 4, sortDir: 'desc' }}></PacientesList>
         </section>
     )
 }

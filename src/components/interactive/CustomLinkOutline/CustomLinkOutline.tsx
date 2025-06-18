@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 import type { FC, ReactNode } from 'react';
-import './CustomLink.css'
+import './CustomLinkOutline.css'
 
 interface CustomLinkProps {
   to: string;
@@ -9,7 +9,7 @@ interface CustomLinkProps {
   title?: string;
 }
 
-const CustomLink: FC<CustomLinkProps> = ({
+const CustomLinkOutline: FC<CustomLinkProps> = ({
   to,
   children,
   className = '',
@@ -18,7 +18,7 @@ const CustomLink: FC<CustomLinkProps> = ({
   return (
     <Link
       to={to}
-      className={`custom-link ${className}`}
+      className={`custom-link-outline ${className}`}
       title={title}
     >
       {children}
@@ -26,4 +26,4 @@ const CustomLink: FC<CustomLinkProps> = ({
   );
 };
 
-export default CustomLink;
+export default CustomLinkOutline;

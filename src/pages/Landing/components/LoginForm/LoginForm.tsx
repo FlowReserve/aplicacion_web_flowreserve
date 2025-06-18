@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import CustomButton from '../../../../components/CustomButton/CustomButton';
+import CustomButton from '../../../../components/interactive/CustomButton/CustomButton';
 import { Link } from 'react-router-dom';
 import { useLogin } from '../../../../hooks/useLogin';
 

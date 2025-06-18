@@ -1,0 +1,21 @@
+.custom-btn-outline{
+    background-color: transparent;
+    color: var(--color-primary);
+    border: 2px solid var(--color-primary);
+    transition: all 0.3s ease;
+    padding: 0.5rem;
+    border-radius: 5px;
+    cursor: pointer;
+}
+.custom-btn-outline:hover{
+    background-color: var(--color-accent);
+    border: 2px solid var(--color-accent);
+    color: white;
+}
+
+.custom-btn-outline:disabled{
+    background-color: var(--color-disabled);
+    border: 2px solid var(--color-secondary);
+    color: rgb(218, 218, 218);
+    cursor: auto;
+}

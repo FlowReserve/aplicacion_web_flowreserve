@@ -1,23 +1,32 @@
-import CustomLink from "../../../../../components/CustomLink/CustomLink";
+import CustomLink from "../../../../../components/interactive/CustomLink/CustomLink";
 import EstadisticasDashboard from "../EstadisticasDashboard/EstadisticasDashboard";
+import CustomLinkOutline from "../../../../../components/interactive/CustomLinkOutline/CustomLinkOutline";
 
 const DashBoardCallToAction = () => {
-
-    return(
-        <section className="flex gap-4">
-
-            <div className="flex flex-col flex-grow justify-center items-center">
-                <h2 className="text-4xl text-primary mb-4">¿Necesitas ayuda?</h2>
-
-                <div className="flex items-center flex-1">
-                    <CustomLink to="/preguntas-frecuentes" title="Visitar preguntas frecuentes">Preguntas Frecuentes</CustomLink>
-                    <CustomLink to="/contacto" title="Visitar contacto">Contacto</CustomLink>
+    return (
+        <section className="grid grid-cols-2 gap-4 mb-10">
+            {/* Columna izquierda */}
+            <div className="flex flex-col p-4">
+                <h2 className="text-4xl font-semibold text-primary mb-10">¿Necesitas ayuda?</h2>
+                <div className="flex gap-4 items-center">
+                    <CustomLink className="w-[180px]" to="/preguntas-frecuentes" title="Visitar preguntas frecuentes">
+                        Preguntas Frecuentes
+                    </CustomLink>
+                    <CustomLinkOutline className="w-[180px]" to="/contacto" title="Visitar contacto">
+                        Contacto
+                    </CustomLinkOutline>
                 </div>
             </div>
 
-            <EstadisticasDashboard></EstadisticasDashboard>
+            {/* Columna derecha alineada a la derecha */}
+            <div className="flex justify-end items-start">
+                <EstadisticasDashboard />
+            </div>
+
+           
+            <hr className="col-span-2 border-t border-gray-300 mt-4" />
         </section>
-    )
-}
+    );
+};
 
 export default DashBoardCallToAction;

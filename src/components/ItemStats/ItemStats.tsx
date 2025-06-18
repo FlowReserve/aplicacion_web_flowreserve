@@ -1,6 +1,6 @@
 // src/components/Stats/ItemStats.tsx
 import React from 'react';
-import { Link } from 'react-router-dom';
+import CustomLink from '../interactive/CustomLink/CustomLink';
 
 interface ItemStatsProps {
   number: number | string;
@@ -13,6 +13,7 @@ interface ItemStatsProps {
     path: string;
     value: string;
   };
+  titleLink?: string;
 }
 
 const isExternalLink = (url: string) => /^https?:\/\//.test(url);
@@ -25,6 +26,7 @@ const ItemStats: React.FC<ItemStatsProps> = ({
   borderColorClass = '',
   className = '',
   linkPath,
+  titleLink,
 }) => {
   return (
     <div
@@ -38,13 +40,13 @@ const ItemStats: React.FC<ItemStatsProps> = ({
       </div>
 
       {linkPath && (
-        <div className="mt-3 text-center bg-primary rounded text-white py-1.5 hover:">
+        <div className="">
           {isExternalLink(linkPath.path) ? (
-            <a href={linkPath.path} target="_blank" rel="noopener noreferrer">
+            <a className='mt-3 text-center bg-primary rounded text-white py-1.5' href={linkPath.path} target="_blank" rel="noopener noreferrer">
               {linkPath.value}
             </a>
           ) : (
-            <Link to={linkPath.path}>{linkPath.value}</Link>
+            <CustomLink className='w-full' title={titleLink} to={linkPath.path}>{linkPath.value}</CustomLink>
           )}
         </div>
       )}
