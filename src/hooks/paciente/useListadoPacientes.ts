@@ -33,5 +33,5 @@ export const useListadoPacientes = () => {
     [authData?.token]
   );
 
-  return { pacientes, loading, error, loadPacientes };
+  return { pacientes, loading, error, loadPacientes, setPacientes };
 };

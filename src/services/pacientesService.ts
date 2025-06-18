@@ -1,15 +1,27 @@
 // src/services/pacienteService.ts
-import { obtenerListadoPacientesAPI, crearNuevoPaciente, obtenerInformacionPacienteByIdAPI } from '../api/Paciente/pacienteApi';
+import { obtenerListadoPacientesAPI, crearNuevoPacienteAPI, obtenerInformacionPacienteByIdAPI } from '../api/Paciente/pacienteApi';
 import type { NuevoPacienteProps } from '../interfaces/Paciente/NuevoPacienteProps';
 import type { PacienteProps } from '../interfaces/Paciente/PacienteProps';
-import type { ResponseNuevoPacienteProps } from '../interfaces/Paciente/ResponseNuevoPacienteProps';
 import type { PaginatedResponse } from '../interfaces/global/PaginatedResponse';
 import type { QueryParams } from '../interfaces/global/QueryParams';
 
 
-export const crearPaciente = async (paciente: NuevoPacienteProps, token: string): Promise<ResponseNuevoPacienteProps> => {
-  const newPaciente = await crearNuevoPaciente(paciente, token);
-  return newPaciente.data;
+/**
+ * Crea un nuevo paciente en la base de datos
+ * @param paciente 
+ * @param token 
+ * @returns 
+ */
+export const crearNuevoPacienteService = async (
+  paciente: NuevoPacienteProps, 
+  token: string):
+   Promise<PacienteProps> => {
+  const response = await crearNuevoPacienteAPI(paciente, token);
+
+      if (!response.status || !response.responseObject) {
+    throw new Error(response.message || 'Error al obtener los datos paginados de un paciente');
+  }
+  return response.responseObject;
 }
 
 /**

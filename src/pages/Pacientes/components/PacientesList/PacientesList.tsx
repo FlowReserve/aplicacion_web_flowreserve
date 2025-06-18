@@ -8,16 +8,37 @@ import type { QueryParams } from '../../../../interfaces/global/QueryParams';
 import CustomButtonOutline from '../../../../components/interactive/CustomButtonOutline/CustomButtonOutline';
 
 interface PacientesListProps {
-  params?: QueryParams; // <-- parámetros opcionales
+    params?: QueryParams; // <-- parámetros opcionales
+    nuevoPaciente?: PacienteProps | null;
 }
 
-const PacientesList = ({params}: PacientesListProps) => {
+const PacientesList = (
+    { params, nuevoPaciente }: PacientesListProps) => {
 
-    const { pacientes, loading, error, loadPacientes } = useListadoPacientes();
+    const { pacientes, loading, error, loadPacientes, setPacientes } = useListadoPacientes();
     const navigate = useNavigate();
     // Estado para la modal
     const [modalOpen, setModalOpen] = useState(false);
     const [pacienteSeleccionado, setPacienteSeleccionado] = useState<PacienteProps | null>(null);
+
+
+    useEffect(() => {
+        if (
+            nuevoPaciente &&
+            pacientes &&
+            !pacientes.content.some((p) => p.id === nuevoPaciente.id)
+        ) {
+            const nuevosPacientes = {
+                ...pacientes,
+                content: [nuevoPaciente, ...pacientes.content],
+                totalElements: pacientes.totalElements + 1,
+                numberOfElements: pacientes.numberOfElements + 1,
+                size: pacientes.size + 1,
+            };
+            // 👇 Esto actualiza el estado interno del hook
+            setPacientes(nuevosPacientes);
+        }
+    }, [nuevoPaciente]);
 
     useEffect(() => {
         loadPacientes(params);

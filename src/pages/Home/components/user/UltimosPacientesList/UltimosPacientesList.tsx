@@ -1,5 +1,5 @@
+import CustomLink from "../../../../../components/interactive/CustomLink/CustomLink";
 import PacientesList from "../../../../Pacientes/components/PacientesList/PacientesList";
-import { Link } from "react-router-dom";
 
 const UltimosPacientesList = () => {
 
@@ -8,7 +8,8 @@ const UltimosPacientesList = () => {
             <hr/>
             <div className='flex justify-between items-center py-4'>
                 <h2 className='text-5xl py-3 text-primary font-bold'>Tús últimos pacientes</h2>
-                <Link className='rounded px-3 py-2 bg-primary text-white hover:bg-accent transition-colors w-[180px] text-center' to={"/pacientes"}>Ver todas</Link>
+                <CustomLink to="/pacientes" className="w-[160px]" title="Ver todos los pacientes">Ver todos</CustomLink>
+                
             </div>
             <PacientesList params={{ size: 4, sortDir: 'desc' }}></PacientesList>
         </section>

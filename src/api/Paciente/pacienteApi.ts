@@ -5,10 +5,22 @@ import type { PacienteProps } from '../../interfaces/Paciente/PacienteProps';
 import authenticatedApiClient from '../authenticatedApiClient';
 import type { PaginatedResponse } from '../../interfaces/global/PaginatedResponse';
 
-//Realiza la petición al endpoint indicado para añadir un nuevo paciente asociado al médico que está logueado.
-export const crearNuevoPaciente = (paciente: NuevoPacienteProps, token: string) => {
+
+
+/**
+ * Realiza la petición al endpoint indicado para añadir un nuevo paciente asociado al médico que está logueado.
+ * @param paciente datos del paciente que se quiere subir a la base de datos.
+ * @param token string con la authenticacion del usuario logueado.
+ * @returns APIResponseProps que contiene dentro los datos del usuario creado en la base de datos.
+ */
+export const crearNuevoPacienteAPI = async (
+  paciente: NuevoPacienteProps,
+  token: string):
+  Promise<APIResponseProps<PacienteProps>> => {
+
   const api = authenticatedApiClient(token);
-  return api.post('api/v1/pacientes/new', paciente);
+  const response = await api.post('api/v1/pacientes/new', paciente);
+  return response.data;
 };
 
 

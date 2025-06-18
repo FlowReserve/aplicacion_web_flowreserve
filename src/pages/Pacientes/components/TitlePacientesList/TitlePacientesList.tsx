@@ -6,12 +6,14 @@ import type { MedicoProfileResponseProps } from '../../../../interfaces/Medico/M
 import { obtenerPerfilMedicoService } from '../../../../services/Medico/medicoService';
 import { useAuth } from '../../../../context/AuthContext';
 import { useEstadisticasMedico } from '../../../../hooks/medico/useEstadisticasMedico';
+import type { PacienteProps } from '../../../../interfaces/Paciente/PacienteProps';
 
 interface Props {
     className?: string;
+    onPacienteCreado?: (paciente: PacienteProps) => void; //Callback cuando un paciente es creado envia información al padre
 }
 
-const TitlePacientesList: React.FC<Props> = ({ className }) => {
+const TitlePacientesList: React.FC<Props> = ({ className, onPacienteCreado }) => {
     const [modalOpen, setModalOpen] = useState(false);
     const [medico, setMedico] = useState<MedicoProfileResponseProps | null>(null);
     const [loading, setLoading] = useState(true);
@@ -36,7 +38,7 @@ const TitlePacientesList: React.FC<Props> = ({ className }) => {
                 }
 
                 const response: MedicoProfileResponseProps = await obtenerPerfilMedicoService(token);
-                
+
                 if (response != null) {
                     setMedico(response);
                 } else {
@@ -79,7 +81,7 @@ const TitlePacientesList: React.FC<Props> = ({ className }) => {
                         <ItemStats number={estadisticas?.enCurso || 0}>Consultas <br /> en curso</ItemStats>
                     </li>
                     <li>
-                        <ItemStats number={estadisticas?.finalizadas ||0}>Consultas <br /> finalizadas</ItemStats>
+                        <ItemStats number={estadisticas?.finalizadas || 0}>Consultas <br /> finalizadas</ItemStats>
                     </li>
                 </ul>
             </header>
@@ -87,8 +89,9 @@ const TitlePacientesList: React.FC<Props> = ({ className }) => {
             <NuevoPacienteModal
                 isOpen={modalOpen}
                 onClose={closeModal}
-                onPacienteCreado={() => {
-                    console.log("Paciente creado correctamente.");
+                onPacienteCreado={(paciente) => {
+                    console.log("Paciente creado correctamente:", paciente);
+                    if (onPacienteCreado) onPacienteCreado(paciente); // Propaga hacia arriba
                 }}
             />
         </>
