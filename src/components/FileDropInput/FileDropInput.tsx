@@ -216,7 +216,7 @@ const FileDropInput: React.FC<FileDropInputProps> = ({
 
             {!archivoSeleccionado ? (
                 <div
-                    className={`border-2 border-dashed rounded-lg p-6 min-h-[156px] text-center cursor-pointer transition-colors ${isDragOver
+                    className={`border-2 border-dashed rounded-lg p-6 min-h-[212px] text-center cursor-pointer transition-colors ${isDragOver
                         ? 'border-blue-500 bg-blue-50'
                         : 'border-gray-300 hover:border-gray-400'
                         } ${isProcessing ? 'pointer-events-none opacity-50' : ''}`}
@@ -262,7 +262,7 @@ const FileDropInput: React.FC<FileDropInputProps> = ({
                     </div>
                 </div>
             ) : (
-                <div className="flex items-start justify-between border border-gray-300 rounded-lg p-4 min-h-[156px] bg-gray-50">
+                <div className="flex items-start justify-between border border-gray-300 rounded-lg p-4 min-h-[212px] bg-gray-50">
                     <div className="flex items-center w-full justify-between">
                         <div className="flex items-center space-x-3">
                             <div className="w-8 h-8 text-blue-500">

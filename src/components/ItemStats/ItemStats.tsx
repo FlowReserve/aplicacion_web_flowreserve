@@ -33,7 +33,7 @@ const ItemStats: React.FC<ItemStatsProps> = ({
       className={`flex flex-col justify-between gap-2 border rounded p-2 ${backgroundColorClass} ${borderColorClass} ${className}`}
     >
       <div className="flex gap-2 items-end">
-        <span className={`text-[70px] w-[70px] font-extrabold text-right ${numberColorClass} leading-none`}>
+        <span className={`text-[70px] w-[100px] font-extrabold text-right ${numberColorClass} leading-none`}>
           {number}
         </span>
         <span className="leading-none mb-1 font-medium">{children}</span>

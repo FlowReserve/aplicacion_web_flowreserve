@@ -3,4 +3,6 @@ export interface SolicitudPacienteProps {
   presionSistolica: number;
   presionDiastolica: number;
   comentarios: string;
+  lesiones?: string;
+  lesionesPersonalizadas?: string;
 }
