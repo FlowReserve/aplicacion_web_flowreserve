@@ -23,7 +23,9 @@ const TitlePacientesList: React.FC<Props> = ({ className, onPacienteCreado }) =>
     const openModal = () => setModalOpen(true);
     const closeModal = () => setModalOpen(false);
 
-    const { data: estadisticas, loading: loadingStats, error: errorStats } = useEstadisticasMedico(
+
+
+    const { data: estadisticas, loading: loadingStats, error: errorStats, updateEstadisticas } = useEstadisticasMedico(
         authData?.id || 0,
         authData?.token || ''
     );
@@ -31,7 +33,7 @@ const TitlePacientesList: React.FC<Props> = ({ className, onPacienteCreado }) =>
     useEffect(() => {
         const fetchMedico = async () => {
             try {
-                const token = authData?.token || "";
+                const token = authData?.token;
                 if (!token) {
                     setError("Token no encontrado");
                     return;
@@ -91,7 +93,13 @@ const TitlePacientesList: React.FC<Props> = ({ className, onPacienteCreado }) =>
                 onClose={closeModal}
                 onPacienteCreado={(paciente) => {
                     console.log("Paciente creado correctamente:", paciente);
-                    if (onPacienteCreado) onPacienteCreado(paciente); // Propaga hacia arriba
+                    if (onPacienteCreado) {
+                        updateEstadisticas(prev => ({
+                            ...prev,
+                            totalPacientes: (prev.totalPacientes ?? 0) + 1
+                        }));
+                        onPacienteCreado(paciente)
+                    }; // Propaga hacia arriba
                 }}
             />
         </>

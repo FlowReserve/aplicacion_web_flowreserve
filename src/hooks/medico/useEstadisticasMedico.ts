@@ -1,9 +1,9 @@
+// hooks/medico/useEstadisticasMedico.ts
 import { useEffect, useState, useCallback } from 'react';
 import { obtenerMedicoEstadisticasProfileService } from '../../services/Medico/medicoEstadisticasService';
 import type { MedicoEstadisticasProps } from '../../interfaces/Medico/MedicoEstadisticasProps';
 
 export const useEstadisticasMedico = (id: number, token: string) => {
-    
   const [data, setData] = useState<MedicoEstadisticasProps | null>(null);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
@@ -32,5 +32,8 @@ export const useEstadisticasMedico = (id: number, token: string) => {
     loading,
     error,
     refetch: fetchEstadisticas,
+    updateEstadisticas: (updater: (prev: MedicoEstadisticasProps) => MedicoEstadisticasProps) => {
+      setData(prev => (prev ? updater(prev) : prev));
+    }
   };
 };

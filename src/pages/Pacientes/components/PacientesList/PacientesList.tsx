@@ -69,18 +69,20 @@ const PacientesList = (
                 <table className="min-w-full border border-gray-300 text-left">
                     <thead className="bg-gray-100">
                         <tr>
+                            <th className="p-2 border-b"></th>
                             <th className="p-2 border-b">Código NHC</th>
-                            <th className="p-2 border-b">Nombre</th>
                             <th className="p-2 border-b">Apellido</th>
+                            <th className="p-2 border-b">Nombre</th>
                             <th className="p-2 border-b text-right">Acciones</th>
                         </tr>
                     </thead>
                     <tbody>
                         {pacientes?.content.map((p, index) => (
                             <tr key={index} className="hover:bg-gray-200">
+                                <td className="p-2 border-b w-[50px] text-right pr-3 bg-gray-100 font-medium">{index +1}</td>
                                 <td className="p-2 border-b w-[120px]">{p.codigoNHC}</td>
-                                <td className="p-2 border-b w-[150px]">{p.nombre}</td>
                                 <td className="p-2 border-b">{p.apellido}</td>
+                                <td className="p-2 border-b w-[150px]">{p.nombre}</td>
                                 <td className="p-2 border-b space-x-2 text-right">
                                     <CustomButton
                                         onClick={() => handleVerSolicitudes(p.id)}
