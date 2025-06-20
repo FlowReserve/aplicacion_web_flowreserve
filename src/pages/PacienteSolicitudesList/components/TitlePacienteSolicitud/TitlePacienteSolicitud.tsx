@@ -3,17 +3,26 @@ import type { PacienteProps } from '../../../../interfaces/Paciente/PacienteProp
 import CustomButton from '../../../../components/interactive/CustomButton/CustomButton';
 import NuevaSolicitudModal from '../../../Pacientes/components/NuevaSolicitudModal/NuevaSolicitudModal';
 import ItemStats from '../../../../components/ItemStats/ItemStats';
+import type { ResponseSolicitudPaciente } from '../../../../interfaces/Solicitud/ResponseSolicitudPaciente';
 
 interface Props {
     paciente: PacienteProps;
     className?: string;
+    onNuevaSolicitudCreada?: (nuevaSolicitud: ResponseSolicitudPaciente) => void;
 }
 
-const TitlePacienteSolicitud: React.FC<Props> = ({ paciente, className }) => {
+const TitlePacienteSolicitud: React.FC<Props> = ({ paciente, className, onNuevaSolicitudCreada }) => {
     const [isModalOpen, setIsModalOpen] = useState(false);
 
     const handleOpenModal = () => setIsModalOpen(true);
     const handleCloseModal = () => setIsModalOpen(false);
+
+    const handleSolicitudCreada = (nuevaSolicitud: ResponseSolicitudPaciente) => {
+        console.log("Solicitud recibida en el componente padre: ", nuevaSolicitud);
+        if(onNuevaSolicitudCreada){
+            onNuevaSolicitudCreada(nuevaSolicitud);
+        }
+    }
 
     return (
         <>
@@ -48,6 +57,7 @@ const TitlePacienteSolicitud: React.FC<Props> = ({ paciente, className }) => {
                 isOpen={isModalOpen}
                 onClose={handleCloseModal}
                 paciente={paciente}
+                onSolicitudCreada={handleSolicitudCreada}
             />
         </>
     );

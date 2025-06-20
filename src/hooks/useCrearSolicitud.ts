@@ -1,15 +1,19 @@
 // src/hooks/useCrearSolicitud.ts
 import { useState } from 'react';
-import { crearSolicitud } from '../services/solicitudes/solicitudService';
+import { crearSolicitudPacienteService } from '../services/solicitudes/solicitudService';
 import type { SolicitudPacienteProps } from '../interfaces/Solicitud/SolicitudPacienteProps';
 import { useAuth } from '../context/AuthContext';
+import type { ResponseSolicitudPaciente } from '../interfaces/Solicitud/ResponseSolicitudPaciente';
 
 export const useCrearSolicitud = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const { authData } = useAuth(); // Asume que tienes un hook de auth para acceder al token
 
-  const submitSolicitud = async (payload: SolicitudPacienteProps, archivoZip: File) => {
+  const submitSolicitud = async (
+    payload: SolicitudPacienteProps, 
+    archivoZip: File
+  ): Promise<ResponseSolicitudPaciente> => {
     setLoading(true);
     setError(null);
 
@@ -23,7 +27,9 @@ export const useCrearSolicitud = () => {
       // Agrega el archivo ZIP
       formData.append('archivoZip', archivoZip);
       const token = authData?.token || '';
-      await crearSolicitud(token, formData);
+      const nuevaSolicitud =  await crearSolicitudPacienteService(token, formData);
+
+      return nuevaSolicitud; //Devuelve la nueva solicitud que ha sido creada en la aplicación.
     } catch (err: any) {
       console.error('Error al crear solicitud:', err);
       setError(err?.response?.data?.message || 'Error al crear solicitud');

@@ -8,17 +8,20 @@ import type { PacienteProps } from '../../../../interfaces/Paciente/PacienteProp
 import './NuevaSolicitudModal.css'
 import CustomButtonOutline from '../../../../components/interactive/CustomButtonOutline/CustomButtonOutline';
 import CheckboxSelect from '../../../../components/forms/CheckboxSelect/CheckboxSelect';
+import type { ResponseSolicitudPaciente } from '../../../../interfaces/Solicitud/ResponseSolicitudPaciente';
 
 interface NuevaSolicitudModalProps {
     isOpen: boolean;
     onClose: () => void;
     paciente: PacienteProps | null;
+    onSolicitudCreada?: (nuevaSolicitud: ResponseSolicitudPaciente) => void; //Maneja el objeto creado en la solicitud.
 }
 
 const NuevaSolicitudModal: React.FC<NuevaSolicitudModalProps> = ({
     isOpen,
     onClose,
-    paciente
+    paciente,
+    onSolicitudCreada
 }) => {
     const { submitSolicitud, loading, error } = useCrearSolicitud();
     const fileInputRef = useRef<HTMLInputElement>(null);
@@ -122,8 +125,12 @@ const NuevaSolicitudModal: React.FC<NuevaSolicitudModalProps> = ({
 
         try {
             console.log("enviando datos de la nueva solicitud: ", payload);
-            await submitSolicitud(payload, archivoSeleccionado);
+            const response : ResponseSolicitudPaciente =  await submitSolicitud(payload, archivoSeleccionado);
             alert('Solicitud creada correctamente');
+
+            if(onSolicitudCreada){
+                onSolicitudCreada(response); //Envía al componente padre los datos de la solicitud creada.
+            }
             onClose();
         } catch {
             // error ya manejado por el hook

@@ -1,9 +1,10 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { useSolicitudesPaciente } from '../../hooks/useCargarSolicitudesPaciente';
 import { useCargarPerfilPacienteByID } from '../../hooks/paciente/useCargarPerfilPacienteByID'
 import ItemPacienteSolicitud from './components/ItemPacienteSolicitud/ItemPacienteSolicitud';
 import TitlePacienteSolicitud from './components/TitlePacienteSolicitud/TitlePacienteSolicitud';
+import type { ResponseSolicitudPaciente } from '../../interfaces/Solicitud/ResponseSolicitudPaciente';
 
 const PacienteSolicitudesList: React.FC = () => {
   const { id } = useParams<{ id: string }>();
@@ -22,6 +23,21 @@ const PacienteSolicitudesList: React.FC = () => {
     error: solicitudesError,
     loadSolicitudes,
   } = useSolicitudesPaciente(pacienteId);
+
+  // Estado local para solicitudes dinámicas
+  const [solicitudesState, setSolicitudesState] = useState<ResponseSolicitudPaciente[]>([]);
+
+  useEffect(() => {
+    if (solicitudes && solicitudes.length > 0) {
+      setSolicitudesState(solicitudes);
+    }
+  }, [solicitudes]);
+
+  // Añadir nueva solicitud dinámicamente
+  const handleConsultaCreada = (nuevaConsulta: ResponseSolicitudPaciente) => {
+    console.log("consulta recibida en el padre de todos: ", nuevaConsulta);
+    setSolicitudesState((prev) => [nuevaConsulta, ...prev]);
+  };
 
   useEffect(() => {
     loadPaciente();
@@ -56,14 +72,18 @@ const PacienteSolicitudesList: React.FC = () => {
 
   return (
     <div className="p-6 max-w-[1200px] m-auto">
-      <TitlePacienteSolicitud paciente={paciente} className="py-6" />
+      <TitlePacienteSolicitud
+        paciente={paciente}
+        className="py-6"
+        onNuevaSolicitudCreada={handleConsultaCreada}
+      />
       <hr className="w-full pb-6" />
 
-      {solicitudes.length === 0 ? (
+      {solicitudesState.length === 0 ? (
         <p>No hay solicitudes registradas para este paciente.</p>
       ) : (
         <ul className="space-y-4">
-          {solicitudes.map((solicitud) => (
+          {solicitudesState.map((solicitud) => (
             <li key={solicitud.id}>
               <ItemPacienteSolicitud solicitud={solicitud} />
             </li>

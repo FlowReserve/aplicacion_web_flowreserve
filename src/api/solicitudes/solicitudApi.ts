@@ -5,9 +5,20 @@ import type { ResponseSolicitudPaciente } from '../../interfaces/Solicitud/Respo
 import authenticatedApiClient from '../authenticatedApiClient';
 
 
-export const crearSolicitudRequest = (token: string, data: FormData) => {
+/**
+ * Crea una nueva peticion para un paciente
+ * @param token string identificador del usuario que quiere realizar la petición
+ * @param data datos del formulario enviados por el médico
+ * @returns ApiResponse con los datos de la solicitud que ha sido creada.
+ */
+export const crearSolicitudPacienteRequestAPI = async (
+  token: string, 
+  data: FormData) : 
+  Promise<APIResponseProps<ResponseSolicitudPaciente>> => {
   const api = authenticatedApiClient(token);
-  return api.post('/api/v1/solicitudes/new', data);
+  const response = await api.post('/api/v1/solicitudes/new', data);
+
+  return response.data;
 };
 
 

@@ -1,6 +1,5 @@
-import { crearSolicitudRequest, verListadoTotalConsultasAdminApi, verSolicitudesPacienteAPI, verSolicitudesPacienteByIdAPI } from '../../api/solicitudes/solicitudApi';
+import { crearSolicitudPacienteRequestAPI, verListadoTotalConsultasAdminApi, verSolicitudesPacienteAPI, verSolicitudesPacienteByIdAPI } from '../../api/solicitudes/solicitudApi';
 import type { PaginatedResponse } from '../../interfaces/global/PaginatedResponse';
-import type { ResponseNuevaSolicitudPacienteProps } from '../../interfaces/Solicitud/ResponseNuevaSolicitudPacienteProps';
 import type { ResponseSolicitudPaciente } from '../../interfaces/Solicitud/ResponseSolicitudPaciente';
 import type { APIResponseProps } from '../../interfaces/global/APIResponseProps';
 import type { QueryParams } from '../../interfaces/global/QueryParams';
@@ -11,9 +10,17 @@ import type { QueryParams } from '../../interfaces/global/QueryParams';
  * @param formData Objeto formData que contiene: JSON con los datos del formulario + idPaciente sobre el que se realizará la consulta + fichero ZIP
  * @returns ResponseNuevaSoliciutdPacienteProps objeto con la información de la nueva soliciutd creada.s
  */
-export const crearSolicitud = async (token: string, formData: FormData): Promise<ResponseNuevaSolicitudPacienteProps> => {
-  const response = await crearSolicitudRequest(token, formData);
-  return response.data;
+export const crearSolicitudPacienteService = async (
+  token: string, 
+  formData: FormData): 
+  Promise<ResponseSolicitudPaciente> => {
+  const response = await crearSolicitudPacienteRequestAPI(token, formData);
+
+    if (!response.status || !response.responseObject) {
+    throw new Error(response.message || 'Error al crear la petición para un paciente');
+  }
+
+  return response.responseObject;
 };
 
 

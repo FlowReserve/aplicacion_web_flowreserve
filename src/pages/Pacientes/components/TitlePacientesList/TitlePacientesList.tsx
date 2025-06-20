@@ -54,8 +54,8 @@ const TitlePacientesList: React.FC<Props> = ({ className, onPacienteCreado }) =>
         fetchMedico();
     }, []);
 
-    if (loadingStats) return <p>Cargando perfil del médico...</p>;
-    if (errorStats) return <p className="text-red-600">{errorStats}</p>;
+    if (loading) return <p>Cargando perfil del médico...</p>;
+    if (error) return <p className="text-red-600">{error}</p>;
 
     return (
         <>
