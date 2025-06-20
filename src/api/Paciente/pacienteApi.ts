@@ -4,6 +4,7 @@ import type { APIResponseProps } from '../../interfaces/global/APIResponseProps'
 import type { PacienteProps } from '../../interfaces/Paciente/PacienteProps';
 import authenticatedApiClient from '../authenticatedApiClient';
 import type { PaginatedResponse } from '../../interfaces/global/PaginatedResponse';
+import type { PacienteEstadisticasConsultasProps } from '../../interfaces/Paciente/PacienteEstadisticasConsultasProps';
 
 
 
@@ -36,6 +37,22 @@ export const obtenerListadoPacientesAPI = async (
   const response = await api.get('api/v1/pacientes/mis-pacientes', { params });
   return response.data;
 };
+
+/**
+ * Obtiene la información de estadísticas de consultas para un paciente
+ * @param token identificador del usuario authenticado que realiza la consulta
+ * @param id identificador del paciente sobre el que se quieren obtener las estadísticas.
+ * @returns Promesa con un objeto APIResponse que contiene un objeto con las estadísticas del API.
+ */
+export const obtenerEstadisticasConsultasPacienteAPI = async (
+  id: number,
+  token: string,
+): Promise<APIResponseProps<PacienteEstadisticasConsultasProps>> => {
+  const api = authenticatedApiClient(token);
+  const response = await api.get(`api/v1/pacientes/${id}/resumen`);
+ 
+  return response.data;
+}
 
 /**
  * Obtiene la información de un paciente pasado como parámetro

@@ -1,10 +1,10 @@
 // src/services/pacienteService.ts
-import { obtenerListadoPacientesAPI, crearNuevoPacienteAPI, obtenerInformacionPacienteByIdAPI } from '../api/Paciente/pacienteApi';
+import { obtenerListadoPacientesAPI, crearNuevoPacienteAPI, obtenerInformacionPacienteByIdAPI, obtenerEstadisticasConsultasPacienteAPI } from '../api/Paciente/pacienteApi';
 import type { NuevoPacienteProps } from '../interfaces/Paciente/NuevoPacienteProps';
 import type { PacienteProps } from '../interfaces/Paciente/PacienteProps';
 import type { PaginatedResponse } from '../interfaces/global/PaginatedResponse';
 import type { QueryParams } from '../interfaces/global/QueryParams';
-
+import type { PacienteEstadisticasConsultasProps } from '../interfaces/Paciente/PacienteEstadisticasConsultasProps';
 
 /**
  * Crea un nuevo paciente en la base de datos
@@ -59,3 +59,24 @@ export const obtenerInformacionPacienteByIDService = async (
 
   return response.responseObject;
 };
+
+
+/**
+ * Obtiene estadísticas de las solicitudes realizadas a un paciente con un identificador determinado
+ * @param id 
+ * @param token 
+ * @returns 
+ */
+export const obtenerEstadisticasConsultasPacienteService = async (
+  id: number,
+  token: string
+): Promise<PacienteEstadisticasConsultasProps> => {
+  const response = await obtenerEstadisticasConsultasPacienteAPI(id, token);
+
+      if (!response.status || !response.responseObject) {
+    throw new Error(response.message || 'Error al obtener las estadísticas de consultas del usuario especificado');
+  }
+
+  return response.responseObject;
+
+}

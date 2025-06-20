@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
-import type { PacienteProps } from '../../../../interfaces/Paciente/PacienteProps';
+import { useEstadisticasPaciente } from '../../../../hooks/paciente/useEstadisticasPaciente';
 import CustomButton from '../../../../components/interactive/CustomButton/CustomButton';
 import NuevaSolicitudModal from '../../../Pacientes/components/NuevaSolicitudModal/NuevaSolicitudModal';
 import ItemStats from '../../../../components/ItemStats/ItemStats';
 import type { ResponseSolicitudPaciente } from '../../../../interfaces/Solicitud/ResponseSolicitudPaciente';
+import type { PacienteProps } from '../../../../interfaces/Paciente/PacienteProps';
 
 interface Props {
     paciente: PacienteProps;
@@ -17,10 +18,17 @@ const TitlePacienteSolicitud: React.FC<Props> = ({ paciente, className, onNuevaS
     const handleOpenModal = () => setIsModalOpen(true);
     const handleCloseModal = () => setIsModalOpen(false);
 
+    const { data: estadisticas, loading, error, updateEstadisticas } = useEstadisticasPaciente(paciente.id);
+
+
     const handleSolicitudCreada = (nuevaSolicitud: ResponseSolicitudPaciente) => {
         console.log("Solicitud recibida en el componente padre: ", nuevaSolicitud);
-        if(onNuevaSolicitudCreada){
+        if (onNuevaSolicitudCreada) {
             onNuevaSolicitudCreada(nuevaSolicitud);
+            updateEstadisticas(prev => ({
+                ...prev,
+                total: (prev.total ?? 0) + 1
+            }));
         }
     }
 
@@ -34,7 +42,7 @@ const TitlePacienteSolicitud: React.FC<Props> = ({ paciente, className, onNuevaS
                             Solicitudes de <span className="font-bold">{paciente.nombre} {paciente.apellido}</span>
                         </h1>
                         <CustomButton className='flex justify-center' onClick={handleOpenModal}>
-                            <img src="/web/icons/plus-solid.svg" alt="Icono añadir solicitud" className='w-4 inline-block mr-1'/>
+                            <img src="/web/icons/plus-solid.svg" alt="Icono añadir solicitud" className='w-4 inline-block mr-1' />
                             Crear nueva solicitud
                         </CustomButton>
                     </div>
@@ -42,13 +50,13 @@ const TitlePacienteSolicitud: React.FC<Props> = ({ paciente, className, onNuevaS
 
                 <ul className='flex gap-2'>
                     <li>
-                        <ItemStats number={1}>Consultas <br /> totales</ItemStats>
+                        <ItemStats number={loading ? '-' : estadisticas?.total ?? 0}>Consultas <br /> totales</ItemStats>
                     </li>
                     <li>
-                        <ItemStats number={1}>Consultas <br /> en curso</ItemStats>
+                        <ItemStats number={loading ? '-' : estadisticas?.enCurso ?? 0}>Consultas <br /> en curso</ItemStats>
                     </li>
                     <li>
-                        <ItemStats number={0}>Consultas <br /> finalizadas</ItemStats>
+                        <ItemStats number={loading ? '-' : estadisticas?.finalizadas ?? 0}>Consultas <br /> finalizadas</ItemStats>
                     </li>
                 </ul>
             </header>
