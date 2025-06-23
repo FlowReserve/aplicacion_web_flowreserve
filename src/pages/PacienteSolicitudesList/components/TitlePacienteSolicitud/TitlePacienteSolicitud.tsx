@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useEstadisticasPaciente } from '../../../../hooks/paciente/useEstadisticasPaciente';
 import CustomButton from '../../../../components/interactive/CustomButton/CustomButton';
-import NuevaSolicitudModal from '../../../Pacientes/components/NuevaSolicitudModal/NuevaSolicitudModal';
+import NuevaSolicitudModalTest from '../../../Pacientes/components/NuevaSolicitudModal/NuevaSolicitudModalTest';
 import ItemStats from '../../../../components/ItemStats/ItemStats';
 import type { ResponseSolicitudPaciente } from '../../../../interfaces/Solicitud/ResponseSolicitudPaciente';
 import type { PacienteProps } from '../../../../interfaces/Paciente/PacienteProps';
@@ -61,7 +61,7 @@ const TitlePacienteSolicitud: React.FC<Props> = ({ paciente, className, onNuevaS
                 </ul>
             </header>
 
-            <NuevaSolicitudModal
+            <NuevaSolicitudModalTest
                 isOpen={isModalOpen}
                 onClose={handleCloseModal}
                 paciente={paciente}

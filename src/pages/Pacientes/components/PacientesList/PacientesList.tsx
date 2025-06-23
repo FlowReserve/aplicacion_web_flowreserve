@@ -1,11 +1,11 @@
 import { useState, useEffect } from 'react';
 import { useListadoPacientes } from '../../../../hooks/paciente/useListadoPacientes';
 import CustomButton from '../../../../components/interactive/CustomButton/CustomButton';
-import NuevaSolicitudModal from '../NuevaSolicitudModal/NuevaSolicitudModal';
-import type { PacienteProps } from '../../../../interfaces/Paciente/PacienteProps';
 import { useNavigate } from 'react-router-dom';
-import type { QueryParams } from '../../../../interfaces/global/QueryParams';
 import CustomButtonOutline from '../../../../components/interactive/CustomButtonOutline/CustomButtonOutline';
+import NuevaSolicitudModalTest from '../NuevaSolicitudModal/NuevaSolicitudModalTest';
+import type { QueryParams } from '../../../../interfaces/global/QueryParams';
+import type { PacienteProps } from '../../../../interfaces/Paciente/PacienteProps';
 
 interface PacientesListProps {
     params?: QueryParams; // <-- parámetros opcionales
@@ -45,13 +45,15 @@ const PacientesList = (
     }, [params]);
 
     const handleNuevaSolicitud = (paciente: PacienteProps) => {
+        
         setPacienteSeleccionado(paciente);
         setModalOpen(true);
     };
 
     const closeModal = () => {
-        setModalOpen(false);
+        
         setPacienteSeleccionado(null);
+        setModalOpen(false);
     };
 
     const handleVerSolicitudes = async (pacienteId: number) => {
@@ -79,7 +81,7 @@ const PacientesList = (
                     <tbody>
                         {pacientes?.content.map((p, index) => (
                             <tr key={index} className="hover:bg-gray-200">
-                                <td className="p-2 border-b w-[50px] text-right pr-3 bg-gray-100 font-medium">{index +1}</td>
+                                <td className="p-2 border-b w-[50px] text-right pr-3 bg-gray-100 font-medium">{index + 1}</td>
                                 <td className="p-2 border-b w-[120px]">{p.codigoNHC}</td>
                                 <td className="p-2 border-b">{p.apellido}</td>
                                 <td className="p-2 border-b w-[150px]">{p.nombre}</td>
@@ -105,11 +107,15 @@ const PacientesList = (
                 </table>
             )}
 
-            <NuevaSolicitudModal
-                isOpen={modalOpen && pacienteSeleccionado?.id !== null}
-                onClose={closeModal}
-                paciente={pacienteSeleccionado}
-            />
+            {modalOpen && pacienteSeleccionado && (
+                <NuevaSolicitudModalTest
+                    isOpen={modalOpen}
+                    onClose={closeModal}
+                    paciente={pacienteSeleccionado}
+                    onSolicitudCreada={() => { console.log("solicitud creada modal test") }}
+
+                />
+            )}
 
         </div>
     );

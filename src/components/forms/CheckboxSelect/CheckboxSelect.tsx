@@ -23,11 +23,11 @@ const CheckboxSelect: React.FC<CheckboxSelectProps> = ({
   }, [checked, value]);
 
   return (
-    <div className="flex items-center gap-4">
+    <div className="flex items-center gap-2 md:gap-4">
       <label className={`flex items-center gap-2 ${checkboxDesign}`}>
         <input
           type="checkbox"
-          className="form-checkbox h-5 min-w-5 text-primary "
+          className="form-checkbox md:h-5 md:min-w-5 text-primary "
           checked={checked}
           onChange={(e) => setChecked(e.target.checked)}
         />
@@ -35,7 +35,7 @@ const CheckboxSelect: React.FC<CheckboxSelectProps> = ({
       </label>
 
       <select
-        className={`border rounded p-2 ${
+        className={`border text-sm md:text-base rounded p-1 md:p-2 ${
           checked ? 'border-primary text-primary' : 'border-gray-300 bg-gray-100 text-gray-400 cursor-not-allowed'
         }`}
         title='Seleccionar elemento'

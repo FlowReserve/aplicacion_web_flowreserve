@@ -17,6 +17,7 @@ interface NuevaSolicitudModalProps {
     onSolicitudCreada?: (nuevaSolicitud: ResponseSolicitudPaciente) => void; //Maneja el objeto creado en la solicitud.
 }
 
+
 const NuevaSolicitudModal: React.FC<NuevaSolicitudModalProps> = ({
     isOpen,
     onClose,
@@ -125,10 +126,10 @@ const NuevaSolicitudModal: React.FC<NuevaSolicitudModalProps> = ({
 
         try {
             console.log("enviando datos de la nueva solicitud: ", payload);
-            const response : ResponseSolicitudPaciente =  await submitSolicitud(payload, archivoSeleccionado);
+            const response: ResponseSolicitudPaciente = await submitSolicitud(payload, archivoSeleccionado);
             alert('Solicitud creada correctamente');
 
-            if(onSolicitudCreada){
+            if (onSolicitudCreada) {
                 onSolicitudCreada(response); //Envía al componente padre los datos de la solicitud creada.
             }
             onClose();
@@ -138,8 +139,10 @@ const NuevaSolicitudModal: React.FC<NuevaSolicitudModalProps> = ({
     };
 
     return (
-        <Modal isOpen={isOpen} onRequestClose={onClose} contentLabel="Nueva Solicitud"
-            className="mx-3 my-8 md:mx-auto md:my-auto rounded bg-white p-2 max-w-[800px] outline-none" overlayClassName="modal-overlay flex justify-center items-center">
+        <Modal isOpen={isOpen} onRequestClose={onClose}
+            contentLabel="Nueva Solicitud"
+            className="mx-3 my-8 md:mx-auto md:my-auto rounded bg-white p-2 max-w-[800px] outline-none"
+            overlayClassName="modal-overlay flex justify-center items-center">
             <div className="modal overflow-y-auto max-h-[90vh] p-4">
                 <h2 className="text-xl font-semibold mb-4 text-center">Nueva Solicitud para paciente  <span className='font-bold'>{paciente?.codigoNHC}</span>
                     <br />
@@ -168,9 +171,9 @@ const NuevaSolicitudModal: React.FC<NuevaSolicitudModalProps> = ({
                                 value={presionDiastolica}
                                 onChange={e => setPresionDiastolica(e.target.value)}
                                 className="input"
-                                required 
+                                required
                                 min={0}
-                                max={300}/>
+                                max={300} />
                         </div>
                         <p className='md:col-span-2 text-xs text-gray-600'><strong>NOTA:</strong> Las unidades de la Presión Aortica Sistólica y Diástolica (<strong>PAS y PAD</strong>) se miden en <strong>mmHg</strong></p>
                     </div>
@@ -179,8 +182,8 @@ const NuevaSolicitudModal: React.FC<NuevaSolicitudModalProps> = ({
                         <textarea id='solicitudComentarios'
                             placeholder='Añade cualquier información que pueda ser de utilidad'
                             value={comentarios} onChange={e => setComentarios(e.target.value)}
-                            rows={5} className="input resize-none" 
-                            maxLength={400}/>
+                            rows={5} className="input resize-none"
+                            maxLength={400} />
                         <p className="text-xs text-gray-500 text-end">
                             {comentarios.length}/400 caracteres
                         </p>
