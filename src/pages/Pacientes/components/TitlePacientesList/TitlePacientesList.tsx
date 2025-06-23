@@ -7,6 +7,7 @@ import { obtenerPerfilMedicoService } from '../../../../services/Medico/medicoSe
 import { useAuth } from '../../../../context/AuthContext';
 import { useEstadisticasMedico } from '../../../../hooks/medico/useEstadisticasMedico';
 import type { PacienteProps } from '../../../../interfaces/Paciente/PacienteProps';
+import NuevoPacienteYSolicitudModal from '../NuevoPacienteModal/NuevoPacienteYSolicitudModal';
 
 interface Props {
     className?: string;
@@ -102,6 +103,12 @@ const TitlePacientesList: React.FC<Props> = ({ className, onPacienteCreado }) =>
                     }; // Propaga hacia arriba
                 }}
             />
+
+            {/* <NuevoPacienteYSolicitudModal
+                isOpen={modalOpen}
+                onClose={closeModal}
+            /> */}
+
         </>
     );
 };

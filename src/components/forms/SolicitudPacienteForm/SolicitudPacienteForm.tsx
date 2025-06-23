@@ -99,7 +99,7 @@ const SolicitudPacienteForm: React.FC<SolicitudPacienteFormProps> = ({ paciente,
                     <label htmlFor='valuePAD' className="block mb-1">PAD (Presión aórtica diastólica)</label>
                     <input id='valuePAD' type='number' value={presionDiastolica} onChange={e => setPresionDiastolica(e.target.value)} className='input' min={0} max={300} required />
                 </div>
-                <p className='md:col-span-2 text-xs text-gray-600'>Unidades: <strong>mmHg</strong></p>
+                <p className='md:col-span-2 text-xs text-gray-600'>NOTA: Unidades de medida de PAD y PAS en <strong>mmHg</strong></p>
             </div>
 
             <div>
