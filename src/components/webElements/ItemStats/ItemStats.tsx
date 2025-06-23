@@ -1,6 +1,6 @@
 // src/components/Stats/ItemStats.tsx
 import React from 'react';
-import CustomLink from '../interactive/CustomLink/CustomLink';
+import CustomLink from '../../interactive/CustomLink/CustomLink';
 
 interface ItemStatsProps {
   number: number | string;

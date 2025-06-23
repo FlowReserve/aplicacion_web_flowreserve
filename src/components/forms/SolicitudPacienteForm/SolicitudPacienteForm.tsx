@@ -1,7 +1,7 @@
 // components/forms/SolicitudPacienteForm/SolicitudPacienteForm.tsx
 import React, { useState, useRef, useEffect } from 'react';
 import CustomButton from '../../interactive/CustomButton/CustomButton';
-import FileDropInput from '../../FileDropInput/FileDropInput';
+import FileDropInput from '../FileDropInput/FileDropInput';
 import CheckboxSelect from '../../forms/CheckboxSelect/CheckboxSelect';
 import CustomButtonOutline from '../../interactive/CustomButtonOutline/CustomButtonOutline';
 import { useCrearSolicitud } from '../../../hooks/useCrearSolicitud';

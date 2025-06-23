@@ -1,5 +1,5 @@
 import { Outlet } from "react-router-dom";
-import FooterWeb from "../../components/FooterWeb/FooterWeb";
+import FooterWeb from "../../components/webElements/FooterWeb/FooterWeb";
 import './IndexLayout.css';
 const IndexLayout = () =>{
     return (

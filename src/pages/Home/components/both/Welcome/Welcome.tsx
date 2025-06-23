@@ -1,7 +1,7 @@
 import { usePerfilMedico } from "../../../../../hooks/medico/usePerfilMedico";
 import { useAuth } from "../../../../../context/AuthContext";
 import { useEstadisticasMedico } from "../../../../../hooks/medico/useEstadisticasMedico";
-import ItemStats from "../../../../../components/ItemStats/ItemStats";
+import ItemStats from "../../../../../components/webElements/ItemStats/ItemStats";
 
 const Welcome = () => {
     const { authData } = useAuth();

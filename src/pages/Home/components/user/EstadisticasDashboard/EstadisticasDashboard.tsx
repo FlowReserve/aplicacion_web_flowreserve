@@ -1,6 +1,6 @@
 import { useAuth } from '../../../../../context/AuthContext';
 import { useEstadisticasMedico} from '../../../../../hooks/medico/useEstadisticasMedico'
-import MedicoEstadisticasChart from '../../../../../components/charts/MedicoEstadisticasChart/MedicoEstadisticasChart';
+import MedicoEstadisticasChart from '../../../../../components/webElements/MedicoEstadisticasChart/MedicoEstadisticasChart';
 
 const EstadisticasDashboard = () => {
   const { authData } = useAuth();

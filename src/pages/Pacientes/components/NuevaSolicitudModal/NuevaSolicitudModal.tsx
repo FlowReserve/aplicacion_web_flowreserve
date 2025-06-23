@@ -2,7 +2,7 @@ import React, { useState, useRef, useEffect } from 'react';
 import Modal from 'react-modal';
 import CustomButton from '../../../../components/interactive/CustomButton/CustomButton';
 import { useCrearSolicitud } from '../../../../hooks/useCrearSolicitud';
-import FileDropInput from '../../../../components/FileDropInput/FileDropInput';
+import FileDropInput from '../../../../components/forms/FileDropInput/FileDropInput';
 import type { SolicitudPacienteProps } from '../../../../interfaces/Solicitud/SolicitudPacienteProps';
 import type { PacienteProps } from '../../../../interfaces/Paciente/PacienteProps';
 import './NuevaSolicitudModal.css'

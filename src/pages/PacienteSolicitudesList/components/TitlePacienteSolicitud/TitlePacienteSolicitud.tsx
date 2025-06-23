@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useEstadisticasPaciente } from '../../../../hooks/paciente/useEstadisticasPaciente';
 import CustomButton from '../../../../components/interactive/CustomButton/CustomButton';
 import NuevaSolicitudModalTest from '../../../Pacientes/components/NuevaSolicitudModal/NuevaSolicitudModalTest';
-import ItemStats from '../../../../components/ItemStats/ItemStats';
+import ItemStats from '../../../../components/webElements/ItemStats/ItemStats';
 import type { ResponseSolicitudPaciente } from '../../../../interfaces/Solicitud/ResponseSolicitudPaciente';
 import type { PacienteProps } from '../../../../interfaces/Paciente/PacienteProps';
 

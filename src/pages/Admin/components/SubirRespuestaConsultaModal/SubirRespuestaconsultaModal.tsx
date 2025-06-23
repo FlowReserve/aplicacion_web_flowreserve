@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import Modal from 'react-modal';
-import FileDropPDF from '../../../../components/FileDropPDF/FileDropPDF';
+import FileDropPDF from '../../../../components/forms/FileDropPDF/FileDropPDF';
 import { useSubirDocumento } from '../../../../hooks/useSubirDocumentoSolicitud';
 import type { ResponseSolicitudPaciente } from '../../../../interfaces/Solicitud/ResponseSolicitudPaciente';
 import { EstadoMap } from '../../../../types/estadoColores';
