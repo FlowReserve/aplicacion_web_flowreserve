@@ -24,7 +24,7 @@ export const useListarSolicitudesAdmin = (
     setError(null);
 
     try {
-      const response = await listarConsultasPacientesAdminService(token);
+      const response = await listarConsultasPacientesAdminService(token, {size: 20});
       console.log("response en el useListar: ", response)
       if (response.status && response.responseObject) {
         setSolicitudes(response.responseObject);

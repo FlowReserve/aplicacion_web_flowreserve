@@ -11,12 +11,12 @@ import type { QueryParams } from '../../interfaces/global/QueryParams';
  * @returns ResponseNuevaSoliciutdPacienteProps objeto con la información de la nueva soliciutd creada.s
  */
 export const crearSolicitudPacienteService = async (
-  token: string, 
-  formData: FormData): 
+  token: string,
+  formData: FormData):
   Promise<ResponseSolicitudPaciente> => {
   const response = await crearSolicitudPacienteRequestAPI(token, formData);
 
-    if (!response.status || !response.responseObject) {
+  if (!response.status || !response.responseObject) {
     throw new Error(response.message || 'Error al crear la petición para un paciente');
   }
 
@@ -26,13 +26,14 @@ export const crearSolicitudPacienteService = async (
 
 export const listarSolicitudesPaciente = async (
   token: string,
-  params: QueryParams): Promise<PaginatedResponse<ResponseSolicitudPaciente>> => {
+  params?: QueryParams):
+  Promise<PaginatedResponse<ResponseSolicitudPaciente>> => {
 
   const response = await verSolicitudesPacienteAPI(token, params);
   if (!response.status || !response.responseObject) {
     throw new Error(response.message || 'Error al obtener los datos paginados de un paciente');
   }
-  
+
   return response.responseObject;
 }
 
@@ -57,7 +58,10 @@ export const listarSolicitudesPacienteByIDService = async (
 
 
 
-export const listarConsultasPacientesAdminService = async (token: string): Promise<APIResponseProps<PaginatedResponse<ResponseSolicitudPaciente>>> => {
-  const response = await verListadoTotalConsultasAdminApi(token);
+export const listarConsultasPacientesAdminService = async (
+  token: string,
+  params?: QueryParams):
+  Promise<APIResponseProps<PaginatedResponse<ResponseSolicitudPaciente>>> => {
+  const response = await verListadoTotalConsultasAdminApi(token, params);
   return response;
 }

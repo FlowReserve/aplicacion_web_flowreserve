@@ -12,8 +12,8 @@ import authenticatedApiClient from '../authenticatedApiClient';
  * @returns ApiResponse con los datos de la solicitud que ha sido creada.
  */
 export const crearSolicitudPacienteRequestAPI = async (
-  token: string, 
-  data: FormData) : 
+  token: string,
+  data: FormData):
   Promise<APIResponseProps<ResponseSolicitudPaciente>> => {
   const api = authenticatedApiClient(token);
   const response = await api.post('/api/v1/solicitudes/new', data);
@@ -33,7 +33,7 @@ export const verSolicitudesPacienteAPI = async (
 ): Promise<APIResponseProps<PaginatedResponse<ResponseSolicitudPaciente>>> => {
   const api = authenticatedApiClient(token);
 
-  const response = await api.get("api/v1/solicitudes/mis-solicitudes", {params});
+  const response = await api.get("api/v1/solicitudes/mis-solicitudes", { params });
   return response.data;
 }
 
@@ -53,7 +53,7 @@ export const verSolicitudesPacienteByIdAPI = async (
 
   const api = authenticatedApiClient(token);
 
-  const response = await api.get(`/api/v1/solicitudes/mis-solicitudes/${idPaciente}`, {params});
+  const response = await api.get(`/api/v1/solicitudes/mis-solicitudes/${idPaciente}`, { params });
   return response.data;
 }
 
@@ -62,9 +62,12 @@ export const verSolicitudesPacienteByIdAPI = async (
  * @param token 
  * @returns 
  */
-export const verListadoTotalConsultasAdminApi = async (token: string): Promise<APIResponseProps<PaginatedResponse<ResponseSolicitudPaciente>>> => {
+export const verListadoTotalConsultasAdminApi = async (
+  token: string,
+  params?: QueryParams):
+  Promise<APIResponseProps<PaginatedResponse<ResponseSolicitudPaciente>>> => {
   const api = authenticatedApiClient(token);
-  const response = await api.get("/api/v1/solicitudes/listarRequestAdmin");
-  
+  const response = await api.get("/api/v1/solicitudes/listarRequestAdmin", { params });
+
   return response.data;
 }
