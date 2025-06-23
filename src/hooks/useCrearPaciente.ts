@@ -9,7 +9,7 @@ export const useCrearPaciente = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [successMessage, setSuccessMessage] = useState<string | null>(null);
-  const [createdPaciente, setCreatedPaciente] = useState<PacienteProps | null>(null);
+  const [createdPaciente, setCreatedPaciente] = useState<PacienteProps | null>(null); // Guarda aquí la información del paciente creado.
 
   const { authData } = useAuth();
 
@@ -36,7 +36,9 @@ export const useCrearPaciente = () => {
     handleCrearPaciente,
     loading,
     error,
+    setError,
     successMessage,
+    setSuccessMessage,
     createdPaciente,
   };
 };
