@@ -4,22 +4,25 @@ import type { ResponseSolicitudPaciente } from '../../../../interfaces/Solicitud
 import type { EstadoType } from '../../../../types/estadoColores';
 import { EstadoMap } from '../../../../types/estadoColores';
 import ActualizarEstadoConsultaForm from './ActualizarEstadoConsultaForm/ActualizarEstadoConsultaForm';
+import EstadoBadge from '../../../../components/webElements/EstadoBadge/EstadoBadge';
 
 interface Props {
   isOpen: boolean;
   onClose: () => void;
   solicitud: ResponseSolicitudPaciente;
   authToken: string;
-  onEstadoActualizado: (id: number, nuevoEstado: EstadoType) => void; // ✅ NUEVO
+  onEstadoActualizado: (id: number, nuevoEstado: EstadoType) => void;
 }
+
 
 const ItemVisualizarDatosConsultaModal: React.FC<Props> = ({
   isOpen,
   onClose,
   solicitud,
   authToken,
-  onEstadoActualizado, // ✅ NUEVO
+  onEstadoActualizado,
 }) => {
+  console.log("solicitud:", solicitud)
   const [estadoActual, setEstadoActual] = useState<EstadoType>(solicitud.state as EstadoType);
 
   return (
@@ -37,36 +40,49 @@ const ItemVisualizarDatosConsultaModal: React.FC<Props> = ({
           <p className="text-lg"><strong>Fecha:</strong> {new Date(solicitud.date).toLocaleString()}</p>
         </div>
 
-        <div className="flex gap-3 items-center mt-2">
-          <p className="text-lg"><strong>Estado:</strong> </p>
-          <p className="inline-flex flex-col">
-            {(() => {
-              const estadoInfo = EstadoMap[estadoActual] ?? {
-                text: estadoActual,
-                className: 'bg-gray-100 text-gray-800',
-              };
-              return (
-                <span
-                  className={`flex justify-center px-2 py-1 rounded font-medium w-[120px] ${estadoInfo.className}`}
-                >
-                  {estadoInfo.text}
-                </span>
-              );
-            })()}
-            <span className="text-sm">{new Date(solicitud.date).toLocaleString()}</span>
-          </p>
+        <div className="grid grid-cols-[1fr_auto] gap-4 items-start mt-2">
+          {/* Columna 1: Listado de estados con scroll horizontal */}
+          <div className="overflow-x-auto">
+            <ul className="flex gap-3 items-center min-w-max">
+              {solicitud.listadoEstados
+                .sort((a, b) => new Date(a.fechaCambio).getTime() - new Date(b.fechaCambio).getTime())
+                .map((estadoObj, index) => (
+                  <li key={index} className="flex gap-3 items-center">
+                    <EstadoBadge
+                      className="min-w-[140px]"
+                      estado={estadoObj.estado as EstadoType}
+                      fecha={estadoObj.fechaCambio}
+                    />
+                    {index < solicitud.listadoEstados.length - 1 && (
+                      <img
+                        src="/web/icons/caret-right-solid.svg"
+                        alt=""
+                        width="16"
+                        height="16"
+                        className="inline-flex"
+                        aria-hidden="true"
+                      />
+                    )}
+                  </li>
+                ))}
+            </ul>
+          </div>
 
-          <ActualizarEstadoConsultaForm
-            idConsulta={solicitud.id.toString()}
-            token={authToken}
-            estadoActual={estadoActual}
-            onSuccess={(nuevoEstado: EstadoType) => {
-              setEstadoActual(nuevoEstado);
-              onEstadoActualizado(solicitud.id, nuevoEstado); // ✅ NUEVO
-              console.log('Estado actualizado correctamente: ', nuevoEstado);
-            }}
-          />
+          {/* Columna 2: Formulario para actualizar estado */}
+          <div>
+            <ActualizarEstadoConsultaForm
+              idConsulta={solicitud.id.toString()}
+              token={authToken}
+              estadoActual={estadoActual}
+              onSuccess={(nuevoEstado: EstadoType) => {
+                setEstadoActual(nuevoEstado);
+                onEstadoActualizado(solicitud.id, nuevoEstado);
+                console.log('Estado actualizado correctamente: ', nuevoEstado);
+              }}
+            />
+          </div>
         </div>
+
 
         <hr />
         <div className="flex gap-3">
