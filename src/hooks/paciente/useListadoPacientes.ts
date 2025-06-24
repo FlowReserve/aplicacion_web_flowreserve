@@ -24,6 +24,7 @@ export const useListadoPacientes = () => {
       try {
         const result = await obtenerListadoPacientesService(authData.token, params);
         setPacientes(result);
+        console.log("pacientes:", result)
       } catch (err: any) {
         setError(err.message || 'Error al cargar pacientes');
       } finally {

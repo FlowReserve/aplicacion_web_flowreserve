@@ -11,7 +11,7 @@ import CustomButtonOutline from '../../../../components/interactive/CustomButton
 
 const TodasConsultasList: React.FC = () => {
   const { authData } = useAuth();
-  const { solicitudes, loading, error } = useListarSolicitudesAdmin(authData?.token ?? null);
+  const { solicitudes, loading, error, reload } = useListarSolicitudesAdmin(authData?.token ?? null);
 
   // Estado local editable
   const [solicitudesLocal, setSolicitudesLocal] = useState<ResponseSolicitudPaciente[]>([]);
@@ -90,8 +90,12 @@ const TodasConsultasList: React.FC = () => {
 
   return (
     <div className="m-auto">
-      <h2 className="text-xl font-semibold my-4">Todas las Consultas</h2>
+      
 
+      <div className='flex justify-between my-4'>
+        <h2 className="text-xl font-semibold">Todas las Consultas</h2>
+        <CustomButton onClick={reload}>Actualizar consultas</CustomButton>
+      </div>
       <div className="overflow-x-auto">
         <table className="min-w-full bg-white border border-gray-200 rounded shadow-sm">
           <thead>

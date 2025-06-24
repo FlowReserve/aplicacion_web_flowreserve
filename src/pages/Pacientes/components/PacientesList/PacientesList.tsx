@@ -65,8 +65,8 @@ const PacientesList = (
 
     return (
         <div className="overflow-x-auto w-full max-w-[1200px] m-auto">
-            {pacientes?.size === 0 ? (
-                <p>No hay pacientes asignados a este médico.</p>
+            {pacientes?.totalElements === 0 ? (
+                <p className='w-full p-4 rounded border bg-blue-50 text-center'>No hay pacientes asignados.</p>
             ) : (
                 <table className="min-w-full border border-gray-300 text-left">
                     <thead className="bg-gray-100">

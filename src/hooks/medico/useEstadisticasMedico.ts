@@ -14,6 +14,7 @@ export const useEstadisticasMedico = (id: number, token: string) => {
     try {
       const estadisticas = await obtenerMedicoEstadisticasProfileService(id, token);
       setData(estadisticas);
+      console.log("estadisticaS:", estadisticas)
     } catch (err: any) {
       setError(err.message || 'Error al obtener estadísticas del médico');
     } finally {

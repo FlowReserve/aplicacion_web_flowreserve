@@ -85,7 +85,7 @@ const PacienteSolicitudesList: React.FC = () => {
       <hr className="w-full pb-6" />
       
       {solicitudesState.length === 0 ? (
-        <p>No hay solicitudes registradas para este paciente.</p>
+        <p className='w-full p-4 rounded border bg-blue-50 text-center'>No hay solicitudes registradas para este paciente.</p>
       ) : (
         <>
         <CustomButton onClick={() => { loadSolicitudes() }} className='mb-2'>Actualizar consultas</CustomButton>
