@@ -2,7 +2,8 @@ import React from 'react';
 import type { ResponseSolicitudPaciente } from '../../../../interfaces/Solicitud/ResponseSolicitudPaciente';
 import CustomButton from '../../../../components/interactive/CustomButton/CustomButton';
 import { useDescargarPDFSolicitud } from '../../../../hooks/useDescargarPDFSolicitud';
-import { EstadoMap, type EstadoType } from '../../../../types/estadoColores';
+import type { EstadoType } from '../../../../types/estadoColores';
+import EstadoBadge from '../../../../components/webElements/EstadoBadge/EstadoBadge';
 
 interface Props {
     solicitud: ResponseSolicitudPaciente;
@@ -25,7 +26,7 @@ const ItemPacienteSolicitud: React.FC<Props> = ({ solicitud }) => {
     return (
         <article className="grid p-4 border rounded-lg shadow-sm hover:shadow-md">
 
-            <header className="grid grid-cols-[1fr_auto] gap-4 items-start">
+            <header className="grid grid-cols-[auto_1fr] gap-4 items-start">
                 <div>
                     <p className="text-sm text-gray-600">Fecha solicitud: {formatDate(solicitud.date)}</p>
                     <h2 className="text-lg">
@@ -38,21 +39,34 @@ const ItemPacienteSolicitud: React.FC<Props> = ({ solicitud }) => {
                         </span>
                     </h3>
                 </div>
-                <div className="flex flex-col gap-2 items-center w-[200px]">
-                    <p className="text-sm text-gray-600">Última actualización: {formatDate(solicitud.date)}</p>
-                    {(() => {
-                        const estado = solicitud.state as EstadoType;
-                        const estadoInfo = EstadoMap[estado] ?? {
-                            text: estado,
-                            className: 'bg-gray-100 text-gray-800',
-                        };
-                        return (
-                            <span className={`flex justify-center px-3 py-1 rounded font-medium w-full text-sm text-center ${estadoInfo.className}`}>
-                                {estadoInfo.text}
-                            </span>
-                        );
-                    })()}
-                </div>
+                <ul className="flex gap-3 justify-end items-center relative">
+                    {solicitud.listadoEstados
+                        .sort((a, b) => new Date(a.fechaCambio).getTime() - new Date(b.fechaCambio).getTime())
+                        .map((estadoObj, index) => (
+                            <li
+                                key={index}
+                                className='flex gap-3'
+                            >
+                                <EstadoBadge
+                                    className='min-w-[140px]'
+                                    estado={estadoObj.estado as EstadoType}
+                                    fecha={estadoObj.fechaCambio}
+                                />
+                                {/* Flecha divisoria - no se muestra en el último elemento */}
+                                {index < solicitud.listadoEstados.length - 1 && (
+                                    <img
+                                        src="/web/icons/caret-right-solid.svg"
+                                        alt=""
+                                        width="16"
+                                        height="16"
+                                        className="inline-flex"
+                                        aria-hidden="true"
+                                    />
+                                )}
+                            </li>
+                        ))}
+                </ul>
+
             </header>
 
             <hr className="my-2" />
