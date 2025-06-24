@@ -5,6 +5,7 @@ import { useCargarPerfilPacienteByID } from '../../hooks/paciente/useCargarPerfi
 import ItemPacienteSolicitud from './components/ItemPacienteSolicitud/ItemPacienteSolicitud';
 import TitlePacienteSolicitud from './components/TitlePacienteSolicitud/TitlePacienteSolicitud';
 import type { ResponseSolicitudPaciente } from '../../interfaces/Solicitud/ResponseSolicitudPaciente';
+import CustomButton from '../../components/interactive/CustomButton/CustomButton';
 
 const PacienteSolicitudesList: React.FC = () => {
   const { id } = useParams<{ id: string }>();
@@ -41,8 +42,12 @@ const PacienteSolicitudesList: React.FC = () => {
 
   useEffect(() => {
     loadPaciente();
+
+  }, [loadPaciente]);
+
+  useEffect(() => {
     loadSolicitudes();
-  }, [loadPaciente, loadSolicitudes]);
+  }, [loadSolicitudes])
 
   // Loading
   if (pacienteLoading || solicitudesLoading) {
@@ -78,10 +83,12 @@ const PacienteSolicitudesList: React.FC = () => {
         onNuevaSolicitudCreada={handleConsultaCreada}
       />
       <hr className="w-full pb-6" />
-
+      
       {solicitudesState.length === 0 ? (
         <p>No hay solicitudes registradas para este paciente.</p>
       ) : (
+        <>
+        <CustomButton onClick={() => { loadSolicitudes() }} className='mb-2'>Actualizar consultas</CustomButton>
         <ul className="space-y-4">
           {solicitudesState.map((solicitud) => (
             <li key={solicitud.id}>
@@ -89,6 +96,7 @@ const PacienteSolicitudesList: React.FC = () => {
             </li>
           ))}
         </ul>
+        </>
       )}
     </div>
   );

@@ -48,9 +48,9 @@ const CheckboxSelect: React.FC<CheckboxSelectProps> = ({
         <option value="" disabled>
           Seleccionar
         </option>
-        <option value="Proximal">Proximal</option>
-        <option value="Medio">Medio</option>
-        <option value="Distal">Distal</option>
+        <option value="proximal">Proximal</option>
+        <option value="medio">Medio</option>
+        <option value="distal">Distal</option>
       </select>
     </div>
   );

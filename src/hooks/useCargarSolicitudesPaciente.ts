@@ -17,7 +17,6 @@ export const useSolicitudesPaciente = (idPaciente: number | null) => {
 
     setLoading(true);
     setError(null);
-
     try {
       const token = authData?.token || '';
       const result: PaginatedResponse<ResponseSolicitudPaciente> = await listarSolicitudesPacienteByIDService(idPaciente, token);

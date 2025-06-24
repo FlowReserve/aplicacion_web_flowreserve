@@ -16,7 +16,6 @@ export const useCargarPerfilPacienteByID = (pacienteId: number | null) => {
 
         setLoading(true);
         setError(null);
-
         try {
             const response: PacienteProps = await obtenerInformacionPacienteByIDService(pacienteId, authData.token);
             setPaciente(response);
