@@ -2,9 +2,10 @@ import React, { useState } from 'react';
 import Modal from 'react-modal';
 import type { ResponseSolicitudPaciente } from '../../../../interfaces/Solicitud/ResponseSolicitudPaciente';
 import type { EstadoType } from '../../../../types/estadoColores';
-import { EstadoMap } from '../../../../types/estadoColores';
 import ActualizarEstadoConsultaForm from './ActualizarEstadoConsultaForm/ActualizarEstadoConsultaForm';
 import EstadoBadge from '../../../../components/webElements/EstadoBadge/EstadoBadge';
+import CustomButton from '../../../../components/interactive/CustomButton/CustomButton';
+import CustomLink from '../../../../components/interactive/CustomLink/CustomLink';
 
 interface Props {
   isOpen: boolean;
@@ -97,6 +98,7 @@ const ItemVisualizarDatosConsultaModal: React.FC<Props> = ({
         </div>
         <hr />
       </div>
+      <CustomLink to={solicitud.rutaPublica}>Ver datos</CustomLink>
 
       <div className="mt-6 text-right">
         <button

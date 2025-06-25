@@ -8,6 +8,7 @@ export interface ResponseSolicitudPaciente{
     state: string,
     listadoEstados: EstadoRequestProps[]
     presionSistolica: number,
+    rutaPublica: string,
     presionDiastolica: number,
     nombreArchivoZip: string,
     comentarios: string,
